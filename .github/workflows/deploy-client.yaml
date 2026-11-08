@@ -1,0 +1,54 @@
+name: Deploy client to Cloud Run
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: deploy-client-production
+
+env:
+  PROJECT_ID: rt-pweb-prod
+  REGION: us-central1
+  SERVICE: personal-website
+  REGISTRY: us-central1-docker.pkg.dev
+  IMAGE: us-central1-docker.pkg.dev/rt-pweb-prod/pweb-images/personal-website:${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build frontend image
+        run: docker build --platform linux/amd64 --tag "$IMAGE" client
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v3
+        with:
+          project_id: ${{ env.PROJECT_ID }}
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: github-deploy@rt-pweb-prod.iam.gserviceaccount.com
+
+      - uses: google-github-actions/setup-gcloud@v3
+
+      - name: Push image to Artifact Registry
+        run: |
+          gcloud auth configure-docker "$REGISTRY" --quiet
+          docker push "$IMAGE"
+
+      - name: Deploy Cloud Run revision
+        run: |
+          gcloud run deploy "$SERVICE" \
+            --project "$PROJECT_ID" \
+            --region "$REGION" \
+            --image "$IMAGE" \
+            --port 8080 \
+            --service-account "website-runtime@$PROJECT_ID.iam.gserviceaccount.com" \
+            --quiet
