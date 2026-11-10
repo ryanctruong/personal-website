@@ -26,4 +26,6 @@ dist-ssr
 
 # Server files
 venv/
+__pycache__/
 
+.neon

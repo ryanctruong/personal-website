@@ -11,16 +11,21 @@ const isLocalApi =
   apiOrigin === "http://127.0.0.1:8080";
 let apiClient;
 
-async function requestFlask(path) {
+async function requestFlask(path, { method = "GET", cookie } = {}) {
   if (!apiOrigin) throw new Error("API_BASE_URL is missing");
 
-  let headers;
+  const headers = new Headers();
   if (!isLocalApi) {
     apiClient ??= await auth.getIdTokenClient(apiOrigin);
-    headers = await apiClient.getRequestHeaders();
+    const authHeaders = await apiClient.getRequestHeaders();
+    for (const [name, value] of authHeaders) {
+      headers.set(name, value);
+    }
   }
+  if (cookie) headers.set("Cookie", cookie);
 
   return fetch(new URL(path, apiOrigin), {
+    method,
     headers,
     signal: AbortSignal.timeout(5000),
     redirect: "error",
@@ -44,6 +49,22 @@ app.get("/api/hello", async (_request, response) => {
   } catch (error) {
     console.error("Flask API request failed:", error.message);
     response.status(502).type("text").send("The API is unavailable.");
+  }
+});
+
+app.post("/api/visit", async (request, response) => {
+  response.set("Cache-Control", "no-store");
+  try {
+    const upstream = await requestFlask("/api/visit", {
+      method: "POST",
+      cookie: request.get("Cookie"),
+    });
+    const cookie = upstream.headers.get("Set-Cookie");
+    if (cookie) response.set("Set-Cookie", cookie);
+    response.status(upstream.status).end();
+  } catch (error) {
+    console.error("Flask visit request failed:", error.message);
+    response.status(502).end();
   }
 });
 
