@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   id-token: write
 
 concurrency:
@@ -55,3 +55,19 @@ jobs:
             --port 8080 \
             --service-account "api-runtime@$PROJECT_ID.iam.gserviceaccount.com" \
             --quiet
+
+      - name: Create version
+        id: create-version
+        run: echo "tag=server-v${GITHUB_RUN_NUMBER}.${GITHUB_RUN_ATTEMPT}" >> "$GITHUB_OUTPUT"
+
+      - name: Create release
+        id: create-release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ steps.create-version.outputs.tag }}
+        run: |
+          gh release create "$RELEASE_TAG" \
+            --target "$GITHUB_SHA" \
+            --title "$RELEASE_TAG" \
+            --notes "Deployed container image: \`$IMAGE\`" \
+            --latest=false
