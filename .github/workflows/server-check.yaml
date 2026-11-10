@@ -38,7 +38,7 @@ jobs:
           python - <<'PY'
           from main import app
 
-          response = app.test_client().get("/")
+          response = app.test_client().get("/api/hello")
           if response.status_code != 200:
-              raise SystemExit(f"Expected HTTP 200 from /, got {response.status}")
+              raise SystemExit(f"Expected HTTP 200 from /api/hello, got {response.status}")
           PY
