@@ -2,7 +2,7 @@ import { PATHS } from "./milestones";
 
 const CareerTimeline = () => {
     return (
-        <section className="w-full flex flex-col gap-8">
+        <section id="timeline" className="w-full flex flex-col gap-8">
             <header className="flex flex-col gap-2 text-center">
                 <p className="text-3xl font-semibold">My Career Journey</p>
                 <p className="text-stone-600">From building computers to developing software solutions, I've grown both technically and professionally.</p>
