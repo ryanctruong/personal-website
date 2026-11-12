@@ -24,7 +24,9 @@ const App = () => {
         <div className="flex min-h-screen flex-col">
             <Banner />
             <main className="flex flex-1 flex-col items-center justify-center gap-4 p-4">
-                <p>Hello World</p>
+                <button className="bg-[#E8412C] hover:bg-[#C0392B] text-white font-bold py-2 px-4 rounded-2xl cursor-pointer" onClick={() => checkApiHealth()}>
+                    Hello World
+                </button>
             </main>
             <Navbar />
         </div >
