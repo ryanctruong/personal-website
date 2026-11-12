@@ -1,3 +1,6 @@
+import Banner from './components/Banner/Banner.tsx'
+import Navbar from './components/Navbar/Navbar.tsx'
+
 const App = () => {
 
     const checkApiHealth = async () => {
@@ -18,12 +21,16 @@ const App = () => {
 
 
     return (
-        <div className="flex flex-col items-center justify-center gap-2 h-screen">
-            <h1 className="font-bold text-2xl text-red-500">Hello World</h1>
-            <button onClick={checkApiHealth} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Check API Health
-            </button>
-        </div>
+        <div className="flex min-h-screen flex-col">
+            <Banner />
+            <main className="flex flex-1 flex-col items-center justify-center gap-4 p-4">
+                <button className="bg-[#E8412C] hover:bg-[#C0392B] text-white font-bold py-2 px-4 rounded-2xl cursor-pointer" onClick={() => checkApiHealth()}>
+                    Hello World
+                </button>
+            </main>
+            <Navbar />
+        </div >
+
     )
 }
 
