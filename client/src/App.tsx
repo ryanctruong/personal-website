@@ -21,11 +21,11 @@ const App = () => {
 
 
     return (
-        <div className="min-h-screen flex items-center justify-center relative">
+        <div className="flex min-h-screen flex-col">
             <Banner />
-            <div className="flex flex-col items-center justify-center gap-4">
+            <main className="flex flex-1 flex-col items-center justify-center gap-4 p-4">
                 <p>Hello World</p>
-            </div>
+            </main>
             <Navbar />
         </div >
 
