@@ -46,15 +46,82 @@ jobs:
           gcloud auth configure-docker "$REGISTRY" --quiet
           docker push "$IMAGE"
 
+      - name: Save current Cloud Run traffic
+        id: previous
+        run: |
+          service=$(gcloud run services describe "$SERVICE" \
+            --project "$PROJECT_ID" --region "$REGION" --format=json)
+          traffic=$(jq -er '
+            [.status.traffic[] | select(.percent > 0)]
+            | group_by(.revisionName)
+            | map(.[0].revisionName + "=" + (map(.percent) | add | tostring))
+            | join(",") | select(length > 0)
+          ' <<< "$service")
+          echo "traffic=$traffic" >> "$GITHUB_OUTPUT"
+          echo "url=$(jq -er '.status.url' <<< "$service")" >> "$GITHUB_OUTPUT"
+
+      - name: Get API smoke test token
+        id: smoke-auth
+        uses: google-github-actions/auth@v3
+        with:
+          project_id: ${{ env.PROJECT_ID }}
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: github-deploy@rt-pweb-prod.iam.gserviceaccount.com
+          token_format: id_token
+          id_token_audience: ${{ steps.previous.outputs.url }}
+          id_token_include_email: true
+          create_credentials_file: false
+          export_environment_variables: false
+
       - name: Deploy Cloud Run revision
         run: |
           gcloud run deploy "$SERVICE" \
             --project "$PROJECT_ID" \
             --region "$REGION" \
             --image "$IMAGE" \
+            --no-traffic \
+            --tag smoke \
             --port 8080 \
             --service-account "api-runtime@$PROJECT_ID.iam.gserviceaccount.com" \
             --quiet
+
+      - name: Route traffic to the new revision
+        id: promote
+        run: |
+          gcloud run services update-traffic "$SERVICE" \
+            --project "$PROJECT_ID" --region "$REGION" --to-latest --quiet
+
+      - name: Smoke test deployed revision
+        id: smoke
+        env:
+          SERVICE_URL: ${{ steps.previous.outputs.url }}
+          SMOKE_TOKEN: ${{ steps.smoke-auth.outputs.id_token }}
+        run: |
+          service=$(gcloud run services describe "$SERVICE" \
+            --project "$PROJECT_ID" --region "$REGION" --format=json)
+          revision_url=$(jq -er '
+            .status.latestReadyRevisionName as $revision
+            | .status.traffic[]
+            | select(.tag == "smoke" and .revisionName == $revision)
+            | .url | strings | select(length > 0)
+          ' <<< "$service")
+          for url in "$revision_url" "$SERVICE_URL"; do
+            body=$(curl --fail --silent --show-error --max-time 10 \
+              --retry 2 --retry-delay 2 --header "Authorization: Bearer $SMOKE_TOKEN" "$url/api/hello")
+            if ! [[ "$body" == "Hello World!" ]]; then
+              echo "::error::Unexpected smoke test response from $url/api/hello"
+              exit 1
+            fi
+          done
+
+      - name: Restore previous Cloud Run traffic
+        if: failure() && (steps.promote.outcome == 'failure' || steps.smoke.outcome == 'failure')
+        env:
+          PREVIOUS_TRAFFIC: ${{ steps.previous.outputs.traffic }}
+        run: |
+          gcloud run services update-traffic "$SERVICE" \
+            --project "$PROJECT_ID" --region "$REGION" \
+            --to-revisions "$PREVIOUS_TRAFFIC" --quiet
 
       - name: Create version
         id: create-version
