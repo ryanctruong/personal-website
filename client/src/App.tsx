@@ -1,3 +1,4 @@
+import Banner from './components/Banner/Banner.tsx'
 import Navbar from './components/Navbar/Navbar.tsx'
 
 const App = () => {
@@ -20,9 +21,14 @@ const App = () => {
 
 
     return (
-        <div className="min-h-screen flex items-center justify-center relative">
+        <div className="flex min-h-screen flex-col">
+            <Banner />
+            <main className="flex flex-1 flex-col items-center justify-center gap-4 p-4">
+                <p>Hello World</p>
+            </main>
             <Navbar />
-        </div>
+        </div >
+
     )
 }
 
