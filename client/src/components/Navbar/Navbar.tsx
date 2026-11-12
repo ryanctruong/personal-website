@@ -1,10 +1,25 @@
+import { LampFloor, DiagramFlowHorizontal, Route, Mail } from 'lucide-react'
+
 const Navbar = () => {
     return (
         <div className="absolute bottom-0 p-4 text-center">
-            <div className="flex justify-center gap-2 py-2 px-4 border border-gray-400 rounded-2xl">
-                <p>Home</p>
-                <p>Architecture</p>
-                <p>Contact</p>
+            <div className="flex justify-center gap-8 py-2 px-8 rounded-4xl text-md bg-[#8EC5FF] text-gray-700 shadow-lg shadow-[#8EC5FF]/50">
+                <div className="flex items-center gap-2 cursor-pointer">
+                    <LampFloor size={20} />
+                    <p>About</p>
+                </div>
+                <div className="flex items-center gap-2 cursor-pointer">
+                    <Route size={20} />
+                    <p>Timeline</p>
+                </div>
+                <div className="flex items-center gap-2 cursor-pointer">
+                    <DiagramFlowHorizontal size={20} />
+                    <p>Architecture</p>
+                </div>
+                <div className="flex items-center gap-2 cursor-pointer">
+                    <Mail size={20} />
+                    <p>Contact</p>
+                </div>
             </div>
         </div>
     );
