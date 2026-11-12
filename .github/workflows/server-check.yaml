@@ -34,7 +34,9 @@ jobs:
           python - <<'PY'
           from server.main import app
 
-          response = app.test_client().get("/api/hello")
+          response = app.test_client().get("/api/health")
           if response.status_code != 200:
-              raise SystemExit(f"Expected HTTP 200 from /api/hello, got {response.status}")
+              raise SystemExit(f"Expected HTTP 200 from /api/health, got {response.status}")
+          if response.get_json() != {"status": "ok"}:
+              raise SystemExit("Unexpected API health response")
           PY

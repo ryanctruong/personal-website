@@ -112,9 +112,9 @@ jobs:
           echo "::add-mask::$revision_url"
           for url in "$revision_url" "$SERVICE_URL"; do
             body=$(curl --fail --silent --show-error --max-time 10 \
-              --retry 2 --retry-delay 2 --header "Authorization: Bearer $SMOKE_TOKEN" "$url/api/hello")
-            if ! [[ "$body" == "Hello World!" ]]; then
-              echo "::error::Unexpected smoke test response for /api/hello"
+              --retry 2 --retry-delay 2 --header "Authorization: Bearer $SMOKE_TOKEN" "$url/api/health")
+            if ! jq -e '.status == "ok"' <<< "$body" > /dev/null; then
+              echo "::error::Unexpected smoke test response for /api/health"
               exit 1
             fi
           done

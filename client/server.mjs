@@ -42,10 +42,11 @@ app.use("/api", (request, response, next) => {
   next();
 });
 
-app.get("/api/hello", async (_request, response) => {
+app.get("/api/health", async (_request, response) => {
   try {
-    const upstream = await requestFlask("/api/hello");
-    response.status(upstream.status).type("text").send(await upstream.text());
+    const upstream = await requestFlask("/api/health");
+    response.set("Content-Type", upstream.headers.get("Content-Type") ?? "text/plain");
+    response.status(upstream.status).send(await upstream.text());
   } catch (error) {
     console.error("Flask API request failed:", error.message);
     response.status(502).type("text").send("The API is unavailable.");
