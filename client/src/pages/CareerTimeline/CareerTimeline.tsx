@@ -8,8 +8,8 @@ const CareerTimeline = () => {
                 <p className="text-stone-600">From building computers to developing software solutions, I've grown both technically and professionally.</p>
             </header>
 
-            <ol className="flex flex-col gap-8 p-4 relative isolate before:pointer-events-none before:absolute before:top-3 before:bottom-0 before:left-3 before:-z-10 before:w-0.5 before:bg-stone-300 md:before:left-1/2 md:before:-translate-x-1/2">
-                {PATHS.map(({ date, title, description }, index) => (
+            <ol className="flex flex-col gap-8 py-4 px-8 relative isolate before:pointer-events-none before:absolute before:top-3 before:bottom-0 before:left-3 before:-z-10 before:w-0.5 before:bg-stone-300 md:before:left-1/2 md:before:-translate-x-1/2">
+                {PATHS.map(({ date, title, subtitle, description }, index) => (
                     <li key={title} className="group flex items-start md:even:flex-row-reverse" data-timeline-item="true">
                         <div className="hidden flex-1 md:flex" style={{ justifyContent: index % 2 === 0 ? "flex-end" : "flex-start" }}>
                             <span className="rounded-sm bg-[#E8412C]/10 px-2 py-1 text-sm font-medium text-[#A92E20]">
@@ -27,9 +27,10 @@ const CareerTimeline = () => {
                             <p className="mb-2 w-fit rounded-sm bg-[#E8412C]/10 px-2 py-1 text-sm font-medium text-[#A92E20] md:sr-only">
                                 {date}
                             </p>
-                            <div className="flex flex-col gap-2 text-left md:group-even:text-right">
-                                <p className="text-lg font-medium md:text-xl">{title}</p>
-                                <p className="text-stone-600">{description}</p>
+                            <div className="flex flex-col gap-1 text-left md:group-even:text-right">
+                                <p className="text-lg font-medium">{title}</p>
+                                <p className="">{subtitle}</p>
+                                <p className="text-stone-600 text-sm">{description}</p>
                             </div>
                         </article>
                     </li>
