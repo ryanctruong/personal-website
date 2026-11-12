@@ -58,7 +58,9 @@ jobs:
             | join(",") | select(length > 0)
           ' <<< "$service")
           echo "traffic=$traffic" >> "$GITHUB_OUTPUT"
-          echo "url=$(jq -er '.status.url' <<< "$service")" >> "$GITHUB_OUTPUT"
+          url=$(jq -er '.status.url' <<< "$service")
+          echo "::add-mask::$url"
+          echo "url=$url" >> "$GITHUB_OUTPUT"
 
       - name: Get API smoke test token
         id: smoke-auth
@@ -74,6 +76,7 @@ jobs:
           export_environment_variables: false
 
       - name: Deploy Cloud Run revision
+        shell: bash
         run: |
           gcloud run deploy "$SERVICE" \
             --project "$PROJECT_ID" \
@@ -83,13 +86,14 @@ jobs:
             --tag smoke \
             --port 8080 \
             --service-account "api-runtime@$PROJECT_ID.iam.gserviceaccount.com" \
-            --quiet
+            --quiet 2>&1 | sed -E 's|https://[[:alnum:].-]+\.run\.app|[Cloud Run URL hidden]|g'
 
       - name: Route traffic to the new revision
         id: promote
+        shell: bash
         run: |
           gcloud run services update-traffic "$SERVICE" \
-            --project "$PROJECT_ID" --region "$REGION" --to-latest --quiet
+            --project "$PROJECT_ID" --region "$REGION" --to-latest --quiet 2>&1 | sed -E 's|https://[[:alnum:].-]+\.run\.app|[Cloud Run URL hidden]|g'
 
       - name: Smoke test deployed revision
         id: smoke
@@ -105,11 +109,12 @@ jobs:
             | select(.tag == "smoke" and .revisionName == $revision)
             | .url | strings | select(length > 0)
           ' <<< "$service")
+          echo "::add-mask::$revision_url"
           for url in "$revision_url" "$SERVICE_URL"; do
             body=$(curl --fail --silent --show-error --max-time 10 \
               --retry 2 --retry-delay 2 --header "Authorization: Bearer $SMOKE_TOKEN" "$url/api/hello")
             if ! [[ "$body" == "Hello World!" ]]; then
-              echo "::error::Unexpected smoke test response from $url/api/hello"
+              echo "::error::Unexpected smoke test response for /api/hello"
               exit 1
             fi
           done
@@ -118,10 +123,11 @@ jobs:
         if: failure() && (steps.promote.outcome == 'failure' || steps.smoke.outcome == 'failure')
         env:
           PREVIOUS_TRAFFIC: ${{ steps.previous.outputs.traffic }}
+        shell: bash
         run: |
           gcloud run services update-traffic "$SERVICE" \
             --project "$PROJECT_ID" --region "$REGION" \
-            --to-revisions "$PREVIOUS_TRAFFIC" --quiet
+            --to-revisions "$PREVIOUS_TRAFFIC" --quiet 2>&1 | sed -E 's|https://[[:alnum:].-]+\.run\.app|[Cloud Run URL hidden]|g'
 
       - name: Create version
         id: create-version
