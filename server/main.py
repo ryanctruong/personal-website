@@ -7,6 +7,6 @@ app = Flask(__name__)
 CORS(app)
 app.register_blueprint(visits)
 
-@app.route("/api/hello")
-def hello():
-    return "Hello World!"
+@app.get("/api/health")
+def health():
+    return {"status": "ok"}
