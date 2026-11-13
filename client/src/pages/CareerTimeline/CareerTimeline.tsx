@@ -62,7 +62,7 @@ const CareerTimeline = () => {
             </header>
 
             <ol ref={timelineRef} className="relative isolate flex flex-col gap-8 px-8 py-4">
-                {PATHS.map(({ date, title, subtitle, description }, index) => (
+                {PATHS.map(({ date, title, subtitle, description, techStack }, index) => (
                     <li key={title} className="group flex items-start md:even:flex-row-reverse" data-reached={index < reachedCount} data-timeline-item="true">
                         <div className="hidden flex-1 md:flex motion-safe:opacity-40 motion-safe:transition-opacity motion-safe:duration-500 motion-safe:group-data-[reached=true]:opacity-100" style={{ justifyContent: index % 2 === 0 ? "flex-end" : "flex-start" }}>
                             <span className="rounded-sm bg-black/10 px-2 py-1 text-sm font-medium text-black group-data-[reached=true]:bg-[#E8412C]/10 group-data-[reached=true]:text-[#A92E20] motion-safe:transition-colors">
@@ -84,11 +84,22 @@ const CareerTimeline = () => {
                             </p>
                             <div
                                 data-visible={index < reachedCount && index >= passedCount}
-                                className="flex flex-col gap-1 text-left md:group-even:text-right motion-safe:opacity-0 motion-safe:transition-opacity motion-safe:duration-500 motion-safe:ease-in-out motion-safe:data-[visible=true]:opacity-100"
+                                className="flex flex-col gap-4 text-left md:group-even:text-right motion-safe:opacity-0 motion-safe:transition-opacity motion-safe:duration-500 motion-safe:ease-in-out motion-safe:data-[visible=true]:opacity-100"
                             >
-                                <p className="text-lg font-medium">{title}</p>
-                                <p className="">{subtitle}</p>
-                                <p className="text-stone-600 text-sm">{description}</p>
+                                <div className="flex flex-col gap-1">
+                                    <p className="text-lg font-medium">{title}</p>
+                                    <p className="">{subtitle}</p>
+                                    <p className="text-stone-600 text-sm">{description}</p>
+                                </div>
+                                {techStack && techStack.length > 0 && (
+                                    <div className="flex items-center gap-4">
+                                        {techStack.map((tech, techIndex) => (
+                                            <div className="bg-gray-200 px-4 py-2 rounded-xl p-1" key={techIndex}>
+                                                <img key={techIndex} src={tech} className="h-12 w-12" />
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                         </article>
                     </li>
