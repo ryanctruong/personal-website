@@ -65,7 +65,7 @@ const CareerTimeline = () => {
                 {PATHS.map(({ date, title, subtitle, description }, index) => (
                     <li key={title} className="group flex items-start md:even:flex-row-reverse" data-reached={index < reachedCount} data-timeline-item="true">
                         <div className="hidden flex-1 md:flex motion-safe:opacity-40 motion-safe:transition-opacity motion-safe:duration-500 motion-safe:group-data-[reached=true]:opacity-100" style={{ justifyContent: index % 2 === 0 ? "flex-end" : "flex-start" }}>
-                            <span className="rounded-sm bg-[#E8412C]/10 px-2 py-1 text-sm font-medium text-[#A92E20]">
+                            <span className="rounded-sm bg-black/10 px-2 py-1 text-sm font-medium text-black group-data-[reached=true]:bg-[#E8412C]/10 group-data-[reached=true]:text-[#A92E20] motion-safe:transition-colors">
                                 {date}
                             </span>
                         </div>
@@ -73,13 +73,13 @@ const CareerTimeline = () => {
                         <div className="shrink-0 pr-4 md:px-4">
                             <span data-timeline-dot="true" className="flex size-6 items-center justify-center rounded-full bg-[#F7F5EF]">
                                 <span
-                                    className={`size-3 rounded-full transition-colors duration-200 motion-reduce:transition-none ${index < reachedCount ? "bg-[#E8412C]" : "bg-[#E8412C]/25"}`}
+                                    className={`size-3 rounded-full transition-colors duration-200 motion-reduce:transition-none ${index < reachedCount ? "bg-[#E8412C]" : "bg-black"}`}
                                 />
                             </span>
                         </div>
 
                         <article className="min-w-0 flex-1">
-                            <p className="mb-2 w-fit rounded-sm bg-[#E8412C]/10 px-2 py-1 text-sm font-medium text-[#A92E20] md:sr-only motion-safe:opacity-40 motion-safe:transition-opacity motion-safe:duration-500 motion-safe:group-data-[reached=true]:opacity-100">
+                            <p className="mb-2 w-fit rounded-sm bg-black/10 px-2 py-1 text-sm font-medium text-black group-data-[reached=true]:bg-[#E8412C]/10 group-data-[reached=true]:text-[#A92E20] motion-safe:transition-colors md:sr-only motion-safe:opacity-40 motion-safe:transition-opacity motion-safe:duration-500 motion-safe:group-data-[reached=true]:opacity-100">
                                 {date}
                             </p>
                             <div
