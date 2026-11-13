@@ -1,5 +1,7 @@
+import type { ReactNode } from "react";
+
 type RedButtonProps = {
-    title?: string
+    title?: ReactNode
     onClick?: () => void
 }
 
