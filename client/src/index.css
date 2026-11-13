@@ -10,3 +10,9 @@ body {
   background-color: #F7F5EF;
   font-family: "Work Sans Variable", sans-serif;
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}

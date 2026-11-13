@@ -34,10 +34,10 @@ const Navbar = () => {
                     <LampFloor size={20} />
                     <p>About</p>
                 </div>
-                <div className="flex items-center gap-2 cursor-pointer">
+                <a href="#timeline" className="flex items-center gap-2">
                     <Route size={20} />
-                    <p>Timeline</p>
-                </div>
+                    <span>Timeline</span>
+                </a>
                 <div className="flex items-center gap-2 cursor-pointer">
                     <DiagramFlowHorizontal size={20} />
                     <p>Architecture</p>
