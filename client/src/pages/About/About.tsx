@@ -6,7 +6,7 @@ import Graph from '../../components/Graph/Graph';
 
 const About = () => {
     return (
-        <div className="flex flex-col flex-1 justify-center items-center p-4 gap-8 pt-0">
+        <section id="about-me" className="flex flex-col flex-1 justify-center items-center p-4 gap-8 pt-2">
             <div className="grid grid-cols-[7fr_3fr] gap-8 flex-1 w-full rounded-2xl bg-[#9CAF88] p-4">
                 <div className="flex flex-col gap-4 text-white text-left">
                     <p className="text-5xl font-bold">Ryan Truong</p>
@@ -36,7 +36,7 @@ const About = () => {
                 </div>
             </div>
             <Graph />
-        </div>
+        </section>
     );
 };
 

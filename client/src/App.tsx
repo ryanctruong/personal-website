@@ -1,4 +1,4 @@
-import Banner from './components/Banner/Banner.tsx'
+// import Banner from './components/Banner/Banner.tsx'
 import Navbar from './components/Navbar/Navbar.tsx'
 
 import About from './pages/About/About.tsx'
@@ -25,7 +25,7 @@ const App = () => {
     return (
         <div className="flex min-h-screen flex-col">
             {/* <Banner /> */}
-            <main className="flex flex-1 flex-col gap-4 p-8 pt-4">
+            <main className="flex flex-1 flex-col gap-4 p-8 pt-2">
                 <About />
                 <CareerTimeline />
                 <div className="flex items-center justify-center">
