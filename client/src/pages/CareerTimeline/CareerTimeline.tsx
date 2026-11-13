@@ -92,9 +92,9 @@ const CareerTimeline = () => {
                                     <p className="text-stone-600 text-sm">{description}</p>
                                 </div>
                                 {techStack && techStack.length > 0 && (
-                                    <div className="flex items-center gap-4">
+                                    <div className="flex flex-wrap items-center justify-start gap-4 md:group-even:justify-end">
                                         {techStack.map((tech, techIndex) => (
-                                            <div className="bg-gray-200 px-4 py-2 rounded-xl p-1" key={techIndex}>
+                                            <div className="bg-[#ECEEF0] px-4 py-2 rounded-xl p-1" key={techIndex}>
                                                 <img key={techIndex} src={tech} className="h-12 w-12" />
                                             </div>
                                         ))}
