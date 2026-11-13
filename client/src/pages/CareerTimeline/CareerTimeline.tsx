@@ -55,13 +55,13 @@ const CareerTimeline = () => {
     }, []);
 
     return (
-        <section id="timeline" className="py-8 w-full flex flex-col gap-8">
+        <section id="timeline" className="p-8 w-full flex flex-col gap-4">
             <header className="flex flex-col gap-2 text-center">
                 <p className="text-3xl font-semibold">My Career Journey</p>
                 <p className="text-stone-600">From building computers to developing software solutions, I've grown both technically and professionally.</p>
             </header>
 
-            <ol ref={timelineRef} className="relative isolate flex flex-col gap-8 px-8 py-4">
+            <ol ref={timelineRef} className="relative isolate flex flex-col gap-8 p-4">
                 {PATHS.map(({ date, title, subtitle, description, techStack }, index) => (
                     <li key={title} className="group flex items-start md:even:flex-row-reverse" data-reached={index < reachedCount} data-timeline-item="true">
                         <div className="hidden flex-1 md:flex motion-safe:opacity-40 motion-safe:transition-opacity motion-safe:duration-500 motion-safe:group-data-[reached=true]:opacity-100" style={{ justifyContent: index % 2 === 0 ? "flex-end" : "flex-start" }}>
