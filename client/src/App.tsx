@@ -29,8 +29,8 @@ const App = () => {
             <Banner />
             <main className="flex flex-1 flex-col gap-18 p-8 pt-2 items-center">
                 <About />
-                <Graph />
                 <Questionnaire />
+                <Graph />
                 <CareerTimeline />
                 <div className="flex items-center justify-center">
                     <button className="bg-[#E8412C] hover:bg-[#C0392B] text-white font-bold py-2 px-4 w-fit rounded-2xl cursor-pointer" onClick={() => checkApiHealth()}>

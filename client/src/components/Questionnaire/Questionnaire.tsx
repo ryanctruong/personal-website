@@ -58,7 +58,6 @@ const Questionnaire = () => {
     return (
         <section className="grid w-full max-w-5xl items-start gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10 p-8">
             <div className="flex flex-col gap-4 rounded-3xl bg-[#9dbeb7] p-4 text-stone-900 md:sticky md:top-6 md:max-h-[calc(100dvh-3rem)] md:overflow-y-auto">
-                <p id="faq-heading" className="text-xl font-bold">Frequently asked questions</p>
                 <nav className="grid gap-1">
                     {FAQs.map(({ id, question }) => (
                         <a
@@ -79,7 +78,7 @@ const Questionnaire = () => {
                         <div className="flex flex-col gap-2 rounded-3xl motion-safe:opacity-0 motion-safe:transition-opacity motion-safe:duration-500 motion-safe:data-[in-view]:opacity-100 md:motion-safe:data-[in-view]:opacity-0 md:motion-safe:data-[in-view]:data-[active]:opacity-100"
                             data-active={activeId === id ? '' : undefined}
                         >
-                            <p className="text-lg font-medium">{question}</p>
+                            <p className="text-xl font-medium underline">{question}</p>
                             <p className="leading-relaxed text-stone-600">{answer}</p>
                         </div>
                         {index < FAQs.length - 1 && (
