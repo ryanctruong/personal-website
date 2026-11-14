@@ -12,8 +12,8 @@ const About = () => {
                     <p className="text-5xl font-bold">Ryan Truong</p>
                     <p className="text-lg">Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making</p>
                 </div>
-                <div className="flex  gap-4 justify-evenly">
-                    <div className="flex gap-4 items-center justify-evenly bg-[#9DBEB7] py-2 px-4 rounded-4xl">
+                <div className="flex gap-4 justify-evenly">
+                    <div className="flex gap-4 items-center justify-evenly bg-[#9DBEB7] p px-4 rounded-4xl">
                         <img src="/beanhead.png" className="size-24" />
                         <div>
                             <p className="text-2xl text-white font-bold">Articles</p>
