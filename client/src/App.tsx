@@ -26,7 +26,7 @@ const App = () => {
     return (
         <div className="flex min-h-screen flex-col">
             <Banner />
-            <main className="flex flex-1 flex-col gap-4 p-8 pt-2">
+            <main className="flex flex-1 flex-col gap-24 p-8 pt-2">
                 <About />
                 <CareerTimeline />
                 <Graph />
