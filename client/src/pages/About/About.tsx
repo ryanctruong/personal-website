@@ -6,7 +6,7 @@ import Questionnaire from '../../components/Questionnaire/Questionnaire';
 
 const About = () => {
     return (
-        <section id="about-me" className="flex flex-col flex-1 justify-center items-center p-4 gap-12 pt-2">
+        <section id="#" className="flex flex-col flex-1 justify-center items-center p-4 gap-12 pt-2">
             <div className="grid grid-cols-1 md:grid-cols-2 md:grid-cols-[3fr_2fr] gap-4 flex-1 w-full rounded-2xl p-4">
                 <div className="flex flex-col gap-4 text-left justify-center">
                     <p className="text-5xl font-bold">Ryan Truong</p>
