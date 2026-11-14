@@ -49,12 +49,10 @@ const Questionnaire = () => {
     }, []);
 
     return (
-        <section
-            className="grid w-full max-w-5xl items-start gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10"
-        >
-            <div className="rounded-3xl bg-[#9dbeb7] p-5 text-stone-900 md:sticky md:top-6 md:max-h-[calc(100dvh-3rem)] md:overflow-y-auto">
+        <section className="grid w-full max-w-5xl items-start gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10">
+            <div className="flex flex-col gap-4 rounded-3xl bg-[#9dbeb7] p-4 text-stone-900 md:sticky md:top-6 md:max-h-[calc(100dvh-3rem)] md:overflow-y-auto">
                 <h2 id="faq-heading" className="text-xl font-bold">Frequently asked questions</h2>
-                <nav aria-label="FAQ questions" className="mt-4 grid gap-1">
+                <nav className="grid gap-1">
                     {FAQs.map(({ id, question }) => (
                         <a
                             key={id}
@@ -70,17 +68,12 @@ const Questionnaire = () => {
 
             <div ref={answersRef} className="grid min-w-0 gap-4 md:gap-0">
                 {FAQs.map(({ id, question, answer }) => (
-                    <article
-                        key={id}
-                        id={id}
-                        tabIndex={-1}
-                        className="scroll-mt-[25vh] md:min-h-[60vh]"
-                    >
-                        <div className="rounded-3xl border border-stone-200 bg-white p-5 md:p-8 motion-safe:opacity-0 motion-safe:transition-opacity motion-safe:duration-500 motion-safe:data-[in-view]:opacity-100 md:motion-safe:data-[in-view]:opacity-0 md:motion-safe:data-[in-view]:data-[active]:opacity-100"
+                    <article key={id} id={id} tabIndex={-1} className="scroll-mt-[25vh] md:min-h-[60vh]" >
+                        <div className="flex flex-col gap-2 rounded-3xl border border-stone-200 bg-white p-4 md:p-8 motion-safe:opacity-0 motion-safe:transition-opacity motion-safe:duration-500 motion-safe:data-[in-view]:opacity-100 md:motion-safe:data-[in-view]:opacity-0 md:motion-safe:data-[in-view]:data-[active]:opacity-100"
                             data-active={activeId === id ? '' : undefined}
                         >
                             <h3 className="text-xl font-semibold text-stone-900 md:text-2xl">{question}</h3>
-                            <p className="mt-3 leading-relaxed text-stone-700">{answer}</p>
+                            <p className="leading-relaxed text-stone-700">{answer}</p>
                         </div>
                     </article>
                 ))}
