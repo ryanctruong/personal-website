@@ -1,4 +1,10 @@
-export const FAQs = [
+type FAQs = {
+    id: string
+    question: string
+    answer: string
+}
+
+export const FAQs: FAQs[] = [
   {
     id: "faq-background",
     question: "What did you study?",
