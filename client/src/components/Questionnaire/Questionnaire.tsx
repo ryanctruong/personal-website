@@ -56,7 +56,7 @@ const Questionnaire = () => {
     }, []);
 
     return (
-        <section className="grid w-full max-w-6xl items-start gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10 p-8">
+        <section id="questions" aria-label="Questions about Ryan" className="grid w-full max-w-6xl items-start gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10 p-8">
             <div className="flex flex-col gap-4 rounded-4xl bg-[#9dbeb7] p-6 text-stone-900 md:sticky md:top-6 md:max-h-[calc(100dvh-3rem)] md:overflow-y-auto">
                 <nav className="grid gap-1">
                     {FAQs.map(({ id, question }) => (
@@ -64,7 +64,7 @@ const Questionnaire = () => {
                             key={id}
                             href={`#${id}`}
                             aria-current={activeId === id ? 'location' : undefined}
-                            className="rounded-xl px-3 py-2 text-left text-white hover:bg-white/15 aria-[current=location]:bg-[#F7F5EF] aria-[current=location]:font-semibold aria-[current=location]:text-stone-900"
+                            className="rounded-xl px-3 py-2 text-left text-white hover:bg-white/15 aria-[current=location]:bg-[#F7F5EF] aria-[current=location]:font-medium aria-[current=location]:text-stone-900"
                         >
                             {question}
                         </a>
