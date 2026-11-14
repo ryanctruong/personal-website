@@ -1,4 +1,4 @@
-import { ArrowRight } from 'lucide-react'
+import { ArrowDown, ArrowRight } from 'lucide-react'
 
 import RedButton from "../../components/Button/RedButton";
 
@@ -12,6 +12,12 @@ const About = () => {
                         <p className="text-5xl font-bold italic">Ryan Truong</p>
                     </div>
                     <p className="text-lg">Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making.</p>
+                    <a
+                        href="#questions"
+                        className="inline-flex min-h-11 w-fit items-center gap-2 rounded-2xl bg-[#C0392B] px-4 py-2 font-semibold text-white hover:bg-[#A93226]"
+                    >
+                        Explore questions <ArrowDown size={16} aria-hidden="true" />
+                    </a>
                 </div>
                 <div className="grid grid-row-1 md:grid-rows-2 gap-6 gap-4 justify-evenly">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center justify-evenly bg-[#9DBEB7] p-4 rounded-4xl">
