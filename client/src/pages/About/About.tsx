@@ -3,12 +3,13 @@ import { ArrowRight } from 'lucide-react'
 import RedButton from "../../components/Button/RedButton";
 
 import Graph from '../../components/Graph/Graph';
+import Questionnaire from '../../components/Questionnaire/Questionnaire';
 
 const About = () => {
     return (
         <section id="about-me" className="flex flex-col flex-1 justify-center items-center p-4 gap-8 pt-2">
-            <div className="grid grid-cols-[7fr_3fr] gap-8 flex-1 w-full rounded-2xl bg-[#9CAF88] p-4">
-                <div className="flex flex-col gap-4 text-white text-left">
+            <div className="grid grid-cols-[7fr_3fr] gap-8 flex-1 w-full rounded-2xl p-4">
+                <div className="flex flex-col gap-4 text-left">
                     <p className="text-5xl font-bold">Ryan Truong</p>
                     <p className="text-lg">Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making</p>
                 </div>
@@ -35,6 +36,7 @@ const About = () => {
                     </div>
                 </div>
             </div>
+            <Questionnaire />
             <Graph />
         </section>
     );
