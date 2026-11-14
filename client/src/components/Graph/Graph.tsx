@@ -68,10 +68,10 @@ const Graph = () => {
                     <div className="flex flex-col items-center justify-center">
                         <div className="bg-[#F7F5EF] flex items-center justify-center rounded-xl border p-2">
                             <div
-                                className="bg-secondary flex size-16 items-center justify-center rounded-xl border-[1.5px] shadow-xl md:size-23"
+                                className="bg-secondary flex size-24 items-center justify-center rounded-xl border-[1.5px] shadow-xl md:size-32"
                             >
                                 <div
-                                    className="flex size-10 items-center justify-center rounded-xl md:size-24"
+                                    className="flex size-18 items-center justify-center rounded-xl md:size-28"
                                 >
                                     {centerImage ? (
                                         <img
@@ -83,7 +83,7 @@ const Graph = () => {
                                 </div>
                             </div>
                         </div>
-                        <p className="font-semibold text-sm text-[#C0392B]">Favorite Tech Stack</p>
+                        <p className="font-semibold text-sm text-[#C0392B]">Tech Stack</p>
                     </div>
                     <div className="flex w-full max-w-20 justify-between max-md:hidden">
                         <span className="size-0.5" />
