@@ -65,22 +65,25 @@ const Graph = () => {
                         <span className="size-0.5" />
                         <span className="size-0.5" />
                     </div>
-                    <div className="bg-[#F7F5EF] flex items-center justify-center rounded-xl border p-2">
-                        <div
-                            className="bg-secondary flex size-16 items-center justify-center rounded-xl border-[1.5px] shadow-xl md:size-23"
-                        >
+                    <div className="flex flex-col items-center justify-center">
+                        <div className="bg-[#F7F5EF] flex items-center justify-center rounded-xl border p-2">
                             <div
-                                className="flex size-10 items-center justify-center rounded-xl md:size-24"
+                                className="bg-secondary flex size-16 items-center justify-center rounded-xl border-[1.5px] shadow-xl md:size-23"
                             >
-                                {centerImage ? (
-                                    <img
-                                        src={centerImage}
-                                        alt=""
-                                        className="size-full rounded-xl object-contain"
-                                    />
-                                ) : null}
+                                <div
+                                    className="flex size-10 items-center justify-center rounded-xl md:size-24"
+                                >
+                                    {centerImage ? (
+                                        <img
+                                            src={centerImage}
+                                            alt=""
+                                            className="size-full rounded-xl object-contain"
+                                        />
+                                    ) : null}
+                                </div>
                             </div>
                         </div>
+                        <p className="font-semibold text-sm text-[#C0392B]">Favorite Tech Stack</p>
                     </div>
                     <div className="flex w-full max-w-20 justify-between max-md:hidden">
                         <span className="size-0.5" />
