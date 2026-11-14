@@ -3,6 +3,7 @@ import Navbar from './components/Navbar/Navbar.tsx'
 
 import About from './pages/About/About.tsx'
 import CareerTimeline from './pages/CareerTimeline/CareerTimeline.tsx'
+import Graph from './components/Graph/Graph.tsx'
 
 const App = () => {
 
@@ -28,6 +29,7 @@ const App = () => {
             <main className="flex flex-1 flex-col gap-4 p-8 pt-2">
                 <About />
                 <CareerTimeline />
+                <Graph />
                 <div className="flex items-center justify-center">
                     <button className="bg-[#E8412C] hover:bg-[#C0392B] text-white font-bold py-2 px-4 w-fit rounded-2xl cursor-pointer" onClick={() => checkApiHealth()}>
                         Hello World

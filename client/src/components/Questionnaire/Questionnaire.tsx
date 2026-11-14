@@ -69,7 +69,7 @@ const Questionnaire = () => {
             <div ref={answersRef} className="grid min-w-0 gap-4 md:gap-0">
                 {FAQs.map(({ id, question, answer }) => (
                     <article key={id} id={id} tabIndex={-1} className="scroll-mt-[25vh] md:min-h-[60vh]" >
-                        <div className="flex flex-col gap-2 rounded-3xl border border-stone-200 bg-white p-4 md:p-8 motion-safe:opacity-0 motion-safe:transition-opacity motion-safe:duration-500 motion-safe:data-[in-view]:opacity-100 md:motion-safe:data-[in-view]:opacity-0 md:motion-safe:data-[in-view]:data-[active]:opacity-100"
+                        <div className="flex flex-col gap-2 rounded-3xl p-4 md:p-8 motion-safe:opacity-0 motion-safe:transition-opacity motion-safe:duration-500 motion-safe:data-[in-view]:opacity-100 md:motion-safe:data-[in-view]:opacity-0 md:motion-safe:data-[in-view]:data-[active]:opacity-100"
                             data-active={activeId === id ? '' : undefined}
                         >
                             <p className="text-xl font-semibold text-stone-900 md:text-2xl">{question}</p>

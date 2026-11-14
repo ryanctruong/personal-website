@@ -2,7 +2,6 @@ import { ArrowRight } from 'lucide-react'
 
 import RedButton from "../../components/Button/RedButton";
 
-import Graph from '../../components/Graph/Graph';
 import Questionnaire from '../../components/Questionnaire/Questionnaire';
 
 const About = () => {
@@ -34,10 +33,19 @@ const About = () => {
                             <RedButton title={<ArrowRight size={16} />} />
                         </div>
                     </div>
+                    <div className="flex gap-4 items-center justify-evenly bg-[#9DBEB7] py-2 px-4 rounded-4xl">
+                        <img src="/beanhead.png" className="size-24" />
+                        <div>
+                            <p className="text-2xl text-white font-bold">Linkedin</p>
+                            <p className="text-stone-700">See what I post See what I post See what I post See what I post</p>
+                        </div>
+                        <div className="flex items-center">
+                            <RedButton title={<ArrowRight size={16} />} />
+                        </div>
+                    </div>
                 </div>
             </div>
             <Questionnaire />
-            <Graph />
         </section>
     );
 };
