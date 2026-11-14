@@ -11,7 +11,7 @@ const About = () => {
                 <div className="flex flex-col gap-4 text-left justify-center">
                     <div>
                         <p className="font-semibold text-[#C0392B] italic">Hey! My name is...</p>
-                        <p className="text-5xl font-bold">Ryan Truong</p>
+                        <p className="text-5xl font-bold italic">Ryan Truong</p>
                     </div>
                     <p className="text-lg">Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making.</p>
                 </div>
