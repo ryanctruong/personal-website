@@ -27,7 +27,7 @@ const App = () => {
     return (
         <div className="flex min-h-screen flex-col">
             <Banner />
-            <main className="flex flex-1 flex-col gap-24 p-8 pt-2 items-center">
+            <main className="flex flex-1 flex-col gap-18 p-8 pt-2 items-center">
                 <About />
                 <Graph />
                 <Questionnaire />

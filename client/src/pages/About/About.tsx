@@ -4,8 +4,8 @@ import RedButton from "../../components/Button/RedButton";
 
 const About = () => {
     return (
-        <section id="#" className="flex flex-col flex-1 justify-center items-center p-4 pt-2">
-            <div className="grid grid-cols-1 md:grid-cols-2 md:grid-cols-[3fr_2fr] gap-4 flex-1 w-full rounded-2xl p-4">
+        <section id="#" className="flex flex-col flex-1 justify-center items-center p-8 pt-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 md:grid-cols-[3fr_2fr] gap-4 flex-1 w-full rounded-2xl">
                 <div className="flex flex-col gap-4 text-left justify-center">
                     <div>
                         <p className="font-semibold text-[#C0392B] italic">Hey! My name is...</p>
