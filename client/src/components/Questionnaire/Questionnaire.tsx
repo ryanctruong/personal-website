@@ -56,8 +56,8 @@ const Questionnaire = () => {
     }, []);
 
     return (
-        <section className="grid w-full max-w-5xl items-start gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10 p-8">
-            <div className="flex flex-col gap-4 rounded-3xl bg-[#9dbeb7] p-4 text-stone-900 md:sticky md:top-6 md:max-h-[calc(100dvh-3rem)] md:overflow-y-auto">
+        <section className="grid w-full max-w-6xl items-start gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10 p-8">
+            <div className="flex flex-col gap-4 rounded-4xl bg-[#9dbeb7] p-6 text-stone-900 md:sticky md:top-6 md:max-h-[calc(100dvh-3rem)] md:overflow-y-auto">
                 <nav className="grid gap-1">
                     {FAQs.map(({ id, question }) => (
                         <a
