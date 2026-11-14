@@ -7,6 +7,7 @@ const Questionnaire = () => {
 
     useEffect(() => {
         const answers = Array.from(answersRef.current?.querySelectorAll('article') ?? []);
+        const connectors = Array.from(answersRef.current?.querySelectorAll<HTMLElement>('[data-connector]') ?? []);
         let frame: number | null = null;
 
         const updateActiveQuestion = () => {
@@ -17,6 +18,12 @@ const Questionnaire = () => {
             for (const answer of answers) {
                 if (answer.getBoundingClientRect().top > readingLine) break;
                 current = answer.id;
+            }
+
+            for (const connector of connectors) {
+                const { top, height } = connector.getBoundingClientRect();
+                const progress = Math.min(1, Math.max(0, (readingLine - top) / height));
+                connector.style.setProperty('--connector-progress', String(progress));
             }
 
             setActiveId(current);
@@ -67,14 +74,19 @@ const Questionnaire = () => {
             </div>
 
             <div ref={answersRef} className="grid min-w-0 gap-4 md:gap-0">
-                {FAQs.map(({ id, question, answer }) => (
-                    <article key={id} id={id} tabIndex={-1} className="scroll-mt-[25vh] md:min-h-[60vh] md:scroll-mt-[60vh]" >
-                        <div className="flex flex-col gap-2 rounded-3xl p-4 md:p-8 motion-safe:opacity-0 motion-safe:transition-opacity motion-safe:duration-500 motion-safe:data-[in-view]:opacity-100 md:motion-safe:data-[in-view]:opacity-0 md:motion-safe:data-[in-view]:data-[active]:opacity-100"
+                {FAQs.map(({ id, question, answer }, index) => (
+                    <article key={id} id={id} tabIndex={-1} className="flex scroll-mt-[25vh] flex-col md:min-h-[60vh] md:scroll-mt-[60vh]">
+                        <div className="flex flex-col gap-2 rounded-3xl motion-safe:opacity-0 motion-safe:transition-opacity motion-safe:duration-500 motion-safe:data-[in-view]:opacity-100 md:motion-safe:data-[in-view]:opacity-0 md:motion-safe:data-[in-view]:data-[active]:opacity-100"
                             data-active={activeId === id ? '' : undefined}
                         >
-                            <p className="text-xl font-semibold text-stone-900 md:text-2xl">{question}</p>
-                            <p className="leading-relaxed text-stone-700">{answer}</p>
+                            <p className="text-lg font-medium">{question}</p>
+                            <p className="leading-relaxed text-stone-600">{answer}</p>
                         </div>
+                        {index < FAQs.length - 1 && (
+                            <span aria-hidden="true" data-connector className="relative mt-4 min-h-6 w-0.5 flex-1 self-center bg-black/20 md:mb-4">
+                                <span className="absolute inset-0 origin-top bg-black motion-safe:scale-y-[var(--connector-progress,0)]" />
+                            </span>
+                        )}
                     </article>
                 ))}
             </div>
