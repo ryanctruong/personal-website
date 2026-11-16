@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { House, DiagramFlowHorizontal, Route, Mail } from 'lucide-react'
+import { House, BadgeQuestionMark, Route, Mail } from 'lucide-react'
 
 const Navbar = () => {
     const [isScrolling, setIsScrolling] = useState(false)
@@ -33,15 +33,15 @@ const Navbar = () => {
                 <a href="#" className="flex items-center gap-2 cursor-pointer">
                     <House size={24} />
                 </a>
+                <a href="#questions" className="flex items-center gap-2 cursor-pointer">
+                    <BadgeQuestionMark size={24} />
+                </a>
                 <a href="#timeline" className="flex items-center gap-2">
                     <Route size={24} />
                 </a>
-                <div className="flex items-center gap-2 cursor-pointer">
-                    <DiagramFlowHorizontal size={24} />
-                </div>
-                <div className="flex items-center gap-2 cursor-pointer">
+                <a href="#contact-me" className="flex items-center gap-2 cursor-pointer">
                     <Mail size={24} />
-                </div>
+                </a>
             </div>
         </nav>
     );

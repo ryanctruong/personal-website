@@ -83,7 +83,7 @@ const Graph = () => {
                                 </div>
                             </div>
                         </div>
-                        <p className="font-semibold text-sm text-[#C0392B]">Tech Stack</p>
+                        <p className="font-semibold text-sm text-[#E8412C]">Tech Stack</p>
                     </div>
                     <div className="flex w-full max-w-20 justify-between max-md:hidden">
                         <span className="size-0.5" />

@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { FAQs } from './faq';
 
+const questionAnchor = (id: string) => `questions/${id}`;
+
 const Questionnaire = () => {
     const answersRef = useRef<HTMLDivElement>(null);
-    const [activeId, setActiveId] = useState(FAQs[0].id);
+    const [activeId, setActiveId] = useState(questionAnchor(FAQs[0].id));
 
     useEffect(() => {
         const answers = Array.from(answersRef.current?.querySelectorAll('article') ?? []);
@@ -12,7 +14,7 @@ const Questionnaire = () => {
         const updateActiveQuestion = () => {
             frame = null;
             const readingLine = window.innerHeight * 0.5;
-            let current = FAQs[0].id;
+            let current = questionAnchor(FAQs[0].id);
 
             for (const answer of answers) {
                 if (answer.getBoundingClientRect().top > readingLine) break;
@@ -45,9 +47,9 @@ const Questionnaire = () => {
                     {FAQs.map(({ id, question }) => (
                         <a
                             key={id}
-                            href={`#${id}`}
-                            aria-current={activeId === id ? 'location' : undefined}
-                            className="rounded-xl border-l-4 border-transparent px-3 py-2 text-left hover:bg-[#F7F5EF]/60 aria-[current=location]:border-[#C0392B] aria-[current=location]:bg-[#F7F5EF] aria-[current=location]:font-medium"
+                            href={`#${questionAnchor(id)}`}
+                            aria-current={activeId === questionAnchor(id) ? 'location' : undefined}
+                            className="rounded-xl border-l-4 border-transparent px-3 py-2 text-left hover:bg-[#F7F5EF]/60 aria-[current=location]:border-[#E8412C] aria-[current=location]:bg-[#F7F5EF] aria-[current=location]:font-medium"
                         >
                             {question}
                         </a>
@@ -57,7 +59,7 @@ const Questionnaire = () => {
 
             <div ref={answersRef} className="grid min-w-0 gap-6 md:gap-8">
                 {FAQs.map(({ id, question, answer }) => (
-                    <article key={id} id={id} tabIndex={-1} className="grid scroll-mt-6 gap-2 border-b border-[#CED8CF] pb-6 last:border-b-0 last:pb-0 md:pb-8">
+                    <article key={id} id={questionAnchor(id)} tabIndex={-1} className="grid scroll-mt-6 gap-2 border-b border-[#CED8CF] pb-6 last:border-b-0 last:pb-0 md:pb-8">
                         <h2 className="text-2xl font-semibold">{question}</h2>
                         <p className="max-w-[65ch] leading-relaxed text-stone-600">{answer}</p>
                     </article>
