@@ -11,13 +11,13 @@ const About = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 md:grid-cols-[3fr_2fr] gap-4 flex-1 w-full rounded-2xl">
                 <div className="flex flex-col gap-4 text-left justify-center">
                     <div>
-                        <p className="font-semibold text-[#C0392B] italic">Hey! My name is...</p>
+                        <p className="font-semibold text-[#E8412C] italic">Hey! My name is...</p>
                         <p className="text-5xl font-bold italic">Ryan Truong</p>
                     </div>
                     <p className="text-lg">Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making.</p>
                     <a
                         href="#questions"
-                        className="inline-flex min-h-11 w-fit items-center gap-2 rounded-2xl bg-[#C0392B] px-4 py-2 font-semibold text-white hover:bg-[#A93226]"
+                        className="inline-flex min-h-11 w-fit items-center gap-2 rounded-2xl bg-[#E8412C] px-4 py-2 font-semibold text-white hover:bg-[#A93226]"
                     >
                         Learn More <ArrowDown size={16} aria-hidden="true" />
                     </a>
@@ -33,7 +33,7 @@ const About = () => {
                                 <span className="block text-xl font-bold">{title}</span>
                                 <span className="block text-sm text-stone-700">{description}</span>
                             </div>
-                            <ArrowRight size={18} className="text-[#C0392B]" aria-hidden="true" />
+                            <ArrowRight size={18} className="text-[#E8412C]" aria-hidden="true" />
                         </a>
                     ))}
                 </nav>

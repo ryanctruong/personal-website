@@ -47,7 +47,7 @@ const Questionnaire = () => {
                             key={id}
                             href={`#${id}`}
                             aria-current={activeId === id ? 'location' : undefined}
-                            className="rounded-xl border-l-4 border-transparent px-3 py-2 text-left hover:bg-[#F7F5EF]/60 aria-[current=location]:border-[#C0392B] aria-[current=location]:bg-[#F7F5EF] aria-[current=location]:font-medium"
+                            className="rounded-xl border-l-4 border-transparent px-3 py-2 text-left hover:bg-[#F7F5EF]/60 aria-[current=location]:border-[#E8412C] aria-[current=location]:bg-[#F7F5EF] aria-[current=location]:font-medium"
                         >
                             {question}
                         </a>
