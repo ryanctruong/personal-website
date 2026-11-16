@@ -5,6 +5,7 @@ import About from './pages/About/About.tsx'
 import CareerTimeline from './pages/CareerTimeline/CareerTimeline.tsx'
 import Graph from './components/Graph/Graph.tsx'
 import Questionnaire from './components/Questionnaire/Questionnaire.tsx'
+import Contact from './pages/Contact/Contact.tsx'
 
 const App = () => {
 
@@ -34,6 +35,7 @@ const App = () => {
                     <Questionnaire />
                 </div>
                 <CareerTimeline />
+                <Contact />
                 <div className="flex items-center justify-center">
                     <button className="bg-[#E8412C] hover:bg-[#C0392B] text-white font-bold py-2 px-4 w-fit rounded-2xl cursor-pointer" onClick={() => checkApiHealth()}>
                         Hello World

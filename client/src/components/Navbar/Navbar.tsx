@@ -36,9 +36,9 @@ const Navbar = () => {
                 <a href="#timeline" className="flex items-center gap-2">
                     <Route size={24} />
                 </a>
-                <div className="flex items-center gap-2 cursor-pointer">
+                <a href="#contact-me" className="flex items-center gap-2 cursor-pointer">
                     <Mail size={24} />
-                </div>
+                </a>
             </div>
         </nav>
     );
