@@ -1,6 +1,9 @@
 import { ArrowDown, ArrowRight } from 'lucide-react'
 
-import RedButton from "../../components/Button/RedButton";
+const destinations = [
+    { href: '/#articles', title: 'Articles', description: 'Notes on software, data, and what I’m learning.' },
+    { href: '/#change-log', title: 'Change Log', description: 'See updates made on the website..' },
+];
 
 const About = () => {
     return (
@@ -19,34 +22,21 @@ const About = () => {
                         Learn More <ArrowDown size={16} aria-hidden="true" />
                     </a>
                 </div>
-                <div className="grid grid-row-1 md:grid-rows-2 gap-6 gap-4 justify-evenly">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center justify-evenly bg-[#9DBEB7] p-4 rounded-4xl">
-                        <div className="flex justify-center">
-                            <img src="/beanhead.png" className="size-48" />
-
-                        </div>
-                        <div className="px-2 flex flex-col gap-2">
-                            <p className="text-2xl text-white font-bold">Articles</p>
-                            <p className="text-stone-700">Explore my thoughts Explore my thoughts Explore my thoughts</p>
-                            <div className="flex justify-end w-full">
-                                <RedButton title={<ArrowRight size={16} />} />
+                <nav aria-label="More of the site" className="divide-y divide-[#9DBEB7] md:self-center">
+                    {destinations.map(({ href, title, description }) => (
+                        <a
+                            key={href}
+                            href={href}
+                            className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-2 py-4 hover:bg-[#EEF0E9] focus-visible:bg-[#EEF0E9]"
+                        >
+                            <div>
+                                <span className="block text-xl font-bold">{title}</span>
+                                <span className="block text-sm text-stone-700">{description}</span>
                             </div>
-                        </div>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center justify-evenly bg-[#9DBEB7] p-4 rounded-4xl">
-                        <div className="flex justify-center">
-                            <img src="/beanhead.png" className="size-48" />
-
-                        </div>
-                        <div className="px-2 flex flex-col gap-2">
-                            <p className="text-2xl text-white font-bold">Articles</p>
-                            <p className="text-stone-700">Explore my thoughts Explore my thoughts Explore my thoughts</p>
-                            <div className="flex justify-end w-full">
-                                <RedButton title={<ArrowRight size={16} />} />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                            <ArrowRight size={18} className="text-[#C0392B]" aria-hidden="true" />
+                        </a>
+                    ))}
+                </nav>
             </div>
         </section>
     );
