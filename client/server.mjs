@@ -11,7 +11,7 @@ const isLocalApi =
   apiOrigin === "http://127.0.0.1:8080";
 let apiClient;
 
-async function requestFlask(path, { method = "GET", cookie } = {}) {
+async function requestFlask(path, { method = "GET", cookie, body } = {}) {
   if (!apiOrigin) throw new Error("API_BASE_URL is missing");
 
   const headers = new Headers();
@@ -24,9 +24,12 @@ async function requestFlask(path, { method = "GET", cookie } = {}) {
   }
   if (cookie) headers.set("Cookie", cookie);
 
+  if (body) headers.set("Content-Type", "application/json");
+
   return fetch(new URL(path, apiOrigin), {
     method,
     headers,
+    body,
     signal: AbortSignal.timeout(5000),
     redirect: "error",
   });
@@ -66,6 +69,22 @@ app.post("/api/visit", async (request, response) => {
   } catch (error) {
     console.error("Flask visit request failed:", error.message);
     response.status(502).end();
+  }
+});
+
+app.post("/api/contact", express.raw({ type: "application/json", limit: "32kb" }), async (request, response) => {
+  response.set("Cache-Control", "no-store");
+  try {
+    const upstream = await requestFlask("/api/contact", {
+      method: "POST",
+      cookie: request.get("Cookie"),
+      body: request.body,
+    });
+    response.set("Content-Type", upstream.headers.get("Content-Type") ?? "text/plain");
+    response.status(upstream.status).send(await upstream.text());
+  } catch (error) {
+    console.error("Flask contact request failed:", error.message);
+    response.status(502).json({ error: "Your submission could not be confirmed. Please try again." });
   }
 });
 
