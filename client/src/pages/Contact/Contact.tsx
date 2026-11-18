@@ -41,7 +41,7 @@ const Contact = () => {
     }
 
     return (
-        <section id="contact-me" aria-labelledby="contact-heading" className="grid w-full max-w-6xl scroll-mt-6 items-start gap-8 py-10 sm:px-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10 md:py-14">
+        <section id="contact-me" className="grid w-full max-w-6xl scroll-mt-6 items-start gap-8 py-8 px-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10">
             <header className="border-t-2 border-[#9DBEB7] pt-5">
                 <h2 id="contact-heading" className="text-3xl font-semibold">Contact Me</h2>
                 <p className="mt-2 max-w-xs leading-relaxed text-stone-600">

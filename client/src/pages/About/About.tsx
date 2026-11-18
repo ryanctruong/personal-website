@@ -8,7 +8,7 @@ const destinations = [
 
 const About = () => {
     return (
-        <section id="#" className="flex flex-col flex-1 justify-center items-center p-8 pt-4">
+        <section id="#" className="flex flex-col flex-1 justify-center items-center p-4">
             <div className="grid grid-cols-1 md:grid-cols-2 md:grid-cols-[3fr_2fr] gap-4 flex-1 w-full rounded-2xl">
                 <div className="flex flex-col gap-4 text-left justify-center">
                     <div>
@@ -20,7 +20,7 @@ const About = () => {
                         Learn More <ArrowDown size={16} aria-hidden="true" />
                     </RedButton>
                 </div>
-                <nav aria-label="More of the site" className="divide-y divide-[#9DBEB7] md:self-center">
+                <nav className="divide-y divide-[#9DBEB7] md:self-center">
                     {destinations.map(({ href, title, description }) => (
                         <a
                             key={href}

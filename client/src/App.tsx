@@ -10,7 +10,7 @@ const App = () => {
     return (
         <div className="flex min-h-screen flex-col">
             <Banner />
-            <main className="flex flex-1 flex-col gap-8 px-8 py-2 items-center">
+            <main className="flex flex-1 flex-col gap-8 p-8 items-center">
                 <About />
                 <div className="-mx-8 flex justify-center self-stretch bg-[#EEF0E9] px-8">
                     <Questionnaire />
