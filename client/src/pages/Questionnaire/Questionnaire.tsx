@@ -43,7 +43,7 @@ const Questionnaire = () => {
         <section id="questions" className="grid w-full max-w-6xl items-start gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10 py-8">
             <div className="flex flex-col gap-4 rounded-4xl bg-[#9DBEB7] p-6 text-stone-900 md:sticky md:top-6 md:max-h-[calc(100dvh-3rem)] md:overflow-y-auto">
                 <p id="question-list-heading" className="text-lg font-semibold underline">Questions</p>
-                <nav aria-labelledby="question-list-heading" className="grid gap-1">
+                <nav className="grid gap-1">
                     {FAQs.map(({ id, question }) => (
                         <a
                             key={id}
