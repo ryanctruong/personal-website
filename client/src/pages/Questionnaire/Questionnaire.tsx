@@ -40,9 +40,9 @@ const Questionnaire = () => {
     }, []);
 
     return (
-        <section id="questions" aria-label="Questions about Ryan" className="grid w-full max-w-6xl items-start gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10 p-8">
+        <section id="questions" className="grid w-full max-w-6xl items-start gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10 p-8">
             <div className="flex flex-col gap-4 rounded-4xl bg-[#9DBEB7] p-6 text-stone-900 md:sticky md:top-6 md:max-h-[calc(100dvh-3rem)] md:overflow-y-auto">
-                <h2 id="question-list-heading" className="px-3 text-lg font-semibold">Questions</h2>
+                <p id="question-list-heading" className="text-lg font-semibold underline">Questions</p>
                 <nav aria-labelledby="question-list-heading" className="grid gap-1">
                     {FAQs.map(({ id, question }) => (
                         <a
@@ -60,7 +60,7 @@ const Questionnaire = () => {
             <div ref={answersRef} className="grid min-w-0 gap-6 md:gap-8">
                 {FAQs.map(({ id, question, answer }) => (
                     <article key={id} id={questionAnchor(id)} tabIndex={-1} className="grid scroll-mt-6 gap-2 border-b border-[#CED8CF] pb-6 last:border-b-0 last:pb-0 md:pb-8">
-                        <h2 className="text-2xl font-semibold">{question}</h2>
+                        <p className="text-2xl font-semibold">{question}</p>
                         <p className="max-w-[65ch] leading-relaxed text-stone-600">{answer}</p>
                     </article>
                 ))}

@@ -3,7 +3,7 @@ import Navbar from './components/Navbar/Navbar.tsx'
 
 import About from './pages/About/About.tsx'
 import CareerTimeline from './pages/CareerTimeline/CareerTimeline.tsx'
-import Questionnaire from './components/Questionnaire/Questionnaire.tsx'
+import Questionnaire from './pages/Questionnaire/Questionnaire.tsx'
 import Contact from './pages/Contact/Contact.tsx'
 
 const App = () => {
