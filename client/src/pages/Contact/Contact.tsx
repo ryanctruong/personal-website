@@ -42,9 +42,9 @@ const Contact = () => {
 
     return (
         <section id="contact-me" className="grid w-full max-w-6xl scroll-mt-6 items-start gap-8 py-8 px-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10">
-            <header className="border-t-2 border-[#9DBEB7] pt-5">
-                <h2 id="contact-heading" className="text-3xl font-semibold">Contact Me</h2>
-                <p className="mt-2 max-w-xs leading-relaxed text-stone-600">
+            <header className="border-t-2 border-[#9DBEB7] pt-4 flex flex-col gap-2">
+                <p id="contact-heading" className="text-3xl font-semibold">Contact Me</p>
+                <p className="max-w-xs leading-relaxed text-stone-600">
                     Have a project in mind or just want to say hello? I’d love to hear from you.
                 </p>
             </header>
