@@ -3,7 +3,6 @@ import Navbar from './components/Navbar/Navbar.tsx'
 
 import About from './pages/About/About.tsx'
 import CareerTimeline from './pages/CareerTimeline/CareerTimeline.tsx'
-import Graph from './components/Graph/Graph.tsx'
 import Questionnaire from './components/Questionnaire/Questionnaire.tsx'
 import Contact from './pages/Contact/Contact.tsx'
 
@@ -11,9 +10,8 @@ const App = () => {
     return (
         <div className="flex min-h-screen flex-col">
             <Banner />
-            <main className="flex flex-1 flex-col gap-18 px-8 py-2 items-center">
+            <main className="flex flex-1 flex-col gap-8 px-8 py-2 items-center">
                 <About />
-                <Graph />
                 <div className="-mx-8 flex justify-center self-stretch bg-[#EEF0E9] px-8">
                     <Questionnaire />
                 </div>
