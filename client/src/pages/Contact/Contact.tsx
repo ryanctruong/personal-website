@@ -1,5 +1,6 @@
 import { useState, type SubmitEvent } from 'react'
 import { ArrowRight } from 'lucide-react'
+import RedButton from '../../components/Button/RedButton'
 
 const inputClass = 'min-w-0 w-full rounded-xl border border-[#9DBEB7] bg-[#F7F5EF] px-4 py-3 text-base font-normal text-stone-900 transition-colors focus:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a8392a] disabled:opacity-70'
 
@@ -40,10 +41,10 @@ const Contact = () => {
     }
 
     return (
-        <section id="contact-me" aria-labelledby="contact-heading" className="grid w-full max-w-6xl scroll-mt-6 items-start gap-8 py-10 sm:px-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10 md:py-14">
-            <header className="border-t-2 border-[#9DBEB7] pt-5">
-                <h2 id="contact-heading" className="text-3xl font-semibold">Contact Me</h2>
-                <p className="mt-2 max-w-xs leading-relaxed text-stone-600">
+        <section id="contact-me" className="grid w-full max-w-6xl scroll-mt-6 items-start gap-8 py-8 px-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10">
+            <header className="border-t-2 border-[#9DBEB7] pt-4 flex flex-col gap-2">
+                <p id="contact-heading" className="text-3xl font-semibold">Contact Me</p>
+                <p className="max-w-xs leading-relaxed text-stone-600">
                     Have a project in mind or just want to say hello? I’d love to hear from you.
                 </p>
             </header>
@@ -68,10 +69,10 @@ const Contact = () => {
                         Message
                         <textarea className={inputClass + ' min-h-32 resize-y'} name="contact_message" rows={4} maxLength={4000} required />
                     </label>
-                    <button type="submit" className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#E8412C] px-5 py-3 font-semibold text-white transition-colors hover:bg-[#A93226] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#92291d] disabled:cursor-wait disabled:opacity-70 sm:w-fit">
+                    <RedButton type="submit" disabled={pending}>
                         {pending ? 'Sending…' : 'Send message'}
                         <ArrowRight aria-hidden="true" size={16} />
-                    </button>
+                    </RedButton>
                 </fieldset>
                 <p role="status" className={success ? 'mt-4 rounded-xl bg-green-50 px-4 py-3 text-sm text-green-900' : 'sr-only'}>
                     {success && 'Thanks for reaching out. Your message was sent.'}
