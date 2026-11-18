@@ -1,4 +1,5 @@
 import { ArrowDown, ArrowRight } from 'lucide-react'
+import RedButton from '../../components/Button/RedButton'
 
 const destinations = [
     { href: '/#articles', title: 'Articles', description: 'Notes on software, data, and what I’m learning.' },
@@ -15,12 +16,9 @@ const About = () => {
                         <p className="text-5xl font-bold italic">Ryan Truong</p>
                     </div>
                     <p className="text-lg">Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making.</p>
-                    <a
-                        href="#questions"
-                        className="inline-flex min-h-11 w-fit items-center gap-2 rounded-2xl bg-[#E8412C] px-4 py-2 font-semibold text-white hover:bg-[#A93226]"
-                    >
+                    <RedButton href="#questions">
                         Learn More <ArrowDown size={16} aria-hidden="true" />
-                    </a>
+                    </RedButton>
                 </div>
                 <nav aria-label="More of the site" className="divide-y divide-[#9DBEB7] md:self-center">
                     {destinations.map(({ href, title, description }) => (

@@ -1,5 +1,6 @@
 import { useState, type SubmitEvent } from 'react'
 import { ArrowRight } from 'lucide-react'
+import RedButton from '../../components/Button/RedButton'
 
 const inputClass = 'min-w-0 w-full rounded-xl border border-[#9DBEB7] bg-[#F7F5EF] px-4 py-3 text-base font-normal text-stone-900 transition-colors focus:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a8392a] disabled:opacity-70'
 
@@ -68,10 +69,10 @@ const Contact = () => {
                         Message
                         <textarea className={inputClass + ' min-h-32 resize-y'} name="contact_message" rows={4} maxLength={4000} required />
                     </label>
-                    <button type="submit" className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#E8412C] px-5 py-3 font-semibold text-white transition-colors hover:bg-[#A93226] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#92291d] disabled:cursor-wait disabled:opacity-70 sm:w-fit">
+                    <RedButton type="submit" disabled={pending}>
                         {pending ? 'Sending…' : 'Send message'}
                         <ArrowRight aria-hidden="true" size={16} />
-                    </button>
+                    </RedButton>
                 </fieldset>
                 <p role="status" className={success ? 'mt-4 rounded-xl bg-green-50 px-4 py-3 text-sm text-green-900' : 'sr-only'}>
                     {success && 'Thanks for reaching out. Your message was sent.'}
