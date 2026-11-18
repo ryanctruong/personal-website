@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
-import { House, BadgeQuestionMark, Route, Mail } from 'lucide-react'
+import { House, BadgeQuestionMark, Ellipsis, Route, Mail } from 'lucide-react'
+
+import NavLink from './NavLink'
 
 const Navbar = () => {
     const [isScrolling, setIsScrolling] = useState(false)
@@ -29,19 +31,20 @@ const Navbar = () => {
             inert={isScrolling}
             className={`fixed inset-x-0 bottom-0 z-10 flex justify-center p-4 text-center transition-[translate,opacity] duration-200 ease-out motion-reduce:transition-none ${visibilityClasses}`}
         >
-            <div className="flex justify-center gap-12 py-2 px-8 rounded-4xl text-md bg-[#000000]/80 text-white shadow-lg shadow-[#9dbeb7]/50">
-                <a href="#" className="flex items-center gap-2 cursor-pointer">
-                    <House size={24} />
-                </a>
-                <a href="#questions" className="flex items-center gap-2 cursor-pointer">
-                    <BadgeQuestionMark size={24} />
-                </a>
-                <a href="#timeline" className="flex items-center gap-2">
-                    <Route size={24} />
-                </a>
-                <a href="#contact-me" className="flex items-center gap-2 cursor-pointer">
-                    <Mail size={24} />
-                </a>
+            <div className="flex justify-center gap-4 items-center">
+                <NavLink href="#" icon={House} />
+
+                <NavLink href="#questions" icon={BadgeQuestionMark} />
+
+                <div className="p-2 rounded-4xl text-md bg-[#000000]/80 text-white shadow-lg shadow-[#9dbeb7]/50 w-fit h-fit cursor-pointer">
+                    <a href="#" className="flex items-center bg-[#9dbeb7] rounded-4xl">
+                        <Ellipsis size={48} />
+                    </a>
+                </div>
+
+                <NavLink href="#timeline" icon={Route} />
+
+                <NavLink href="#contact-me" icon={Mail} />
             </div>
         </nav>
     );
