@@ -39,7 +39,7 @@ const Navbar = () => {
                     inert={isExpanded}
                     className={`grid h-full grid-cols-[1fr_1fr_4rem_1fr_1fr] items-center justify-items-center gap-4 transition-opacity duration-200 motion-reduce:transition-none ${isExpanded ? 'invisible opacity-0' : 'opacity-100'}`}
                 >
-                    <NavLink href="#" icon={House} />
+                    <NavLink href="/" icon={House} />
                     <NavLink href="#questions" icon={BadgeQuestionMark} />
                     <div/>
                     <NavLink href="#timeline" icon={Route} />
