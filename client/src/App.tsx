@@ -6,10 +6,14 @@ import CareerTimeline from './pages/CareerTimeline/CareerTimeline.tsx'
 import Questionnaire from './pages/Questionnaire/Questionnaire.tsx'
 import Contact from './pages/Contact/Contact.tsx'
 import Articles from './pages/Articles/Articles.tsx'
+import ChangeLog from './pages/ChangeLog/ChangeLog.tsx'
 
 const App = () => {
     if (window.location.pathname === '/articles' || window.location.pathname === '/articles/') {
         return <Articles />
+    }
+    if (window.location.pathname === '/change-log' || window.location.pathname === '/change-log/') {
+        return <ChangeLog />
     }
 
     return (

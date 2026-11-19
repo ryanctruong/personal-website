@@ -1,6 +1,6 @@
 const expandedLinks = [
     { label: 'Articles', href: '/articles', external: false },
-    { label: 'Change Log', href: '/#change-log', external: false },
+    { label: 'Change Log', href: '/change-log', external: false },
     { label: 'GitHub', href: 'https://github.com/ryanctruong', external: true },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ryanctruong/', external: true },
 ]
