@@ -3,6 +3,7 @@ import { GoogleAuth } from "google-auth-library";
 import { fileURLToPath } from "node:url";
 
 const app = express();
+
 const auth = new GoogleAuth();
 const apiBaseUrl = process.env.API_BASE_URL;
 const apiOrigin = apiBaseUrl ? new URL(apiBaseUrl).origin : undefined;

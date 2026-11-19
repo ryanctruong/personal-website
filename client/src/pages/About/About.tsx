@@ -1,9 +1,10 @@
+import { Link } from 'react-router'
 import { ArrowDown, ArrowRight } from 'lucide-react'
 import RedButton from '../../components/Button/RedButton'
 
 const destinations = [
-    { href: '/#articles', title: 'Articles', description: 'Notes on software, data, and what I’m learning.' },
-    { href: '/#change-log', title: 'Change Log', description: 'See updates made on the website..' },
+    { href: '/articles', title: 'Articles', description: 'Notes on software, data, and what I’m learning.' },
+    { href: '/change-log', title: 'Change Log', description: 'See updates made on the website..' },
 ];
 
 const About = () => {
@@ -22,9 +23,9 @@ const About = () => {
                 </div>
                 <nav className="divide-y divide-[#9DBEB7] md:self-center">
                     {destinations.map(({ href, title, description }) => (
-                        <a
+                        <Link
                             key={href}
-                            href={href}
+                            to={href}
                             className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-2 py-4 hover:bg-[#EEF0E9] focus-visible:bg-[#EEF0E9]"
                         >
                             <div>
@@ -32,7 +33,7 @@ const About = () => {
                                 <span className="block text-sm text-stone-700">{description}</span>
                             </div>
                             <ArrowRight size={18} className="text-[#E8412C]" aria-hidden="true" />
-                        </a>
+                        </Link>
                     ))}
                 </nav>
             </div>

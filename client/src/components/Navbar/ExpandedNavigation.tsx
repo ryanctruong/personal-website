@@ -1,6 +1,8 @@
+import { Link } from 'react-router'
+
 const expandedLinks = [
-    { label: 'Articles', href: '/#articles', external: false },
-    { label: 'Change Log', href: '/#change-log', external: false },
+    { label: 'Articles', href: '/articles', external: false },
+    { label: 'Change Log', href: '/change-log', external: false },
     { label: 'GitHub', href: 'https://github.com/ryanctruong', external: true },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ryanctruong/', external: true },
 ]
@@ -14,7 +16,7 @@ const ExpandedNavigation = ({ isExpanded }: ExpandedNavigationProps) => (
         id="expanded-navigation"
         className={`${isExpanded ? 'flex' : 'hidden'} h-full w-full items-center justify-evenly gap-2 rounded-4xl bg-[#9dbeb7] px-1`}
     >
-        {expandedLinks.map(({ label, href, external }) => (
+        {expandedLinks.map(({ label, href, external }) => external ? (
             <a
                 key={label}
                 href={href}
@@ -24,6 +26,14 @@ const ExpandedNavigation = ({ isExpanded }: ExpandedNavigationProps) => (
             >
                 {label}
             </a>
+        ) : (
+            <Link
+                key={label}
+                to={href}
+                className="rounded-4xl px-2 py-3 text-xs font-semibold whitespace-nowrap hover:bg-black/20 focus-visible:outline-2 focus-visible:outline-white sm:text-sm"
+            >
+                {label}
+            </Link>
         ))}
     </div>
 )

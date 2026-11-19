@@ -1,27 +1,22 @@
-import Banner from './components/Banner/Banner.tsx'
-import Navbar from './components/Navbar/Navbar.tsx'
-
-import About from './pages/About/About.tsx'
-import CareerTimeline from './pages/CareerTimeline/CareerTimeline.tsx'
-import Questionnaire from './pages/Questionnaire/Questionnaire.tsx'
-import Contact from './pages/Contact/Contact.tsx'
+import { useEffect } from 'react'
+import { Route, Routes, useLocation } from 'react-router'
+import Home from './pages/Home/Home'
+import Articles from './pages/Articles/Articles'
+import ChangeLog from './pages/ChangeLog/ChangeLog'
 
 const App = () => {
+    const { pathname } = useLocation()
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [pathname])
+
     return (
-        <div className="flex min-h-screen flex-col">
-            <Banner />
-            <main className="flex flex-1 flex-col gap-8 p-8 items-center">
-                <About />
-                <div className="-mx-8 flex justify-center self-stretch bg-[#EEF0E9] px-8">
-                    <Questionnaire />
-                </div>
-                <CareerTimeline />
-                <div className="-mx-8 flex justify-center self-stretch bg-[#EEF0E9] px-8">
-                    <Contact />
-                </div>
-            </main>
-            <Navbar />
-        </div >
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/articles" element={<Articles />} />
+            <Route path="/change-log" element={<ChangeLog />} />
+        </Routes>
     )
 }
 
