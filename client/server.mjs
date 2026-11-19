@@ -1,8 +1,14 @@
 import express from "express";
+import { rateLimit } from "express-rate-limit";
 import { GoogleAuth } from "google-auth-library";
 import { fileURLToPath } from "node:url";
 
 const app = express();
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 100,
+});
+app.use(limiter);
 
 const auth = new GoogleAuth();
 const apiBaseUrl = process.env.API_BASE_URL;
@@ -90,6 +96,9 @@ app.post("/api/contact", express.raw({ type: "application/json", limit: "32kb" }
 });
 
 app.use(express.static(fileURLToPath(new URL("./dist/", import.meta.url))));
+app.get(["/articles", "/change-log"], (_request, response) => {
+  response.sendFile(fileURLToPath(new URL("./dist/index.html", import.meta.url)));
+});
 const port = Number(process.env.PORT || 8080);
 const server = app.listen(port, "0.0.0.0", (error) => {
   if (error) throw error;
