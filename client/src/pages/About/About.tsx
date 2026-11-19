@@ -2,7 +2,7 @@ import { ArrowDown, ArrowRight } from 'lucide-react'
 import RedButton from '../../components/Button/RedButton'
 
 const destinations = [
-    { href: '/#articles', title: 'Articles', description: 'Notes on software, data, and what I’m learning.' },
+    { href: '/articles', title: 'Articles', description: 'Notes on software, data, and what I’m learning.' },
     { href: '/#change-log', title: 'Change Log', description: 'See updates made on the website..' },
 ];
 

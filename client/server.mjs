@@ -89,6 +89,9 @@ app.post("/api/contact", express.raw({ type: "application/json", limit: "32kb" }
 });
 
 app.use(express.static(fileURLToPath(new URL("./dist/", import.meta.url))));
+app.get("/articles", (_request, response) => {
+  response.sendFile(fileURLToPath(new URL("./dist/index.html", import.meta.url)));
+});
 const port = Number(process.env.PORT || 8080);
 const server = app.listen(port, "0.0.0.0", (error) => {
   if (error) throw error;

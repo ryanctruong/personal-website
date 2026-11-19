@@ -5,8 +5,13 @@ import About from './pages/About/About.tsx'
 import CareerTimeline from './pages/CareerTimeline/CareerTimeline.tsx'
 import Questionnaire from './pages/Questionnaire/Questionnaire.tsx'
 import Contact from './pages/Contact/Contact.tsx'
+import Articles from './pages/Articles/Articles.tsx'
 
 const App = () => {
+    if (window.location.pathname === '/articles' || window.location.pathname === '/articles/') {
+        return <Articles />
+    }
+
     return (
         <div className="flex min-h-screen flex-col">
             <Banner />
