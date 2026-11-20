@@ -1,10 +1,10 @@
-type FAQs = {
+interface Faq {
     id: string
     question: string
     answer: string
 }
 
-export const FAQs: FAQs[] = [
+export const FAQS: Faq[] = [
   {
     id: "faq-background",
     question: "What did you study?",
