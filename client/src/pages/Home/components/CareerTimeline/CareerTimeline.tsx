@@ -57,7 +57,7 @@ const CareerMilestone = ({ milestone, isLast }: {
                         transition={{ duration: reduceMotion ? 0 : 0.36, ease: 'easeOut' }}
                         className="pointer-events-none absolute inset-y-0 -left-0.5 w-0.5 origin-top bg-[#E8412C]" />}
                     {isCurrent && <p className="mb-2 text-sm font-semibold text-[#A92E20]">Current role</p>}
-                    <h3 className="text-xl font-semibold">{title}</h3>
+                    <h3 style={{ color }} className="text-xl font-semibold">{title}</h3>
                     <p className="text-base font-medium text-stone-700">{subtitle}</p>
                     {techStack.length > 0 && (
                         <ul aria-label="Technologies" className="my-3 flex min-w-0 flex-wrap items-center gap-2">
@@ -81,7 +81,7 @@ const CareerMilestone = ({ milestone, isLast }: {
 const CareerTimeline = () => (
     <section id="timeline" aria-labelledby="career-heading" className="home-section py-8">
         <header className="mb-8 flex max-w-prose flex-col gap-2">
-            <h2 id="career-heading" className="text-3xl font-semibold">My Career Journey</h2>
+            <h2 id="career-heading" className="text-3xl font-semibold text-[#C0392B]">My Career Journey</h2>
             <p className="leading-relaxed text-stone-600">From building computers to developing software solutions, I've grown both technically and professionally.</p>
         </header>
         <ol className="flex flex-col">
