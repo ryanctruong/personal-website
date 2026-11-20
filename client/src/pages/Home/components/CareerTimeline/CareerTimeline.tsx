@@ -1,5 +1,5 @@
 import Timeline from "../../../../components/Timeline/Timeline";
-import { PATHS } from "./milestones";
+import { CAREER_MILESTONES } from "./milestones";
 
 const CareerTimeline = () => {
     return (
@@ -11,7 +11,7 @@ const CareerTimeline = () => {
 
             <Timeline
                 layout="alternating"
-                items={PATHS.map(({ date, title, subtitle, description, techStack }) => ({
+                items={CAREER_MILESTONES.map(({ date, title, subtitle, description, techStack }) => ({
                     id: title,
                     date,
                     content: (

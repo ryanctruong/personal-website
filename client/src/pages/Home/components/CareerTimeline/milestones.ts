@@ -9,8 +9,15 @@ import react from "/icons/react.webp";
 import gcp from "/icons/gcp.webp";
 import docker from "/icons/docker.webp";
 import nodejs from "/icons/nodejs.webp"
+interface CareerMilestone {
+  date: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  techStack: string[];
+}
 
-export const PATHS = [
+export const CAREER_MILESTONES: CareerMilestone[] = [
   {
     date: "Aug 2018",
     title: "IT Pathway Student",

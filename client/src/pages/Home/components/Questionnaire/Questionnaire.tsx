@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
-import { FAQs } from './faq';
+import { FAQS } from './faq';
 
 const questionAnchor = (id: string) => `questions/${id}`;
 
 const Questionnaire = () => {
     const answersRef = useRef<HTMLDivElement>(null);
-    const [activeId, setActiveId] = useState(questionAnchor(FAQs[0].id));
+    const [activeId, setActiveId] = useState(questionAnchor(FAQS[0].id));
 
     useEffect(() => {
         const answers = Array.from(answersRef.current?.querySelectorAll('article') ?? []);
@@ -15,7 +15,7 @@ const Questionnaire = () => {
         const updateActiveQuestion = () => {
             frame = null;
             const readingLine = window.innerHeight * 0.5;
-            let current = questionAnchor(FAQs[0].id);
+            let current = questionAnchor(FAQS[0].id);
 
             for (const answer of answers) {
                 if (answer.getBoundingClientRect().top > readingLine) break;
@@ -45,10 +45,10 @@ const Questionnaire = () => {
             <div className="flex flex-col text-stone-900 md:sticky md:top-6 md:max-h-[calc(100dvh-3rem)] md:overflow-y-auto">
                 <div className="flex items-center justify-between border-b border-[#CED8CF] pb-5">
                     <p id="question-list-heading" className="text-sm font-semibold uppercase tracking-[0.16em]">Questions</p>
-                    <span className="text-xs tabular-nums text-stone-500">{String(FAQs.length).padStart(2, '0')}</span>
+                    <span className="text-xs tabular-nums text-stone-500">{String(FAQS.length).padStart(2, '0')}</span>
                 </div>
                 <nav aria-labelledby="question-list-heading" className="grid divide-y divide-[#CED8CF]">
-                    {FAQs.map(({ id, question }, index) => (
+                    {FAQS.map(({ id, question }, index) => (
                         <a
                             key={id}
                             href={`#${questionAnchor(id)}`}
@@ -64,7 +64,7 @@ const Questionnaire = () => {
             </div>
 
             <div ref={answersRef} className="grid min-w-0 gap-6 md:gap-8">
-                {FAQs.map(({ id, question, answer }) => (
+                {FAQS.map(({ id, question, answer }) => (
                     <article key={id} id={questionAnchor(id)} tabIndex={-1} className="grid scroll-mt-6 gap-2 border-b border-[#CED8CF] pb-6 last:border-b-0 last:pb-0 md:pb-8">
                         <p className="text-2xl font-semibold">{question}</p>
                         <p className="max-w-[65ch] leading-relaxed text-stone-600">{answer}</p>
