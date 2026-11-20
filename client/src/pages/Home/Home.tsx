@@ -10,13 +10,13 @@ const Home = () => {
     return (
         <div className="flex min-h-screen flex-col">
             <Banner />
-            <main className="flex flex-1 flex-col gap-8 p-8 pb-0 items-center">
+            <main className="flex flex-1 flex-col gap-8 px-4 pt-4 pb-24 md:px-8 md:pt-8 items-center">
                 <About />
-                <div className="-mx-8 flex justify-center self-stretch bg-[#EEF0E9] px-8">
+                <div className="-mx-4 flex justify-center self-stretch bg-[#EEF0E9] px-4 md:-mx-8 md:px-8">
                     <Questionnaire />
                 </div>
                 <CareerTimeline />
-                <div className="-mx-8 flex justify-center self-stretch bg-[#EEF0E9] px-8">
+                <div className="-mx-4 flex justify-center self-stretch bg-[#EEF0E9] px-4 md:-mx-8 md:px-8">
                     <Contact />
                 </div>
             </main>

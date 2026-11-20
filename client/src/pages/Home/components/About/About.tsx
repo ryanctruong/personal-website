@@ -9,14 +9,14 @@ const destinations = [
 
 const About = () => {
     return (
-        <section id="#" className="flex flex-col flex-1 justify-center items-center p-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 md:grid-cols-[3fr_2fr] gap-4 flex-1 w-full rounded-2xl">
+        <section id="#" className="flex flex-col flex-1 justify-center items-center w-full max-w-6xl py-4 md:px-4">
+            <div className="grid grid-cols-1 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] gap-4 flex-1 w-full rounded-2xl">
                 <div className="flex flex-col gap-4 text-left justify-center">
                     <div>
                         <p className="font-semibold text-[#E8412C] italic">Hey! My name is...</p>
-                        <p className="text-5xl font-bold italic">Ryan Truong</p>
+                        <p className="text-4xl sm:text-5xl font-bold italic">Ryan Truong</p>
                     </div>
-                    <p className="text-lg">Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making.</p>
+                    <p className="max-w-prose text-base sm:text-lg">Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making.</p>
                     <RedButton href="#questions">
                         Learn More <ArrowDown size={16} aria-hidden="true" />
                     </RedButton>

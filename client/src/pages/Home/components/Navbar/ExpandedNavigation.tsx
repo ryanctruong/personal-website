@@ -14,7 +14,7 @@ type ExpandedNavigationProps = {
 const ExpandedNavigation = ({ isExpanded }: ExpandedNavigationProps) => (
     <div
         id="expanded-navigation"
-        className={`${isExpanded ? 'flex' : 'hidden'} h-full w-full items-center justify-evenly gap-2 rounded-4xl bg-[#9dbeb7] px-1`}
+        className={`${isExpanded ? 'flex' : 'hidden'} h-full w-full items-center justify-evenly gap-0 sm:gap-2 rounded-4xl bg-[#9dbeb7] px-1`}
     >
         {expandedLinks.map(({ label, href, external }) => external ? (
             <a
@@ -22,7 +22,7 @@ const ExpandedNavigation = ({ isExpanded }: ExpandedNavigationProps) => (
                 href={href}
                 target={external ? '_blank' : undefined}
                 rel={external ? 'noopener noreferrer' : undefined}
-                className="rounded-4xl px-2 py-3 text-xs font-semibold whitespace-nowrap hover:bg-black/20 focus-visible:outline-2 focus-visible:outline-white sm:text-sm"
+                className="flex min-h-11 items-center rounded-4xl px-1 sm:px-2 py-3 text-xs font-semibold whitespace-nowrap hover:bg-black/20 focus-visible:outline-2 focus-visible:outline-white sm:text-sm"
             >
                 {label}
             </a>
@@ -30,7 +30,7 @@ const ExpandedNavigation = ({ isExpanded }: ExpandedNavigationProps) => (
             <Link
                 key={label}
                 to={href}
-                className="rounded-4xl px-2 py-3 text-xs font-semibold whitespace-nowrap hover:bg-black/20 focus-visible:outline-2 focus-visible:outline-white sm:text-sm"
+                className="flex min-h-11 items-center rounded-4xl px-1 sm:px-2 py-3 text-xs font-semibold whitespace-nowrap hover:bg-black/20 focus-visible:outline-2 focus-visible:outline-white sm:text-sm"
             >
                 {label}
             </Link>

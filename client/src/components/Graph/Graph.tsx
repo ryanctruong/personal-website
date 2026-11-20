@@ -34,7 +34,7 @@ const Graph = () => {
                     </div>
                 </div>
             </div>
-            <div className="relative flex w-full items-center justify-between px-[var(--middle-inset)] py-2.5 [--middle-inset:4.5rem]">
+            <div className="relative flex w-full items-center justify-between gap-2 px-[var(--middle-inset)] py-2.5 [--middle-inset:0rem] md:[--middle-inset:1rem] lg:[--middle-inset:4.5rem]">
                 <svg
                     aria-hidden="true"
                     className="pointer-events-none absolute inset-y-0 left-[var(--middle-inset)] -z-10 h-full w-[calc(100%-2*var(--middle-inset))] text-stone-500"
@@ -50,7 +50,7 @@ const Graph = () => {
                     />
                 </svg>
                 <div
-                    className="bg-[#F7F5EF] flex size-15 shrink-0 items-center justify-center rounded-xl border-[1.5px] shadow-xl md:size-18 lg:size-23"
+                    className="bg-[#F7F5EF] flex size-12 shrink-0 items-center justify-center rounded-xl border-[1.5px] shadow-xl md:size-18 lg:size-23"
                 >
                     {images[2] ? (
                         <img
@@ -68,10 +68,10 @@ const Graph = () => {
                     <div className="flex flex-col items-center justify-center">
                         <div className="bg-[#F7F5EF] flex items-center justify-center rounded-xl border p-2">
                             <div
-                                className="bg-secondary flex size-24 items-center justify-center rounded-xl border-[1.5px] shadow-xl md:size-32"
+                                className="bg-secondary flex size-20 sm:size-24 items-center justify-center rounded-xl border-[1.5px] shadow-xl md:size-32"
                             >
                                 <div
-                                    className="flex size-18 items-center justify-center rounded-xl md:size-28"
+                                    className="flex size-16 sm:size-18 items-center justify-center rounded-xl md:size-28"
                                 >
                                     {centerImage ? (
                                         <img
@@ -91,7 +91,7 @@ const Graph = () => {
                     </div>
                 </div>
                 <div
-                    className="bg-[#F7F5EF] flex size-15 shrink-0 items-center justify-center rounded-xl border-[1.5px] shadow-xl md:size-18 lg:size-23"
+                    className="bg-[#F7F5EF] flex size-12 shrink-0 items-center justify-center rounded-xl border-[1.5px] shadow-xl md:size-18 lg:size-23"
                 >
                     {images[3] ? (
                         <img

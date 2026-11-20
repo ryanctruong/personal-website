@@ -37,7 +37,7 @@ const Navbar = () => {
             <div className="relative h-16 w-88 max-w-full" onMouseLeave={() => setIsExpanded(false)}>
                 <div
                     inert={isExpanded}
-                    className={`grid h-full grid-cols-[1fr_1fr_4rem_1fr_1fr] items-center justify-items-center gap-4 transition-opacity duration-200 motion-reduce:transition-none ${isExpanded ? 'invisible opacity-0' : 'opacity-100'}`}
+                    className={`grid h-full grid-cols-[1fr_1fr_3rem_1fr_1fr] sm:grid-cols-[1fr_1fr_4rem_1fr_1fr] items-center justify-items-center gap-1 sm:gap-4 transition-opacity duration-200 motion-reduce:transition-none ${isExpanded ? 'invisible opacity-0' : 'opacity-100'}`}
                 >
                     <NavLink href="/" icon={House} />
                     <NavLink href="#questions" icon={BadgeQuestionMark} />
@@ -52,6 +52,9 @@ const Navbar = () => {
                 >
                     <button
                         type="button"
+                        aria-label="More navigation"
+                        aria-expanded={isExpanded}
+                        aria-controls="expanded-navigation"
                         onClick={() => {
                             setIsExpanded(true)
                             window.requestAnimationFrame(() => {
