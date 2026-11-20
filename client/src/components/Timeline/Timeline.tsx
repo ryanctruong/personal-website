@@ -70,16 +70,16 @@ const Timeline = ({ items, layout = "alternating" }: TimelineProps) => {
     }, [items, layout]);
 
     return (
-        <ol ref={timelineRef} className={`relative isolate gap-y-8 p-4 ${layout === "alternating" ? "flex flex-col" : "grid grid-cols-[max-content_3.5rem_minmax(0,1fr)]"}`}>
+        <ol ref={timelineRef} className={`relative isolate w-full gap-y-8 py-4 md:px-4 ${layout === "alternating" ? "flex flex-col" : "grid grid-cols-[1.5rem_minmax(0,1fr)] md:grid-cols-[max-content_3.5rem_minmax(0,1fr)]"}`}>
             {items.map(({ id, date, content }, index) => (
-                <li key={id} className={`group items-start ${layout === "alternating" ? "flex md:even:flex-row-reverse" : "col-span-3 grid grid-cols-subgrid"}`} data-side={layout === "alternating" && index % 2 === 1 ? "left" : "right"} data-reached={index < reachedCount} data-timeline-item="true">
-                    <div className={`flex min-w-0 justify-end md:group-data-[side=left]:justify-start motion-safe:opacity-40 motion-safe:transition-opacity motion-safe:duration-500 motion-safe:group-data-[reached=true]:opacity-100 ${layout === "alternating" ? "flex-1" : ""}`}>
+                <li key={id} className={`group items-start ${layout === "alternating" ? "grid grid-cols-[1.5rem_minmax(0,1fr)] gap-x-2 md:flex md:gap-x-0 md:even:flex-row-reverse" : "col-span-2 grid grid-cols-subgrid gap-x-2 md:col-span-3 md:gap-x-0"}`} data-side={layout === "alternating" && index % 2 === 1 ? "left" : "right"} data-reached={index < reachedCount} data-timeline-item="true">
+                    <div className={`col-start-2 row-start-1 mb-2 flex min-w-0 justify-start md:col-start-1 md:mb-0 md:justify-end md:group-data-[side=left]:justify-start motion-safe:opacity-40 motion-safe:transition-opacity motion-safe:duration-500 motion-safe:group-data-[reached=true]:opacity-100 ${layout === "alternating" ? "flex-1" : ""}`}>
                         <span className="rounded-sm bg-black/10 px-2 py-1 text-sm font-medium text-black group-data-[reached=true]:bg-[#E8412C]/10 group-data-[reached=true]:text-[#A92E20] motion-safe:transition-colors">
                             {date}
                         </span>
                     </div>
 
-                    <div className="shrink-0 px-4">
+                    <div className="col-start-1 row-start-1 row-span-2 shrink-0 md:col-start-2 md:row-span-1 md:px-4">
                         <span data-timeline-dot="true" className="flex size-6 items-center justify-center rounded-full bg-[#F7F5EF]">
                             <span
                                 className={`size-3 rounded-full transition-colors duration-200 motion-reduce:transition-none ${index < reachedCount ? "bg-[#E8412C]" : "bg-black"}`}
@@ -87,7 +87,7 @@ const Timeline = ({ items, layout = "alternating" }: TimelineProps) => {
                         </span>
                     </div>
 
-                    <article data-timeline-content="true" className="min-w-0 flex-1">
+                    <article data-timeline-content="true" className="col-start-2 row-start-2 min-w-0 flex-1 md:col-start-3 md:row-start-1">
                         <div
                             data-visible={index < reachedCount && index >= passedCount}
                             className="flex flex-col gap-4 text-left md:group-data-[side=left]:text-right motion-safe:opacity-0 motion-safe:transition-opacity motion-safe:duration-500 motion-safe:ease-in-out motion-safe:data-[visible=true]:opacity-100"

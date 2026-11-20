@@ -5,10 +5,21 @@ html,
 body {
   padding: 0;
   margin: 0;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100%;
+  width: 100%;
   background-color: #F7F5EF;
   font-family: "Work Sans Variable", sans-serif;
+}
+
+body {
+  overflow-wrap: anywhere;
+}
+
+img,
+video,
+iframe,
+svg {
+  max-width: 100%;
 }
 
 @media (prefers-reduced-motion: no-preference) {

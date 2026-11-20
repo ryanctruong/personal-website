@@ -7,11 +7,11 @@ const ChangeLog = () => {
     return (
         <main className="min-h-screen">
             <Banner />
-            <div className="p-8">
-                <Link to="/" className="underline">Back to home</Link>
+            <div className="p-4 md:p-8">
+                <Link to="/" className="inline-flex min-h-11 items-center underline">Back to home</Link>
                 <div className="flex flex-col items-center justify-center gap-12 w-full">
                     <div className="flex flex-col gap-2 items-center">
-                        <p className="text-4xl font-semibold">Changelog Origin Update</p>
+                        <p className="text-3xl sm:text-4xl font-semibold">Changelog Origin Update</p>
                         <p className="text-stone-600">Discover what’s been added, changed, fixed, improved, and updated in this release.</p>
                     </div>
                     <div className="w-full max-w-4xl">
