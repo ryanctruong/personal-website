@@ -1,20 +1,38 @@
-import java from "/icons/java.png";
-import python from "/icons/python.png";
-import sql from "/icons/sql.png";
-import html from "/icons/html.webp";
-import css from "/icons/css.svg";
-import excel from "/icons/excel.webp";
-import powerbi from "/icons/powerbi.webp";
-import react from "/icons/react.webp";
-import gcp from "/icons/gcp.webp";
-import docker from "/icons/docker.webp";
-import nodejs from "/icons/nodejs.webp"
+import javaIcon from "/icons/java.png";
+import pythonIcon from "/icons/python.png";
+import sqlIcon from "/icons/sql.png";
+import htmlIcon from "/icons/html.webp";
+import cssIcon from "/icons/css.svg";
+import excelIcon from "/icons/excel.webp";
+import powerbiIcon from "/icons/powerbi.webp";
+import reactIcon from "/icons/react.webp";
+import gcpIcon from "/icons/gcp.webp";
+import dockerIcon from "/icons/docker.webp";
+import nodejsIcon from "/icons/nodejs.webp"
+
+interface Technology {
+  name: string;
+  icon: string;
+}
+
+const java: Technology = { name: "Java", icon: javaIcon };
+const python: Technology = { name: "Python", icon: pythonIcon };
+const sql: Technology = { name: "SQL", icon: sqlIcon };
+const html: Technology = { name: "HTML", icon: htmlIcon };
+const css: Technology = { name: "CSS", icon: cssIcon };
+const excel: Technology = { name: "Excel", icon: excelIcon };
+const powerbi: Technology = { name: "Power BI", icon: powerbiIcon };
+const react: Technology = { name: "React", icon: reactIcon };
+const gcp: Technology = { name: "GCP", icon: gcpIcon };
+const docker: Technology = { name: "Docker", icon: dockerIcon };
+const nodejs: Technology = { name: "Node.js", icon: nodejsIcon };
+
 interface CareerMilestone {
   date: string;
   title: string;
   subtitle: string;
   description: string;
-  techStack: string[];
+  techStack: Technology[];
 }
 
 export const CAREER_MILESTONES: CareerMilestone[] = [

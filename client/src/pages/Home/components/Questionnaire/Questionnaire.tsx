@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Plus, Minus } from 'lucide-react';
 import { FAQS } from './faq';
 
 const questionAnchor = (id: string) => `questions/${id}`;
@@ -7,6 +7,18 @@ const questionAnchor = (id: string) => `questions/${id}`;
 const Questionnaire = () => {
     const answersRef = useRef<HTMLDivElement>(null);
     const [activeId, setActiveId] = useState(questionAnchor(FAQS[0].id));
+
+    const [openId, setOpenId] = useState<string | null>(null);
+
+    useEffect(() => {
+        const revealLinkedAnswer = () => {
+            const linked = FAQS.find(({ id }) => window.location.hash === `#${questionAnchor(id)}`);
+            if (linked) setOpenId(linked.id);
+        };
+        revealLinkedAnswer();
+        window.addEventListener('hashchange', revealLinkedAnswer);
+        return () => window.removeEventListener('hashchange', revealLinkedAnswer);
+    }, []);
 
     useEffect(() => {
         const answers = Array.from(answersRef.current?.querySelectorAll('article') ?? []);
@@ -41,8 +53,9 @@ const Questionnaire = () => {
     }, []);
 
     return (
-        <section id="questions" className="grid w-full max-w-6xl items-start gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10 py-8">
-            <div className="flex flex-col text-stone-900 md:sticky md:top-6 md:max-h-[calc(100dvh-3rem)] md:overflow-y-auto">
+        <section id="questions" className="home-section home-grid items-start gap-y-6 py-8">
+            <h2 className="text-2xl font-semibold text-stone-900 md:hidden">Questions</h2>
+            <div className="hidden min-w-0 flex-col text-stone-900 md:col-span-4 md:flex md:sticky md:top-24 md:max-h-[calc(100dvh-7.5rem)] md:overflow-y-auto">
                 <div className="flex items-center justify-between border-b border-[#CED8CF] pb-5">
                     <p id="question-list-heading" className="text-sm font-semibold uppercase tracking-[0.16em]">Questions</p>
                     <span className="text-xs tabular-nums text-stone-500">{String(FAQS.length).padStart(2, '0')}</span>
@@ -63,11 +76,26 @@ const Questionnaire = () => {
                 </nav>
             </div>
 
-            <div ref={answersRef} className="grid min-w-0 gap-6 md:gap-8">
+            <div ref={answersRef} className="grid min-w-0 gap-0 md:col-span-8 md:gap-8">
                 {FAQS.map(({ id, question, answer }) => (
-                    <article key={id} id={questionAnchor(id)} tabIndex={-1} className="grid scroll-mt-6 gap-2 border-b border-[#CED8CF] pb-6 last:border-b-0 last:pb-0 md:pb-8">
-                        <p className="text-2xl font-semibold">{question}</p>
-                        <p className="max-w-[65ch] leading-relaxed text-stone-600">{answer}</p>
+                    <article key={id} id={questionAnchor(id)} tabIndex={-1} className="grid scroll-mt-6 gap-2 border-b border-[#CED8CF] py-3 first:border-t last:border-b-0 md:border-t-0 md:pt-0 md:pb-8 md:first:border-t-0 md:last:pb-0">
+                        <h3 className="md:hidden">
+                            <button
+                                type="button"
+                                id={`question-toggle-${id}`}
+                                aria-expanded={openId === id}
+                                aria-controls={`question-answer-${id}`}
+                                onClick={() => setOpenId((current) => current === id ? null : id)}
+                                className="flex min-h-11 w-full cursor-pointer items-center justify-between gap-4 rounded-lg px-2 py-3 text-left text-base font-semibold text-stone-900 hover:bg-[#F7F5EF]/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E8412C]"
+                            >
+                                <span>{question}</span>
+                                {openId === id ? <Minus size={18} className="shrink-0 text-[#E8412C]" aria-hidden="true" /> : <Plus size={18} className="shrink-0 text-stone-600" aria-hidden="true" />}
+                            </button>
+                        </h3>
+                        <p className="hidden text-2xl font-semibold md:block">{question}</p>
+                        <div id={`question-answer-${id}`} className={`${openId === id ? 'block' : 'hidden'} px-2 pb-3 md:block md:p-0`}>
+                            <p className="max-w-[65ch] leading-relaxed text-stone-600">{answer}</p>
+                        </div>
                     </article>
                 ))}
             </div>

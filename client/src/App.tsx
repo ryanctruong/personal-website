@@ -5,11 +5,17 @@ import Articles from './pages/Articles/Articles'
 import ChangeLog from './pages/ChangeLog/ChangeLog'
 
 const App = () => {
-    const { pathname } = useLocation()
+    const { pathname, hash } = useLocation()
 
     useEffect(() => {
+        if (hash) {
+            const frame = window.requestAnimationFrame(() => {
+                document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView()
+            })
+            return () => window.cancelAnimationFrame(frame)
+        }
         window.scrollTo(0, 0)
-    }, [pathname])
+    }, [pathname, hash])
 
     return (
         <Routes>

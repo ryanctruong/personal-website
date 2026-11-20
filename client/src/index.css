@@ -27,3 +27,35 @@ svg {
     scroll-behavior: smooth;
   }
 }
+
+/* Keep section destinations clear of the sticky navigation at every width. */
+#questions,
+#timeline,
+#contact-me,
+[id^="questions/"] {
+  scroll-margin-top: 6.5rem;
+}
+
+.home-section {
+  width: 100%;
+  max-width: 72rem;
+  min-width: 0;
+}
+
+.home-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 48rem) {
+  .home-grid,
+  .career-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 2.5rem;
+  }
+
+  /* Center the timeline rail in the gutter before the shared content column. */
+  .career-rail {
+    left: calc((100% - 5rem) / 3 + 1.25rem - 0.5rem);
+  }
+}

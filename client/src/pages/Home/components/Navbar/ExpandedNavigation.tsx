@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+import { ArrowUpRight } from 'lucide-react'
 
 const expandedLinks = [
     { label: 'Articles', href: '/articles', external: false },
@@ -9,32 +10,25 @@ const expandedLinks = [
 
 type ExpandedNavigationProps = {
     isExpanded: boolean
+    onNavigate: () => void
 }
 
-const ExpandedNavigation = ({ isExpanded }: ExpandedNavigationProps) => (
+const ExpandedNavigation = ({ isExpanded, onNavigate }: ExpandedNavigationProps) => (
     <div
         id="expanded-navigation"
-        className={`${isExpanded ? 'flex' : 'hidden'} h-full w-full items-center justify-evenly gap-0 sm:gap-2 rounded-4xl bg-[#9dbeb7] px-1`}
+        hidden={!isExpanded}
+        className="absolute top-full right-0 mt-2 w-56 max-w-full rounded-xl border border-[#9DBEB7] bg-[#F7F5EF] p-2 shadow-lg shadow-black/10"
     >
-        {expandedLinks.map(({ label, href, external }) => external ? (
-            <a
-                key={label}
-                href={href}
-                target={external ? '_blank' : undefined}
-                rel={external ? 'noopener noreferrer' : undefined}
-                className="flex min-h-11 items-center rounded-4xl px-1 sm:px-2 py-3 text-xs font-semibold whitespace-nowrap hover:bg-black/20 focus-visible:outline-2 focus-visible:outline-white sm:text-sm"
-            >
-                {label}
-            </a>
-        ) : (
-            <Link
-                key={label}
-                to={href}
-                className="flex min-h-11 items-center rounded-4xl px-1 sm:px-2 py-3 text-xs font-semibold whitespace-nowrap hover:bg-black/20 focus-visible:outline-2 focus-visible:outline-white sm:text-sm"
-            >
-                {label}
-            </Link>
-        ))}
+        {expandedLinks.map(({ label, href, external }) => {
+            const classes = 'flex min-h-11 items-center justify-between gap-4 rounded-lg px-3 py-3 text-sm font-medium text-stone-900 hover:bg-[#EEF0E9] focus-visible:outline-2 focus-visible:outline-[#E8412C]'
+            return external ? (
+                <a key={label} href={href} target="_blank" rel="noopener noreferrer" onClick={onNavigate} className={classes}>
+                    {label}<ArrowUpRight size={16} aria-hidden="true" />
+                </a>
+            ) : (
+                <Link key={label} to={href} onClick={onNavigate} className={classes}>{label}</Link>
+            )
+        })}
     </div>
 )
 
