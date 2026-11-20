@@ -11,25 +11,27 @@ const ChangeLog = () => {
                     <p className="text-3xl font-semibold">My Career Journey</p>
                     <p className="text-stone-600">From building computers to developing software solutions, I've grown both technically and professionally.</p>
                 </div>
-                <Timeline layout="one-sided"
-                    items={[
-                        { id: "event-1", date: "2026", content: <Graph /> },
-                        { id: "event-1", date: "2026", content: <Graph /> },
-                        { id: "event-1", date: "2026", content: <Graph /> },
-                        { id: "event-1", date: "2026", content: <Graph /> },
-                        { id: "event-1", date: "2026", content: <Graph /> },
-                        { id: "event-1", date: "2026", content: <Graph /> },
-                        { id: "event-1", date: "2026", content: <Graph /> },
-                        { id: "event-1", date: "2026", content: <Graph /> },
-                        { id: "event-1", date: "2026", content: <Graph /> },
-                        { id: "event-1", date: "2026", content: <Graph /> },
-                        { id: "event-1", date: "2026", content: <Graph /> },
-                        { id: "event-1", date: "2026", content: <Graph /> },
-                        { id: "event-1", date: "2026", content: <Graph /> },
-                        { id: "event-1", date: "2026", content: <Graph /> },
+                <div className="w-full max-w-4xl">
+                    <Timeline layout="one-sided"
+                        items={[
+                            { id: "event-1", date: "2026", content: <Graph /> },
+                            { id: "event-1", date: "2026", content: <Graph /> },
+                            { id: "event-1", date: "2026", content: <Graph /> },
+                            { id: "event-1", date: "2026", content: <Graph /> },
+                            { id: "event-1", date: "2026", content: <Graph /> },
+                            { id: "event-1", date: "2026", content: <Graph /> },
+                            { id: "event-1", date: "2026", content: <Graph /> },
+                            { id: "event-1", date: "2026", content: <Graph /> },
+                            { id: "event-1", date: "2026", content: <Graph /> },
+                            { id: "event-1", date: "2026", content: <Graph /> },
+                            { id: "event-1", date: "2026", content: <Graph /> },
+                            { id: "event-1", date: "2026", content: <Graph /> },
+                            { id: "event-1", date: "2026", content: <Graph /> },
+                            { id: "event-1", date: "2026", content: <Graph /> },
 
-                    ]}
-                />
+                        ]}
+                    />
+                </div>
             </div>
 
         </main>
