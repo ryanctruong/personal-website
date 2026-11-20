@@ -1,12 +1,9 @@
 import { AnimatePresence, motion, useReducedMotion, useIsPresent } from 'motion/react'
-import { Link } from 'react-router'
 import { ArrowUpRight } from 'lucide-react'
 
 const expandedLinks = [
-    { label: 'Articles', href: '/articles', external: false },
-    { label: 'Change Log', href: '/change-log', external: false },
-    { label: 'GitHub', href: 'https://github.com/ryanctruong', external: true },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ryanctruong/', external: true },
+    { label: 'GitHub', href: 'https://github.com/ryanctruong' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ryanctruong/' },
 ]
 
 type ExpandedNavigationProps = {
@@ -27,18 +24,21 @@ const MenuPanel = ({ children }: { children: React.ReactNode }) => {
 }
 
 const ExpandedNavigation = ({ isExpanded, onNavigate }: ExpandedNavigationProps) => {
+    const reduceMotion = useReducedMotion()
     return <AnimatePresence initial={false}>
     {isExpanded && <MenuPanel>
-        {expandedLinks.map(({ label, href, external }) => {
-            const classes = 'flex min-h-11 items-center justify-between gap-4 rounded-lg px-3 py-3 text-sm font-medium text-stone-900 hover:bg-[#EEF0E9] focus-visible:outline-2 focus-visible:outline-[#E8412C]'
-            return external ? (
-                <a key={label} href={href} target="_blank" rel="noopener noreferrer" onClick={onNavigate} className={classes}>
-                    {label}<ArrowUpRight size={16} aria-hidden="true" />
-                </a>
-            ) : (
-                <Link key={label} to={href} onClick={onNavigate} className={classes}>{label}</Link>
-            )
-        })}
+        {expandedLinks.map(({ label, href }) => (
+            <motion.a key={label} initial="rest" whileHover="active" whileFocus="active"
+                href={href} target="_blank" rel="noopener noreferrer" onClick={onNavigate}
+                className="flex min-h-11 max-w-full items-center gap-2 rounded-lg px-3 py-3 text-sm font-semibold text-stone-900 underline decoration-[#9DBEB7] underline-offset-4 hover:bg-[#EEF0E9] hover:decoration-[#E8412C] focus-visible:outline-2 focus-visible:outline-[#E8412C]">
+                {label}
+                <motion.span aria-hidden="true" className="inline-flex shrink-0 text-[#E8412C]"
+                    variants={{ rest: { x: 0, y: 0 }, active: { x: reduceMotion ? 0 : 2, y: reduceMotion ? 0 : -2 } }}
+                    transition={{ duration: reduceMotion ? 0 : 0.16, ease: 'easeOut' }}>
+                    <ArrowUpRight size={16} />
+                </motion.span>
+            </motion.a>
+        ))}
     </MenuPanel>}
     </AnimatePresence>
 }

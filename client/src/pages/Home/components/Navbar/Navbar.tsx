@@ -1,7 +1,7 @@
 import { LayoutGroup } from 'motion/react'
 import { useLocation } from 'react-router'
 import { useEffect, useRef, useState } from 'react'
-import { House, BadgeQuestionMark, Ellipsis, Route, Mail } from 'lucide-react'
+import { House, BadgeQuestionMark, Ellipsis, Route, Mail, Newspaper, History, Menu, X } from 'lucide-react'
 import NavLink from './NavLink'
 import ExpandedNavigation from './ExpandedNavigation'
 
@@ -15,6 +15,8 @@ const Navbar = () => {
     const { pathname } = useLocation()
     const [activeHref, setActiveHref] = useState('/')
     const [isExpanded, setIsExpanded] = useState(false)
+    const [isMobileOpen, setIsMobileOpen] = useState(false)
+    const mobileToggleRef = useRef<HTMLButtonElement>(null)
     const navigationRef = useRef<HTMLElement>(null)
     const toggleRef = useRef<HTMLButtonElement>(null)
 
@@ -56,47 +58,79 @@ const Navbar = () => {
     }, [pathname])
 
     useEffect(() => {
-        if (!isExpanded) return
+        if (!isExpanded && !isMobileOpen) return
         const dismiss = (event: PointerEvent) => {
-            if (!navigationRef.current?.contains(event.target as Node)) setIsExpanded(false)
+            if (!navigationRef.current?.contains(event.target as Node)) {
+                setIsExpanded(false)
+                setIsMobileOpen(false)
+            }
         }
         document.addEventListener('pointerdown', dismiss)
         return () => document.removeEventListener('pointerdown', dismiss)
-    }, [isExpanded])
+    }, [isExpanded, isMobileOpen])
 
     return (
         <nav
             ref={navigationRef}
             aria-label="Main navigation"
             onKeyDown={(event) => {
-                if (event.key === 'Escape' && isExpanded) {
+                if (event.key === 'Escape' && (isExpanded || isMobileOpen)) {
                     setIsExpanded(false)
-                    toggleRef.current?.focus()
+                    if (isMobileOpen) mobileToggleRef.current?.focus()
+                    else toggleRef.current?.focus()
+                    setIsMobileOpen(false)
                 }
             }}
             onBlur={(event) => {
-                if (!event.currentTarget.contains(event.relatedTarget)) setIsExpanded(false)
+                if (!event.currentTarget.contains(event.relatedTarget)) {
+                    setIsExpanded(false)
+                    setIsMobileOpen(false)
+                }
             }}
             className="sticky top-0 z-20 border-b border-[#9DBEB7]/50 bg-[#F7F5EF] px-4 md:px-8"
         >
             <LayoutGroup>
-            <div className="relative mx-auto grid w-full max-w-6xl grid-cols-5 items-center gap-1 py-2 sm:flex sm:justify-end sm:gap-2">
+            <div className="relative mx-auto w-full max-w-6xl py-2">
+                <div className="flex justify-end lg:hidden">
+                    <button ref={mobileToggleRef} type="button"
+                        aria-label={isMobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                        aria-expanded={isMobileOpen} aria-controls="navigation-links"
+                        onClick={() => { setIsMobileOpen((open) => !open); setIsExpanded(false) }}
+                        className="flex min-h-11 min-w-11 items-center justify-center rounded-lg text-stone-700 hover:bg-[#EEF0E9] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E8412C]">
+                        {isMobileOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
+                    </button>
+                </div>
+                <div id="navigation-links"
+                    onClick={(event) => {
+                        if ((event.target as HTMLElement).closest('a')) {
+                            setIsMobileOpen(false)
+                            setIsExpanded(false)
+                        }
+                    }}
+                    className={`${isMobileOpen ? 'flex' : 'hidden'} max-h-[calc(100dvh-5rem)] flex-col gap-1 overflow-y-auto pt-2 lg:flex lg:max-h-none lg:flex-row lg:items-center lg:justify-between lg:gap-4 lg:overflow-visible lg:pt-0`}>
+                <div className="flex flex-col gap-1 lg:flex-row lg:gap-2">
                 <NavLink active={pathname === '/' && activeHref === '/'} href="/" icon={House} label="Home" />
                 <NavLink active={pathname === '/' && activeHref === '#questions'} href="#questions" icon={BadgeQuestionMark} label="FAQ" />
-                <NavLink active={pathname === '/' && activeHref === '#timeline'} href="#timeline" icon={Route} label="Career" />
+                <NavLink active={pathname === '/' && activeHref === '#timeline'} href="#timeline" icon={Route} label="Timeline" />
                 <NavLink active={pathname === '/' && activeHref === '#contact-me'} href="#contact-me" icon={Mail} label="Contact" />
+                </div>
+                <div className="flex flex-col gap-1 lg:flex-row lg:gap-2">
+                <NavLink active={pathname.startsWith('/articles')} href="/articles" icon={Newspaper} label="Articles" />
+                <NavLink active={pathname === '/change-log'} href="/change-log" icon={History} label="Changelog" />
                 <button
                     ref={toggleRef}
                     type="button"
                     aria-expanded={isExpanded}
                     aria-controls="expanded-navigation"
                     onClick={() => setIsExpanded((expanded) => !expanded)}
-                    className="flex min-h-11 min-w-0 cursor-pointer flex-col items-center justify-center gap-1 rounded-lg px-1 py-2 text-xs font-medium text-stone-700 hover:bg-[#EEF0E9] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E8412C] aria-expanded:bg-[#EEF0E9] sm:flex-row sm:gap-2 sm:px-4 sm:text-sm"
+                    className="flex min-h-11 min-w-0 cursor-pointer flex-row items-center justify-start gap-2 rounded-lg px-4 py-2 text-sm font-medium text-stone-700 hover:bg-[#EEF0E9] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E8412C] aria-expanded:bg-[#EEF0E9] lg:flex-row lg:gap-2 lg:px-4 lg:text-sm"
                 >
                     <Ellipsis size={18} aria-hidden="true" />
                     <span>More</span>
                 </button>
+                </div>
                 <ExpandedNavigation isExpanded={isExpanded} onNavigate={() => setIsExpanded(false)} />
+                </div>
             </div>
             </LayoutGroup>
         </nav>
