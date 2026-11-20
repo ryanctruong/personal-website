@@ -1,13 +1,13 @@
-import { useRef, type RefObject } from 'react'
-import { motion, useReducedMotion, useScroll } from 'motion/react'
+import { useRef, useState } from 'react'
+import { ChartNoAxesCombined, Code2, GraduationCap } from 'lucide-react'
+import { motion, useReducedMotion, useScroll, useMotionValueEvent } from 'motion/react'
 import { CAREER_MILESTONES } from './milestones'
 
-// Each segment follows its own row so wrapped text and responsive heights
-// do not change where the rail reaches the next milestone.
-const RailProgress = ({ target }: { target: RefObject<HTMLLIElement | null> }) => {
-    const { scrollYProgress } = useScroll({ target, offset: ['12px 60%', 'end 60%'] })
-    return <motion.span className="absolute inset-0 origin-top bg-[#66877F]" style={{ scaleY: scrollYProgress }} />
-}
+const disciplines = {
+    education: { color: '#36796F', icon: GraduationCap },
+    analytics: { color: '#496F9A', icon: ChartNoAxesCombined },
+    engineering: { color: '#A92E20', icon: Code2 },
+} as const
 
 const CareerMilestone = ({ milestone, isLast }: {
     milestone: (typeof CAREER_MILESTONES)[number]
@@ -15,27 +15,58 @@ const CareerMilestone = ({ milestone, isLast }: {
 }) => {
     const rowRef = useRef<HTMLLIElement>(null)
     const reduceMotion = useReducedMotion()
-    const { date, title, subtitle, description, techStack } = milestone
+    const { date, title, subtitle, description, techStack, discipline } = milestone
+    const { color, icon: DisciplineIcon } = disciplines[discipline]
+    const { scrollYProgress } = useScroll({ target: rowRef, offset: ['12px 60%', 'end 60%'] })
+    const [reached, setReached] = useState(false)
+    useMotionValueEvent(scrollYProgress, 'change', (progress) => {
+        if (progress > 0 && !reached) setReached(true)
+    })
+    const activated = reduceMotion || reached
     const isCurrent = date.includes('Present')
     return (
         <li ref={rowRef} className="career-grid relative grid grid-cols-[1rem_minmax(0,1fr)] gap-x-4">
-            <p className={`col-start-2 mb-2 text-sm font-medium md:col-start-1 md:col-span-4 md:row-start-1 md:pt-1 ${isCurrent ? 'text-[#A92E20]' : 'text-stone-600'}`}>{date}</p>
+            <motion.p
+                initial={false} animate={{ color: activated ? color : '#57534E' }}
+                transition={{ duration: reduceMotion ? 0 : 0.24 }}
+                className="col-start-2 row-start-1 mb-2 text-sm font-medium leading-6 md:col-start-1 md:col-span-4 md:mb-0 md:text-right">
+                {date}
+            </motion.p>
             <div aria-hidden="true" className="career-rail absolute inset-y-0 left-0 w-4">
-                {!isLast && <span className="absolute top-3 -bottom-3 left-1/2 w-px -translate-x-1/2 bg-[#9DBEB7]">
-                    {reduceMotion ? <span className="absolute inset-0 bg-[#66877F]" /> : <RailProgress target={rowRef} />}
+                {!isLast && <span className="absolute top-3 -bottom-3 left-1/2 w-px -translate-x-1/2 bg-[#9DBEB7]/60">
+                    <motion.span className="absolute inset-0 origin-top bg-[#66877F]"
+                        style={{ scaleY: reduceMotion ? 1 : scrollYProgress }} />
                 </span>}
-                <span className={`absolute top-1.5 left-1/2 size-3 -translate-x-1/2 rounded-full border-2 border-[#F7F5EF] ${isCurrent ? 'bg-[#E8412C] ring-1 ring-[#E8412C]' : 'bg-[#9DBEB7]'}`} />
+                <span className="absolute top-0 left-1/2 flex size-6 -translate-x-1/2 items-center justify-center rounded-full bg-[#F7F5EF]">
+                    <motion.span initial={false}
+                        animate={{ opacity: activated ? 1 : 0.4, scale: activated ? 1 : 0.88 }}
+                        transition={reduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 360, damping: 30 }}
+                        style={{ color, borderColor: color }}
+                        className="flex size-6 items-center justify-center rounded-full border">
+                        <motion.span initial={false} animate={{ opacity: activated ? 0.1 : 0 }}
+                            transition={{ duration: reduceMotion ? 0 : 0.24 }}
+                            className="absolute inset-0 rounded-full" style={{ backgroundColor: color }} />
+                        <DisciplineIcon size={13} strokeWidth={1.75} className="relative" />
+                    </motion.span>
+                </span>
             </div>
-            <article className={`col-start-2 min-w-0 pb-10 md:col-start-5 md:col-span-8 md:row-start-1 ${isCurrent ? 'border-l-2 border-[#E8412C] pl-4' : ''}`}>
-                <div className="flex flex-col gap-1">
+            <article className="col-start-2 row-start-2 min-w-0 pb-10 md:col-start-5 md:col-span-8 md:row-start-1">
+                <div className={`flex flex-col gap-1 ${isCurrent ? 'relative rounded-r-xl border-l-2 border-transparent bg-[#E8412C]/5 p-4 sm:p-6' : ''}`}>
+                    {isCurrent && <motion.span aria-hidden="true"
+                        initial={false} animate={{ scaleY: activated ? 1 : 0 }}
+                        transition={{ duration: reduceMotion ? 0 : 0.36, ease: 'easeOut' }}
+                        className="pointer-events-none absolute inset-y-0 -left-0.5 w-0.5 origin-top bg-[#E8412C]" />}
+                    {isCurrent && <p className="mb-2 text-sm font-semibold text-[#A92E20]">Current role</p>}
                     <h3 className="text-xl font-semibold">{title}</h3>
                     <p className="text-base font-medium text-stone-700">{subtitle}</p>
                     {techStack.length > 0 && (
-                        <ul aria-label="Technologies" className="my-3 flex flex-wrap items-center gap-x-5 gap-y-3">
+                        <ul aria-label="Technologies" className="my-3 flex min-w-0 flex-wrap items-center gap-2">
                             {techStack.map((tech) => (
-                                <li key={tech.name} className="inline-flex items-center gap-2 text-sm text-stone-700">
+                                <li key={tech.name}
+                                    style={{ backgroundColor: `${color}0D`, borderColor: `${color}26` }}
+                                    className="inline-flex min-w-0 max-w-full items-center gap-2 rounded-lg border px-3 py-1.5 text-sm font-medium text-stone-700">
                                     <img src={tech.icon} alt="" className="size-4 shrink-0 object-contain" />
-                                    <span>{tech.name}</span>
+                                    <span className="min-w-0">{tech.name}</span>
                                 </li>
                             ))}
                         </ul>

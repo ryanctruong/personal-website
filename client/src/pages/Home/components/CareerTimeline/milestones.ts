@@ -28,6 +28,7 @@ const docker: Technology = { name: "Docker", icon: dockerIcon };
 const nodejs: Technology = { name: "Node.js", icon: nodejsIcon };
 
 interface CareerMilestone {
+  discipline: 'education' | 'analytics' | 'engineering';
   date: string;
   title: string;
   subtitle: string;
@@ -37,6 +38,7 @@ interface CareerMilestone {
 
 export const CAREER_MILESTONES: CareerMilestone[] = [
   {
+    discipline: 'education',
     date: "Aug 2018",
     title: "IT Pathway Student",
     subtitle: "John Overton High School",
@@ -45,6 +47,7 @@ export const CAREER_MILESTONES: CareerMilestone[] = [
     techStack: [java],
   },
   {
+    discipline: 'education',
     date: "Aug 2020",
     title: "Computer Science Major",
     subtitle: "Belmont University",
@@ -53,6 +56,7 @@ export const CAREER_MILESTONES: CareerMilestone[] = [
     techStack: [sql, python, java],
   },
   {
+    discipline: 'engineering',
     date: "May 2021",
     title: "Software Engineer Intern",
     subtitle: "Jackson National Life Insurance Company",
@@ -61,6 +65,7 @@ export const CAREER_MILESTONES: CareerMilestone[] = [
     techStack: [java, html, css],
   },
   {
+    discipline: 'education',
     date: "Aug 2022",
     title: "Dual Economics Major",
     subtitle: "Belmont University",
@@ -69,6 +74,7 @@ export const CAREER_MILESTONES: CareerMilestone[] = [
     techStack: [sql, python, excel],
   },
   {
+    discipline: 'analytics',
     date: "Aug 2022",
     title: "Junior Data Analyst",
     subtitle: "Belmont Data Collaborative",
@@ -77,6 +83,7 @@ export const CAREER_MILESTONES: CareerMilestone[] = [
     techStack: [excel, python, sql],
   },
   {
+    discipline: 'analytics',
     date: "May 2023",
     title: "Data Analyst Intern",
     subtitle: "Urban Science",
@@ -85,6 +92,7 @@ export const CAREER_MILESTONES: CareerMilestone[] = [
     techStack: [powerbi, sql, python, excel],
   },
   {
+    discipline: 'education',
     date: "Aug 2023",
     title: "CSC/MTH Tutor",
     subtitle: "Belmont University",
@@ -93,6 +101,7 @@ export const CAREER_MILESTONES: CareerMilestone[] = [
     techStack: [java, python],
   },
   {
+    discipline: 'engineering',
     date: "Oct 2023",
     title: "Software Engineer Intern",
     subtitle: "HCA Healthcare",
@@ -101,6 +110,7 @@ export const CAREER_MILESTONES: CareerMilestone[] = [
     techStack: [gcp, docker, python, react],
   },
   {
+    discipline: 'engineering',
     date: "May 2024 - Present",
     title: "Software Engineer",
     subtitle: "HCA Healthcare",
