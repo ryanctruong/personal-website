@@ -1,6 +1,9 @@
+import { motion, useReducedMotion } from 'motion/react'
 import { ArrowUpRight, Code2 } from 'lucide-react'
 
-const FeaturedProject = () => (
+const FeaturedProject = () => {
+    const reduceMotion = useReducedMotion()
+    return (
     <article aria-labelledby="featured-project-title" className="min-w-0 overflow-hidden rounded-2xl border border-[#9DBEB7] bg-[#EEF0E9]">
         <div aria-hidden="true" className="px-5 pt-6 sm:px-6 sm:pt-8">
             <div className="overflow-hidden rounded-t-xl border border-b-0 border-[#9DBEB7] bg-[#F7F5EF]">
@@ -29,11 +32,17 @@ const FeaturedProject = () => (
             <ul aria-label="Project technologies" className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-xs font-medium text-stone-700">
                 {['React', 'TypeScript', 'Flask', 'PostgreSQL'].map((technology) => <li key={technology}>{technology}</li>)}
             </ul>
-            <a href="https://github.com/ryanctruong/personal-website" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex min-h-11 max-w-full items-center gap-2 rounded-sm py-2 text-sm font-semibold text-stone-900 underline decoration-[#9DBEB7] underline-offset-4 hover:decoration-[#E8412C] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#E8412C]">
-                View source on GitHub <ArrowUpRight size={16} aria-hidden="true" className="shrink-0 text-[#E8412C]" />
-            </a>
+            <motion.a initial="rest" whileHover="active" whileFocus="active" href="https://github.com/ryanctruong/personal-website" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex min-h-11 max-w-full items-center gap-2 rounded-sm py-2 text-sm font-semibold text-stone-900 underline decoration-[#9DBEB7] underline-offset-4 hover:decoration-[#E8412C] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#E8412C]">
+                View source on GitHub
+                <motion.span aria-hidden="true" className="inline-flex shrink-0 text-[#E8412C]"
+                    variants={{ rest: { x: 0, y: 0 }, active: { x: reduceMotion ? 0 : 2, y: reduceMotion ? 0 : -2 } }}
+                    transition={{ duration: reduceMotion ? 0 : 0.16, ease: 'easeOut' }}>
+                    <ArrowUpRight size={16} />
+                </motion.span>
+            </motion.a>
         </div>
     </article>
-)
+    )
+}
 
 export default FeaturedProject

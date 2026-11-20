@@ -1,17 +1,29 @@
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useState, type SubmitEvent } from 'react'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Check, CircleAlert } from 'lucide-react'
 import RedButton from '../../../../components/Button/RedButton'
 
-const inputClass = 'min-w-0 w-full rounded-xl border border-[#66877F] bg-[#F7F5EF] px-4 py-3 text-base font-normal text-stone-900 transition-colors focus:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a8392a] disabled:opacity-70'
+const inputClass = 'min-w-0 w-full rounded-lg border border-[#66877F]/90 bg-[#F7F5EF] px-4 py-3 text-base font-normal text-stone-900 motion-safe:transition-colors motion-safe:duration-150 focus:border-[#A92E20] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A92E20] disabled:opacity-70'
+const labelClass = 'group grid min-w-0 gap-2 text-sm font-semibold text-stone-900'
+const labelTextClass = 'motion-safe:transition-colors motion-safe:duration-150 group-focus-within:text-[#A92E20]'
 
 const Contact = () => {
+    const reduceMotion = useReducedMotion()
+    const feedback = {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        exit: { opacity: 0 },
+        transition: { duration: reduceMotion ? 0 : 0.18 },
+    }
     const [pending, setPending] = useState(false)
     const [success, setSuccess] = useState(false)
     const [error, setError] = useState('')
+    const buttonState = pending ? 'sending' : success ? 'sent' : 'idle'
+    const buttonLabel = pending ? 'Sending…' : success ? 'Message sent' : 'Send message'
 
     const submit = async (event: SubmitEvent<HTMLFormElement>) => {
         event.preventDefault()
-        if (pending) return
+        if (pending || success) return
 
         const form = event.currentTarget
         const details = Object.fromEntries(new FormData(form))
@@ -41,43 +53,76 @@ const Contact = () => {
     }
 
     return (
-        <section id="contact-me" className="home-section home-grid scroll-mt-6 items-start gap-y-8 py-8">
-            <header className="min-w-0 border-t-2 border-[#9DBEB7] pt-4 flex flex-col gap-2 md:col-span-4">
-                <p id="contact-heading" className="text-3xl font-semibold">Contact Me</p>
+        <section id="contact-me" aria-labelledby="contact-heading" className="home-section home-grid scroll-mt-6 items-start gap-y-8 py-8">
+            <header className="min-w-0 flex flex-col gap-2 md:col-span-4">
+                <h2 id="contact-heading" className="text-3xl font-semibold">Contact Me</h2>
                 <p className="max-w-xs leading-relaxed text-stone-600">
                     Have a project in mind or just want to say hello? I’d love to hear from you.
                 </p>
             </header>
 
-            <form className="min-w-0 md:col-span-8" onSubmit={submit} onChange={() => setSuccess(false)}>
+            <form aria-busy={pending} className="min-w-0 md:col-span-8" onSubmit={submit} onChange={() => setSuccess(false)}>
                 <fieldset disabled={pending} className="grid min-w-0 gap-5">
                     <div className="grid gap-5 sm:grid-cols-2">
-                        <label className="grid min-w-0 gap-2 text-sm font-semibold">
-                            Full name
+                        <label className={labelClass}>
+                            <span className={labelTextClass}>Full name</span>
                             <input className={inputClass} name="full_name" autoComplete="name" maxLength={120} required />
                         </label>
-                        <label className="grid min-w-0 gap-2 text-sm font-semibold">
-                            Email address
+                        <label className={labelClass}>
+                            <span className={labelTextClass}>Email address</span>
                             <input className={inputClass} name="email_address" type="email" autoComplete="email" maxLength={254} required />
                         </label>
                     </div>
-                    <label className="grid gap-2 text-sm font-semibold">
-                        <span>Company <span className="font-normal text-stone-600">(optional)</span></span>
+                    <label className={labelClass}>
+                        <span className={labelTextClass}>Company <span className="font-normal text-stone-600">(optional)</span></span>
                         <input className={inputClass} name="company" autoComplete="organization" maxLength={120} />
                     </label>
-                    <label className="grid gap-2 text-sm font-semibold">
-                        Message
+                    <label className={labelClass}>
+                        <span className={labelTextClass}>Message</span>
                         <textarea className={inputClass + ' min-h-32 resize-y'} name="contact_message" rows={4} maxLength={4000} required />
                     </label>
-                    <RedButton type="submit" disabled={pending}>
-                        {pending ? 'Sending…' : 'Send message'}
-                        <ArrowRight aria-hidden="true" size={16} />
+                    <RedButton type="submit" disabled={pending || success} aria-label={buttonLabel}
+                        style={{ cursor: success ? 'default' : undefined }}>
+                        <span aria-hidden="true" className="grid items-center justify-items-center">
+                            {/* Measure every label to keep the button steady between states. */}
+                            {['Send message', 'Sending…', 'Message sent'].map((label) => (
+                                <span key={label} className="invisible col-start-1 row-start-1 inline-flex items-center gap-2">
+                                    {label}<span className="size-4 shrink-0" />
+                                </span>
+                            ))}
+                            <AnimatePresence initial={false}>
+                                <motion.span key={buttonState}
+                                    initial={{ opacity: 0, y: reduceMotion ? 0 : 3 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: reduceMotion ? 0 : -3 }}
+                                    transition={{ duration: reduceMotion ? 0 : 0.14, ease: 'easeOut' }}
+                                    className="col-start-1 row-start-1 inline-flex items-center gap-2">
+                                    {buttonLabel}
+                                    {success ? <Check size={16} className="shrink-0" /> :
+                                        <ArrowRight size={16} className={`shrink-0 ${pending ? 'motion-safe:animate-pulse' : ''}`} />}
+                                </motion.span>
+                            </AnimatePresence>
+                        </span>
                     </RedButton>
                 </fieldset>
-                <p role="status" className={success ? 'mt-4 rounded-xl bg-green-50 px-4 py-3 text-sm text-green-900' : 'sr-only'}>
-                    {success && 'Thanks for reaching out. Your message was sent.'}
-                </p>
-                {error && <p role="alert" className="mt-4 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-900">{error}</p>}
+                <div role="status" aria-atomic="true">
+                    <AnimatePresence initial={false}>
+                        {success && <motion.p key="success" {...feedback}
+                            className="mt-4 flex items-start gap-2 rounded-lg border border-[#36796F]/20 bg-[#36796F]/5 px-4 py-3 text-sm leading-relaxed text-[#285C54]">
+                            <Check size={18} aria-hidden="true" className="mt-0.5 shrink-0" />
+                            <span className="min-w-0">Thanks for reaching out. Your message was sent.</span>
+                        </motion.p>}
+                    </AnimatePresence>
+                </div>
+                <div role="alert" aria-atomic="true">
+                    <AnimatePresence initial={false}>
+                        {error && <motion.p key={error} {...feedback}
+                            className="mt-4 flex items-start gap-2 rounded-lg border border-[#A92E20]/20 bg-[#E8412C]/5 px-4 py-3 text-sm leading-relaxed text-[#A92E20]">
+                            <CircleAlert size={18} aria-hidden="true" className="mt-0.5 shrink-0" />
+                            <span className="min-w-0">{error}</span>
+                        </motion.p>}
+                    </AnimatePresence>
+                </div>
             </form>
         </section>
     )

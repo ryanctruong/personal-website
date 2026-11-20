@@ -1,3 +1,4 @@
+import { AnimatePresence, motion, useReducedMotion, useIsPresent } from 'motion/react'
 import { Link } from 'react-router'
 import { ArrowUpRight } from 'lucide-react'
 
@@ -13,12 +14,21 @@ type ExpandedNavigationProps = {
     onNavigate: () => void
 }
 
-const ExpandedNavigation = ({ isExpanded, onNavigate }: ExpandedNavigationProps) => (
-    <div
-        id="expanded-navigation"
-        hidden={!isExpanded}
-        className="absolute top-full right-0 mt-2 w-56 max-w-full rounded-xl border border-[#9DBEB7] bg-[#F7F5EF] p-2 shadow-lg shadow-black/10"
-    >
+const MenuPanel = ({ children }: { children: React.ReactNode }) => {
+    const isPresent = useIsPresent()
+    const reduceMotion = useReducedMotion()
+    return <motion.div id="expanded-navigation" inert={!isPresent}
+        style={{ pointerEvents: isPresent ? 'auto' : 'none' }}
+        initial={{ opacity: 0, y: reduceMotion ? 0 : -4 }} animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: reduceMotion ? 0 : -4 }} transition={{ duration: reduceMotion ? 0 : 0.16 }}
+        className="absolute top-full right-0 mt-2 w-56 max-w-full rounded-xl border border-[#9DBEB7] bg-[#F7F5EF] p-2 shadow-lg shadow-black/10">
+        {children}
+    </motion.div>
+}
+
+const ExpandedNavigation = ({ isExpanded, onNavigate }: ExpandedNavigationProps) => {
+    return <AnimatePresence initial={false}>
+    {isExpanded && <MenuPanel>
         {expandedLinks.map(({ label, href, external }) => {
             const classes = 'flex min-h-11 items-center justify-between gap-4 rounded-lg px-3 py-3 text-sm font-medium text-stone-900 hover:bg-[#EEF0E9] focus-visible:outline-2 focus-visible:outline-[#E8412C]'
             return external ? (
@@ -29,7 +39,8 @@ const ExpandedNavigation = ({ isExpanded, onNavigate }: ExpandedNavigationProps)
                 <Link key={label} to={href} onClick={onNavigate} className={classes}>{label}</Link>
             )
         })}
-    </div>
-)
+    </MenuPanel>}
+    </AnimatePresence>
+}
 
 export default ExpandedNavigation

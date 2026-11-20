@@ -1,4 +1,5 @@
 import { StrictMode } from 'react'
+import { MotionConfig } from 'motion/react'
 import { BrowserRouter } from 'react-router'
 import { createRoot } from 'react-dom/client'
 import '@fontsource-variable/work-sans'
@@ -12,7 +13,9 @@ void fetch('/api/visit', { method: 'POST' }).catch(() => {
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <MotionConfig reducedMotion="user">
+        <App />
+      </MotionConfig>
     </BrowserRouter>
   </StrictMode>,
 )

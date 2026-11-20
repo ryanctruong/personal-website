@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 import { Route, Routes, useLocation } from 'react-router'
+import Banner from './components/Banner/Banner'
+import Navbar from './pages/Home/components/Navbar/Navbar'
 import Home from './pages/Home/Home'
 import Articles from './pages/Articles/Articles'
 import ChangeLog from './pages/ChangeLog/ChangeLog'
@@ -18,11 +20,15 @@ const App = () => {
     }, [pathname, hash])
 
     return (
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/articles" element={<Articles />} />
-            <Route path="/change-log" element={<ChangeLog />} />
-        </Routes>
+        <div className="flex min-h-screen flex-col">
+            <Banner />
+            <Navbar />
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/articles" element={<Articles />} />
+                <Route path="/change-log" element={<ChangeLog />} />
+            </Routes>
+        </div>
     )
 }
 
