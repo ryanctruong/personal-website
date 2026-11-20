@@ -1,6 +1,6 @@
 import { useState, type SubmitEvent } from 'react'
 import { ArrowRight } from 'lucide-react'
-import RedButton from '../../components/Button/RedButton'
+import RedButton from '../../../../components/Button/RedButton'
 
 const inputClass = 'min-w-0 w-full rounded-xl border border-[#9DBEB7] bg-[#F7F5EF] px-4 py-3 text-base font-normal text-stone-900 transition-colors focus:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a8392a] disabled:opacity-70'
 

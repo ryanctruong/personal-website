@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 import { ArrowDown, ArrowRight } from 'lucide-react'
-import RedButton from '../../components/Button/RedButton'
+import RedButton from '../../../../components/Button/RedButton'
 
 const destinations = [
     { href: '/articles', title: 'Articles', description: 'Notes on software, data, and what I’m learning.' },
