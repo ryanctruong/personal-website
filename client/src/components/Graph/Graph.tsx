@@ -1,9 +1,21 @@
+import { useRef } from 'react';
+import { motion, useInView, useReducedMotion } from 'motion/react';
+
 const images = ["/icons/python.png", "/icons/python.png", "/icons/python.png", "/icons/python.png", "/icons/python.png", "/icons/python.png"];
 const centerImage = '/beanhead.png';
 
 const Graph = () => {
+    const graphRef = useRef<HTMLDivElement>(null);
+    const reduceMotion = useReducedMotion();
+    const isInView = useInView(graphRef, { once: true, amount: 0.25 });
+    const draw = {
+        initial: reduceMotion ? false as const : { clipPath: 'inset(0 50% 0 50%)' },
+        animate: { clipPath: reduceMotion || isInView ? 'inset(0 0% 0 0%)' : 'inset(0 50% 0 50%)' },
+        transition: { duration: reduceMotion ? 0 : 0.65, ease: 'easeInOut' as const },
+    };
+
     return (
-        <div className="relative isolate flex w-full flex-col items-center text-white">
+        <div ref={graphRef} className="relative isolate flex w-full flex-col items-center text-white">
             <div className="flex w-full max-w-4xl items-center justify-between max-md:hidden">
                 <div className="flex items-center gap-30">
                     <div
@@ -35,20 +47,18 @@ const Graph = () => {
                 </div>
             </div>
             <div className="relative flex w-full items-center justify-between gap-2 px-[var(--middle-inset)] py-2.5 [--middle-inset:0rem] md:[--middle-inset:1rem] lg:[--middle-inset:4.5rem]">
-                <svg
+                <motion.svg {...draw}
                     aria-hidden="true"
                     className="pointer-events-none absolute inset-y-0 left-[var(--middle-inset)] -z-10 h-full w-[calc(100%-2*var(--middle-inset))] text-stone-500"
                     viewBox="0 0 100 100"
                     preserveAspectRatio="none"
                     fill="none"
                 >
-                    <path
-                        d="M 0 50 H 100"
-                        stroke="currentColor"
-                        strokeWidth={1.5}
-                        vectorEffect="non-scaling-stroke"
-                    />
-                </svg>
+                    {['M 50 50 H 0', 'M 50 50 H 100'].map((d) => (
+                        <path key={d} d={d}
+                            stroke="currentColor" strokeWidth={1.5} vectorEffect="non-scaling-stroke" />
+                    ))}
+                </motion.svg>
                 <div
                     className="bg-[#F7F5EF] flex size-12 shrink-0 items-center justify-center rounded-xl border-[1.5px] shadow-xl md:size-18 lg:size-23"
                 >
@@ -132,20 +142,23 @@ const Graph = () => {
                     </div>
                 </div>
             </div>
-            <svg
+            <motion.svg {...draw}
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-y-0 left-1/2 -z-10 h-full w-[calc(100%-3rem)] max-w-[53rem] -translate-x-1/2 text-stone-500 max-md:hidden lg:w-[calc(100%-60px)] lg:max-w-[calc(56rem-60px)]"
                 viewBox="0 0 100 100"
                 preserveAspectRatio="none"
                 fill="none"
             >
-                <path
-                    d="M 0 12 Q 22 12 50 50 Q 78 12 100 12 M 0 88 Q 22 88 50 50 Q 78 88 100 88"
-                    stroke="currentColor"
-                    strokeWidth={1.5}
-                    vectorEffect="non-scaling-stroke"
-                />
-            </svg>
+                {[
+                    'M 50 50 Q 22 12 0 12',
+                    'M 50 50 Q 78 12 100 12',
+                    'M 50 50 Q 22 88 0 88',
+                    'M 50 50 Q 78 88 100 88',
+                ].map((d) => (
+                    <path key={d} d={d}
+                        stroke="currentColor" strokeWidth={1.5} vectorEffect="non-scaling-stroke" />
+                ))}
+            </motion.svg>
         </div>
     );
 };

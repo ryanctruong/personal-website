@@ -1,6 +1,6 @@
-import { motion, useReducedMotion } from 'motion/react'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useState, type SubmitEvent } from 'react'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Check } from 'lucide-react'
 import RedButton from '../../../../components/Button/RedButton'
 
 const inputClass = 'min-w-0 w-full rounded-xl border border-[#66877F] bg-[#F7F5EF] px-4 py-3 text-base font-normal text-stone-900 transition-colors focus:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a8392a] disabled:opacity-70'
@@ -15,10 +15,12 @@ const Contact = () => {
     const [pending, setPending] = useState(false)
     const [success, setSuccess] = useState(false)
     const [error, setError] = useState('')
+    const buttonState = pending ? 'sending' : success ? 'sent' : 'idle'
+    const buttonLabel = pending ? 'Sending…' : success ? 'Message sent' : 'Send message'
 
     const submit = async (event: SubmitEvent<HTMLFormElement>) => {
         event.preventDefault()
-        if (pending) return
+        if (pending || success) return
 
         const form = event.currentTarget
         const details = Object.fromEntries(new FormData(form))
@@ -76,9 +78,28 @@ const Contact = () => {
                         Message
                         <textarea className={inputClass + ' min-h-32 resize-y'} name="contact_message" rows={4} maxLength={4000} required />
                     </label>
-                    <RedButton type="submit" disabled={pending}>
-                        {pending ? 'Sending…' : 'Send message'}
-                        <ArrowRight aria-hidden="true" size={16} className={pending ? 'motion-safe:animate-pulse' : ''} />
+                    <RedButton type="submit" disabled={pending || success} aria-label={buttonLabel}
+                        style={{ cursor: success ? 'default' : undefined }}>
+                        <span aria-hidden="true" className="grid items-center justify-items-center">
+                            {/* Measure every label to keep the button steady between states. */}
+                            {['Send message', 'Sending…', 'Message sent'].map((label) => (
+                                <span key={label} className="invisible col-start-1 row-start-1 inline-flex items-center gap-2">
+                                    {label}<span className="size-4 shrink-0" />
+                                </span>
+                            ))}
+                            <AnimatePresence initial={false}>
+                                <motion.span key={buttonState}
+                                    initial={{ opacity: 0, y: reduceMotion ? 0 : 3 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: reduceMotion ? 0 : -3 }}
+                                    transition={{ duration: reduceMotion ? 0 : 0.14, ease: 'easeOut' }}
+                                    className="col-start-1 row-start-1 inline-flex items-center gap-2">
+                                    {buttonLabel}
+                                    {success ? <Check size={16} className="shrink-0" /> :
+                                        <ArrowRight size={16} className={`shrink-0 ${pending ? 'motion-safe:animate-pulse' : ''}`} />}
+                                </motion.span>
+                            </AnimatePresence>
+                        </span>
                     </RedButton>
                 </fieldset>
                 <div role="status" aria-atomic="true">

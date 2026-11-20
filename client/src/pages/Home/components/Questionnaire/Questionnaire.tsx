@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'motion/react';
+import { LayoutGroup, motion, useReducedMotion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { FAQS } from './faq';
@@ -62,20 +62,28 @@ const Questionnaire = () => {
                     <p id="question-list-heading" className="text-sm font-semibold uppercase tracking-[0.16em]">Questions</p>
                     <span className="text-xs tabular-nums text-stone-500">{String(FAQS.length).padStart(2, '0')}</span>
                 </div>
+                <LayoutGroup>
                 <nav aria-labelledby="question-list-heading" className="grid divide-y divide-[#CED8CF]">
                     {FAQS.map(({ id, question }, index) => (
                         <a
                             key={id}
                             href={`#${questionAnchor(id)}`}
                             aria-current={activeId === questionAnchor(id) ? 'location' : undefined}
-                            className="group relative grid grid-cols-[1.25rem_minmax(0,1fr)_1rem] items-start gap-3 rounded-r-lg px-3 py-5 text-left transition-colors hover:bg-[#F7F5EF]/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E8412C] aria-[current=location]:bg-[#F7F5EF] before:absolute before:inset-y-5 before:left-0 before:w-0.5 before:rounded-full aria-[current=location]:before:bg-[#E8412C]"
+                            className="group relative grid grid-cols-[1.25rem_minmax(0,1fr)_1rem] items-start gap-3 rounded-r-lg px-3 py-5 text-left transition-colors hover:bg-[#F7F5EF]/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E8412C] aria-[current=location]:bg-[#F7F5EF]"
                         >
+                            {activeId === questionAnchor(id) && (
+                                reduceMotion ? <span aria-hidden="true" className="pointer-events-none absolute inset-y-5 left-0 w-0.5 rounded-full bg-[#E8412C]" /> :
+                                <motion.span aria-hidden="true" layoutId="active-question-marker"
+                                    transition={{ type: 'spring', stiffness: 420, damping: 38 }}
+                                    className="pointer-events-none absolute inset-y-5 left-0 w-0.5 rounded-full bg-[#E8412C]" />
+                            )}
                             <span className="pt-0.5 text-xs leading-6 tabular-nums text-stone-400 group-aria-[current=location]:text-[#E8412C]">{String(index + 1).padStart(2, '0')}</span>
                             <span className="text-md leading-6 text-stone-600 group-hover:text-stone-900 group-aria-[current=location]:font-medium group-aria-[current=location]:text-stone-900">{question}</span>
                             <ArrowUpRight size={16} className="mt-1 text-stone-400 group-hover:text-[#E8412C] group-aria-[current=location]:text-[#E8412C]" />
                         </a>
                     ))}
                 </nav>
+                </LayoutGroup>
             </div>
 
             <div ref={answersRef} className="grid min-w-0 gap-0 md:col-span-8 md:gap-8">
