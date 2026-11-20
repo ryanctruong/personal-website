@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 import Timeline from '../../components/Timeline/Timeline';
-import Graph from '../../components/Graph/Graph';
+import { CHANGES } from "./changes";
 
 const ChangeLog = () => {
     return (
@@ -8,29 +8,11 @@ const ChangeLog = () => {
             <Link to="/" className="underline">Back to home</Link>
             <div className="flex flex-col items-center justify-center gap-12 w-full">
                 <div className="flex flex-col gap-2 items-center">
-                    <p className="text-3xl font-semibold">My Career Journey</p>
-                    <p className="text-stone-600">From building computers to developing software solutions, I've grown both technically and professionally.</p>
+                    <p className="text-4xl font-semibold">Changelog Origin Update</p>
+                    <p className="text-stone-600">Discover what’s been added, changed, fixed, improved, and updated in this release.</p>
                 </div>
                 <div className="w-full max-w-4xl">
-                    <Timeline layout="one-sided"
-                        items={[
-                            { id: "event-1", date: "2026", content: <Graph /> },
-                            { id: "event-1", date: "2026", content: <Graph /> },
-                            { id: "event-1", date: "2026", content: <Graph /> },
-                            { id: "event-1", date: "2026", content: <Graph /> },
-                            { id: "event-1", date: "2026", content: <Graph /> },
-                            { id: "event-1", date: "2026", content: <Graph /> },
-                            { id: "event-1", date: "2026", content: <Graph /> },
-                            { id: "event-1", date: "2026", content: <Graph /> },
-                            { id: "event-1", date: "2026", content: <Graph /> },
-                            { id: "event-1", date: "2026", content: <Graph /> },
-                            { id: "event-1", date: "2026", content: <Graph /> },
-                            { id: "event-1", date: "2026", content: <Graph /> },
-                            { id: "event-1", date: "2026", content: <Graph /> },
-                            { id: "event-1", date: "2026", content: <Graph /> },
-
-                        ]}
-                    />
+                    <Timeline layout="one-sided" items={CHANGES} />
                 </div>
             </div>
 
