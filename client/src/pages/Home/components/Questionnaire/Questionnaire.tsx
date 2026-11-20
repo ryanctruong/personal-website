@@ -1,10 +1,12 @@
+import { motion, useReducedMotion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
-import { ArrowUpRight, Plus, Minus } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { FAQS } from './faq';
 
 const questionAnchor = (id: string) => `questions/${id}`;
 
 const Questionnaire = () => {
+    const reduceMotion = useReducedMotion();
     const answersRef = useRef<HTMLDivElement>(null);
     const [activeId, setActiveId] = useState(questionAnchor(FAQS[0].id));
 
@@ -89,13 +91,24 @@ const Questionnaire = () => {
                                 className="flex min-h-11 w-full cursor-pointer items-center justify-between gap-4 rounded-lg px-2 py-3 text-left text-base font-semibold text-stone-900 hover:bg-[#F7F5EF]/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E8412C]"
                             >
                                 <span>{question}</span>
-                                {openId === id ? <Minus size={18} className="shrink-0 text-[#E8412C]" aria-hidden="true" /> : <Plus size={18} className="shrink-0 text-stone-600" aria-hidden="true" />}
+                                <span aria-hidden="true" className={`relative size-[18px] shrink-0 ${openId === id ? 'text-[#E8412C]' : 'text-stone-600'}`}>
+                                    <span className="absolute top-2 left-0.5 h-0.5 w-3.5 rounded-full bg-current" />
+                                    <motion.span initial={false} animate={{ scaleY: openId === id ? 0 : 1 }} transition={{ duration: reduceMotion ? 0 : 0.18 }} className="absolute top-0.5 left-2 h-3.5 w-0.5 rounded-full bg-current" />
+                                </span>
                             </button>
                         </h3>
                         <p className="hidden text-2xl font-semibold md:block">{question}</p>
-                        <div id={`question-answer-${id}`} className={`${openId === id ? 'block' : 'hidden'} px-2 pb-3 md:block md:p-0`}>
+                        <motion.div id={`question-answer-${id}`} initial={false}
+                            data-open={openId === id}
+                            animate={{ gridTemplateRows: openId === id ? '1fr' : '0fr' }}
+                            transition={{ duration: reduceMotion ? 0 : 0.24, ease: 'easeInOut' }}
+                            className="faq-answer grid">
+                            <div className="min-h-0 overflow-hidden">
+                            <div className="px-2 pb-3 md:p-0">
                             <p className="max-w-[65ch] leading-relaxed text-stone-600">{answer}</p>
-                        </div>
+                            </div>
+                            </div>
+                        </motion.div>
                     </article>
                 ))}
             </div>

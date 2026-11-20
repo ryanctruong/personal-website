@@ -1,3 +1,4 @@
+import { motion, useReducedMotion } from 'motion/react'
 import { useState, type SubmitEvent } from 'react'
 import { ArrowRight } from 'lucide-react'
 import RedButton from '../../../../components/Button/RedButton'
@@ -5,6 +6,12 @@ import RedButton from '../../../../components/Button/RedButton'
 const inputClass = 'min-w-0 w-full rounded-xl border border-[#66877F] bg-[#F7F5EF] px-4 py-3 text-base font-normal text-stone-900 transition-colors focus:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a8392a] disabled:opacity-70'
 
 const Contact = () => {
+    const reduceMotion = useReducedMotion()
+    const feedback = {
+        initial: { opacity: 0, y: reduceMotion ? 0 : 4 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: reduceMotion ? 0 : 0.18 },
+    }
     const [pending, setPending] = useState(false)
     const [success, setSuccess] = useState(false)
     const [error, setError] = useState('')
@@ -49,7 +56,7 @@ const Contact = () => {
                 </p>
             </header>
 
-            <form className="min-w-0 md:col-span-8" onSubmit={submit} onChange={() => setSuccess(false)}>
+            <form aria-busy={pending} className="min-w-0 md:col-span-8" onSubmit={submit} onChange={() => setSuccess(false)}>
                 <fieldset disabled={pending} className="grid min-w-0 gap-5">
                     <div className="grid gap-5 sm:grid-cols-2">
                         <label className="grid min-w-0 gap-2 text-sm font-semibold">
@@ -71,13 +78,17 @@ const Contact = () => {
                     </label>
                     <RedButton type="submit" disabled={pending}>
                         {pending ? 'Sending…' : 'Send message'}
-                        <ArrowRight aria-hidden="true" size={16} />
+                        <ArrowRight aria-hidden="true" size={16} className={pending ? 'motion-safe:animate-pulse' : ''} />
                     </RedButton>
                 </fieldset>
-                <p role="status" className={success ? 'mt-4 rounded-xl bg-green-50 px-4 py-3 text-sm text-green-900' : 'sr-only'}>
-                    {success && 'Thanks for reaching out. Your message was sent.'}
-                </p>
-                {error && <p role="alert" className="mt-4 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-900">{error}</p>}
+                <div role="status" aria-atomic="true">
+                    {success && <motion.p {...feedback} className="mt-4 rounded-xl bg-green-50 px-4 py-3 text-sm text-green-900">
+                        Thanks for reaching out. Your message was sent.
+                    </motion.p>}
+                </div>
+                <div role="alert" aria-atomic="true">
+                    {error && <motion.p {...feedback} className="mt-4 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-900">{error}</motion.p>}
+                </div>
             </form>
         </section>
     )

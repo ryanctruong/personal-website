@@ -59,3 +59,24 @@ svg {
     left: calc((100% - 5rem) / 3 + 1.25rem - 0.5rem);
   }
 }
+
+.faq-answer[data-open="false"] {
+  visibility: hidden;
+  transition: visibility 0s 0.24s;
+}
+.faq-answer[data-open="true"] {
+  visibility: visible;
+  transition: none;
+}
+@media (min-width: 48rem) {
+  .faq-answer[data-open] {
+    grid-template-rows: 1fr !important;
+    visibility: visible;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-answer[data-open] {
+    transition: none;
+  }
+}
