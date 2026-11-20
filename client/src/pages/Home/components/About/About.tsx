@@ -11,6 +11,11 @@ const About = () => {
                     <div>
                         <p className="font-semibold text-[#E8412C] italic">Hey! My name is...</p>
                         <p className="text-4xl sm:text-5xl font-bold italic">Ryan Truong</p>
+                        <p className="mt-3 flex flex-col items-start gap-x-2 gap-y-1 text-sm leading-relaxed text-stone-600 sm:flex-row sm:flex-wrap sm:items-center">
+                            <span>Open to new opportunities</span>
+                            <span aria-hidden="true" className="hidden sm:inline">·</span>
+                            <span>Willing to relocate</span>
+                        </p>
                     </div>
                     <p className="max-w-prose text-base sm:text-lg">Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making.</p>
                     <RedButton href="#questions">

@@ -14,7 +14,7 @@ const NavLink = ({ href, icon: Icon, label }: NavLinkProps) => {
     return href === '/' ? (
         <Link to="/" onClick={() => window.scrollTo(0, 0)} className={classes}>{content}</Link>
     ) : (
-        <a href={href} className={classes}>{content}</a>
+        <Link to={`/${href}`} className={classes}>{content}</Link>
     )
 }
 
