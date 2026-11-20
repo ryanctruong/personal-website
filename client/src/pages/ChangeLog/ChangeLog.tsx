@@ -1,16 +1,9 @@
-import { Link } from 'react-router'
-import { ArrowLeft } from 'lucide-react'
-import Navbar from '../Home/components/Navbar/Navbar'
 import { CHANGES } from './changes'
 
 const ChangeLog = () => (
     <div className="flex min-h-screen flex-col">
-        <Navbar />
         <main className="flex flex-1 flex-col items-center gap-8 px-4 pt-4 pb-8 md:px-8 md:pt-8">
             <header className="home-section flex flex-col items-start gap-4 py-4">
-                <Link to="/" className="inline-flex min-h-11 items-center gap-2 rounded-sm text-sm font-medium text-stone-700 underline decoration-[#9DBEB7] underline-offset-4 hover:decoration-[#E8412C] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#E8412C]">
-                    <ArrowLeft size={16} aria-hidden="true" /> Back to home
-                </Link>
                 <div className="flex max-w-prose flex-col gap-2">
                     <h1 className="text-3xl font-semibold sm:text-4xl">Changelog Origin Update</h1>
                     <p className="leading-relaxed text-stone-600">Discover what’s been added, changed, fixed, improved, and updated in this release.</p>
