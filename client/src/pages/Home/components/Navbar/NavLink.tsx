@@ -11,7 +11,7 @@ type NavLinkProps = {
 
 const NavLink = ({ href, icon: Icon, label, active = false }: NavLinkProps) => {
     const reduceMotion = useReducedMotion()
-    const classes = 'relative isolate flex min-h-11 min-w-0 flex-col items-center justify-center gap-1 rounded-lg px-1 py-2 text-xs font-medium text-stone-700 hover:bg-[#EEF0E9] hover:text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E8412C] sm:flex-row sm:gap-2 sm:px-4 sm:text-sm'
+    const classes = 'relative isolate flex min-h-11 min-w-0 flex-row items-center justify-start gap-2 rounded-lg px-4 py-2 text-sm font-medium text-stone-700 hover:bg-[#EEF0E9] hover:text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E8412C] lg:flex-row lg:gap-2 lg:px-4 lg:text-sm'
     const content = <>
         {active && (reduceMotion ?
             <span aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 rounded-lg bg-[#9DBEB7]/25" /> :
@@ -24,7 +24,7 @@ const NavLink = ({ href, icon: Icon, label, active = false }: NavLinkProps) => {
     return href === '/' ? (
         <Link aria-current={active ? 'location' : undefined} to="/" onClick={() => window.scrollTo(0, 0)} className={classes}>{content}</Link>
     ) : (
-        <Link aria-current={active ? 'location' : undefined} to={`/${href}`} className={classes}>{content}</Link>
+        <Link aria-current={active ? 'location' : undefined} to={href.startsWith('#') ? `/${href}` : href} className={classes}>{content}</Link>
     )
 }
 
