@@ -63,8 +63,7 @@ const CareerMilestone = ({ milestone, isLast }: {
                         <ul aria-label="Technologies" className="my-3 flex min-w-0 flex-wrap items-center gap-2">
                             {techStack.map((tech) => (
                                 <li key={tech.name}
-                                    style={{ backgroundColor: `${color}0D`, borderColor: `${color}26` }}
-                                    className="inline-flex min-w-0 max-w-full items-center gap-2 rounded-lg border px-3 py-1.5 text-sm font-medium text-stone-700">
+                                    className="inline-flex min-w-0 max-w-full items-center gap-2 rounded-lg border border-stone-300 bg-stone-100 px-3 py-1.5 text-sm font-medium text-stone-700">
                                     <img src={tech.icon} alt="" className="size-4 shrink-0 object-contain" />
                                     <span className="min-w-0">{tech.name}</span>
                                 </li>
