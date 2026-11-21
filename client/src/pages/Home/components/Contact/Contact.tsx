@@ -70,7 +70,11 @@ const Contact = () => {
                         </label>
                         <label className={labelClass}>
                             <span className={labelTextClass}>Email address</span>
-                            <input className={inputClass} name="email_address" type="email" autoComplete="email" maxLength={254} required />
+                            <input className={inputClass} name="email_address" type="email" autoComplete="email" maxLength={254}
+                                pattern={'[^\\s@]+@[^\\s@]+\\.[^\\s@]+'}
+                                onInvalid={(event) => event.currentTarget.setCustomValidity('Please enter a valid email address, such as name@example.com.')}
+                                onInput={(event) => event.currentTarget.setCustomValidity('')}
+                                required />
                         </label>
                     </div>
                     <label className={labelClass}>
