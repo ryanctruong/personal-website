@@ -8,7 +8,7 @@ const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   limit: 100,
 });
-app.use(limiter);
+app.use("/api", limiter);
 
 const auth = new GoogleAuth();
 const apiBaseUrl = process.env.API_BASE_URL;
