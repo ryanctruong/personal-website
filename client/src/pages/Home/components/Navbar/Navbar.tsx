@@ -12,7 +12,8 @@ const sections = [
 ]
 
 const Navbar = () => {
-    const { pathname } = useLocation()
+    const { pathname, hash } = useLocation()
+    const isArticles = pathname.startsWith('/articles') || hash === '#articles' || hash.startsWith('#articles/')
     const [activeHref, setActiveHref] = useState('/')
     const [isExpanded, setIsExpanded] = useState(false)
     const [isMobileOpen, setIsMobileOpen] = useState(false)
@@ -21,7 +22,7 @@ const Navbar = () => {
     const toggleRef = useRef<HTMLButtonElement>(null)
 
     useEffect(() => {
-        if (pathname !== '/') return
+        if (pathname !== '/' || isArticles) return
         let frame = 0
         const update = () => {
             frame = 0
@@ -55,7 +56,7 @@ const Navbar = () => {
             window.removeEventListener('scroll', scheduleUpdate)
             window.removeEventListener('resize', scheduleUpdate)
         }
-    }, [pathname])
+    }, [pathname, isArticles])
 
     useEffect(() => {
         if (!isExpanded && !isMobileOpen) return
@@ -109,13 +110,13 @@ const Navbar = () => {
                     }}
                     className={`${isMobileOpen ? 'flex' : 'hidden'} max-h-[calc(100dvh-5rem)] flex-col gap-1 overflow-y-auto pt-2 lg:flex lg:max-h-none lg:flex-row lg:items-center lg:justify-between lg:gap-4 lg:overflow-visible lg:pt-0`}>
                 <div className="flex flex-col gap-1 lg:flex-row lg:gap-2">
-                <NavLink active={pathname === '/' && activeHref === '/'} href="/" icon={House} label="Home" />
-                <NavLink active={pathname === '/' && activeHref === '#questions'} href="#questions" icon={BadgeQuestionMark} label="FAQ" />
-                <NavLink active={pathname === '/' && activeHref === '#timeline'} href="#timeline" icon={Route} label="Timeline" />
-                <NavLink active={pathname === '/' && activeHref === '#contact-me'} href="#contact-me" icon={Mail} label="Contact" />
+                <NavLink active={!isArticles && pathname === '/' && activeHref === '/'} href="/" icon={House} label="Home" />
+                <NavLink active={!isArticles && pathname === '/' && activeHref === '#questions'} href="#questions" icon={BadgeQuestionMark} label="FAQ" />
+                <NavLink active={!isArticles && pathname === '/' && activeHref === '#timeline'} href="#timeline" icon={Route} label="Timeline" />
+                <NavLink active={!isArticles && pathname === '/' && activeHref === '#contact-me'} href="#contact-me" icon={Mail} label="Contact" />
                 </div>
                 <div className="flex flex-col gap-1 lg:flex-row lg:gap-2">
-                <NavLink active={pathname.startsWith('/articles')} href="/articles" icon={Newspaper} label="Articles" />
+                <NavLink active={isArticles} href="#articles" icon={Newspaper} label="Articles" />
                 <NavLink active={pathname === '/change-log'} href="/change-log" icon={History} label="Changelog" />
                 <button
                     ref={toggleRef}
