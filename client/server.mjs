@@ -4,11 +4,18 @@ import { GoogleAuth } from "google-auth-library";
 import { fileURLToPath } from "node:url";
 
 const app = express();
-const limiter = rateLimit({
+const visitLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   limit: 100,
 });
-app.use("/api", limiter);
+const contactLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 100,
+});
+const healthLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 100,
+});
 
 const auth = new GoogleAuth();
 const apiBaseUrl = process.env.API_BASE_URL;
@@ -52,7 +59,7 @@ app.use("/api", (request, response, next) => {
   next();
 });
 
-app.get("/api/health", async (_request, response) => {
+app.get("/api/health", healthLimiter, async (_request, response) => {
   try {
     const upstream = await requestFlask("/api/health");
     response.set("Content-Type", upstream.headers.get("Content-Type") ?? "text/plain");
@@ -63,7 +70,7 @@ app.get("/api/health", async (_request, response) => {
   }
 });
 
-app.post("/api/visit", async (request, response) => {
+app.post("/api/visit", visitLimiter, async (request, response) => {
   response.set("Cache-Control", "no-store");
   try {
     const upstream = await requestFlask("/api/visit", {
@@ -79,7 +86,7 @@ app.post("/api/visit", async (request, response) => {
   }
 });
 
-app.post("/api/contact", express.raw({ type: "application/json", limit: "32kb" }), async (request, response) => {
+app.post("/api/contact", contactLimiter, express.raw({ type: "application/json", limit: "32kb" }), async (request, response) => {
   response.set("Cache-Control", "no-store");
   try {
     const upstream = await requestFlask("/api/contact", {
