@@ -5,7 +5,7 @@ import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeHighlight from 'rehype-highlight'
 import { articles } from './articleContent'
-import CodeBlock from './CodeBlock'
+import CodeBlock from './components/CodeBlock'
 
 const linkStyle = 'inline-flex min-h-11 items-center gap-2 rounded-sm text-sm font-medium text-stone-600 hover:text-[#E8412C] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#E8412C]'
 
