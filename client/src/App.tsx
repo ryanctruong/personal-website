@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { Route, Routes, useLocation } from 'react-router'
 import Banner from './components/Banner/Banner'
-import Navbar from './pages/Home/components/Navbar/Navbar'
+import Navbar from './components/Navbar/Navbar'
 import Home from './pages/Home/Home'
 import Articles from './pages/Articles/Articles'
 import ChangeLog from './pages/ChangeLog/ChangeLog'

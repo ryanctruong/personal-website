@@ -4,6 +4,7 @@ import { ArrowUpRight } from 'lucide-react'
 const expandedLinks = [
     { label: 'GitHub', href: 'https://github.com/ryanctruong' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ryanctruong/' },
+    { label: 'Email me', href: 'mailto:rtruong.cs@gmail.com' },
 ]
 
 type ExpandedNavigationProps = {
@@ -29,7 +30,8 @@ const ExpandedNavigation = ({ isExpanded, onNavigate }: ExpandedNavigationProps)
     {isExpanded && <MenuPanel>
         {expandedLinks.map(({ label, href }) => (
             <motion.a key={label} initial="rest" whileHover="active" whileFocus="active"
-                href={href} target="_blank" rel="noopener noreferrer" onClick={onNavigate}
+                href={href} target={href.startsWith('mailto:') ? undefined : '_blank'}
+                rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'} onClick={onNavigate}
                 className="flex min-h-11 max-w-full items-center gap-2 rounded-lg px-3 py-3 text-sm font-semibold text-stone-900 underline decoration-[#9DBEB7] underline-offset-4 hover:bg-[#EEF0E9] hover:decoration-[#E8412C] focus-visible:outline-2 focus-visible:outline-[#E8412C]">
                 {label}
                 <motion.span aria-hidden="true" className="inline-flex shrink-0 text-[#E8412C]"
