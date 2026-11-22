@@ -8,7 +8,7 @@ import powerbiIcon from "/icons/powerbi.webp";
 import reactIcon from "/icons/react.webp";
 import gcpIcon from "/icons/gcp.webp";
 import dockerIcon from "/icons/docker.webp";
-import nodejsIcon from "/icons/nodejs.webp"
+import nodejsIcon from "/icons/nodejs.webp";
 
 interface Technology {
   name: string;
@@ -28,7 +28,7 @@ const docker: Technology = { name: "Docker", icon: dockerIcon };
 const nodejs: Technology = { name: "Node.js", icon: nodejsIcon };
 
 interface CareerMilestone {
-  discipline: 'education' | 'analytics' | 'engineering';
+  discipline: "education" | "analytics" | "engineering";
   date: string;
   title: string;
   subtitle: string;
@@ -38,16 +38,16 @@ interface CareerMilestone {
 
 export const CAREER_MILESTONES: CareerMilestone[] = [
   {
-    discipline: 'education',
-    date: "Aug 2018",
+    discipline: "education",
+    date: "Aug 2016",
     title: "IT Pathway Student",
     subtitle: "John Overton High School",
     description:
-      "Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making.",
-    techStack: [java],
+      "I've always been into computers, but growing up, it was mostly about playing games and building PCs. When I heard my high school was starting a new IT Pathway, I wanted in. The only problem was that I didn't read the class descriptions closely enough. I meant to take Hardware Systems and ended up in Programming I instead. Looking back, that was probably one of the best mistakes I could've made. I started learning Java and making little games, and realized I enjoyed writing the code just as much as playing the finished thing. It gave me that same feeling I got from building a computer: putting pieces together, figuring out why something wasn't working, and finally getting it to do what I wanted. I also got to compete in programming competitions and a web design competition where we were asked to come up with a new car brand and build a website for it. My site placed third in the state. I stuck with programming and eventually took AP Computer Science, although COVID cut into that experience. What started as signing up for the wrong class ended up being how I found out I wanted to keep building software.",
+    techStack: [java, html, css],
   },
   {
-    discipline: 'education',
+    discipline: "education",
     date: "Aug 2020",
     title: "Computer Science Major",
     subtitle: "Belmont University",
@@ -56,7 +56,7 @@ export const CAREER_MILESTONES: CareerMilestone[] = [
     techStack: [sql, python, java],
   },
   {
-    discipline: 'engineering',
+    discipline: "engineering",
     date: "May 2021",
     title: "Software Engineer Intern",
     subtitle: "Jackson National Life Insurance Company",
@@ -65,7 +65,7 @@ export const CAREER_MILESTONES: CareerMilestone[] = [
     techStack: [java, html, css],
   },
   {
-    discipline: 'education',
+    discipline: "education",
     date: "Aug 2022",
     title: "Dual Economics Major",
     subtitle: "Belmont University",
@@ -74,7 +74,7 @@ export const CAREER_MILESTONES: CareerMilestone[] = [
     techStack: [sql, python, excel],
   },
   {
-    discipline: 'analytics',
+    discipline: "analytics",
     date: "Aug 2022",
     title: "Junior Data Analyst",
     subtitle: "Belmont Data Collaborative",
@@ -83,7 +83,7 @@ export const CAREER_MILESTONES: CareerMilestone[] = [
     techStack: [excel, python, sql],
   },
   {
-    discipline: 'analytics',
+    discipline: "analytics",
     date: "May 2023",
     title: "Data Analyst Intern",
     subtitle: "Urban Science",
@@ -92,7 +92,7 @@ export const CAREER_MILESTONES: CareerMilestone[] = [
     techStack: [powerbi, sql, python, excel],
   },
   {
-    discipline: 'education',
+    discipline: "education",
     date: "Aug 2023",
     title: "CSC/MTH Tutor",
     subtitle: "Belmont University",
@@ -101,7 +101,7 @@ export const CAREER_MILESTONES: CareerMilestone[] = [
     techStack: [java, python],
   },
   {
-    discipline: 'engineering',
+    discipline: "engineering",
     date: "Oct 2023",
     title: "Software Engineer Intern",
     subtitle: "HCA Healthcare",
@@ -110,7 +110,7 @@ export const CAREER_MILESTONES: CareerMilestone[] = [
     techStack: [gcp, docker, python, react],
   },
   {
-    discipline: 'engineering',
+    discipline: "engineering",
     date: "May 2024 - Present",
     title: "Software Engineer",
     subtitle: "HCA Healthcare",
