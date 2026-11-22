@@ -59,6 +59,10 @@ const Contact = () => {
                 <p className="max-w-xs leading-relaxed text-stone-600">
                     Have a project in mind or just want to say hello? I’d love to hear from you.
                 </p>
+                <a href="mailto:rtruong.cs@gmail.com"
+                    className="inline-flex min-h-11 max-w-full items-center self-start rounded-sm font-semibold text-stone-900 underline decoration-[#9DBEB7] underline-offset-4 hover:decoration-[#E8412C] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E8412C]">
+                    <span className="min-w-0 [overflow-wrap:anywhere]">rtruong.cs@gmail.com</span>
+                </a>
             </header>
 
             <form aria-busy={pending} className="min-w-0 md:col-span-8" onSubmit={submit} onChange={() => setSuccess(false)}>
