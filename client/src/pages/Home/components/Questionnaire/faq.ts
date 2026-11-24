@@ -23,12 +23,12 @@ export const FAQS: Faq[] = [
   {
     id: "faq-childhood",
     question: "What were you like as a kid, and what hasn’t changed?",
-    answer: "",
+    answer: "As a kid, I was crazy. Plain and simple. I wanted to do everything: play games, play sports, try every food in front of me. I never wanted to sit still, especially if there was something fun going on.\n\nLooking back, a lot of that was curiosity. I liked trying things and figuring out what I enjoyed, even if I didn’t stick with all of them. That part hasn’t changed. I’m still drawn to new experiences, and I’d rather give something a try than wonder whether I might’ve liked it.",
   },
   {
     id: "faq-collaboration",
     question: "What are you like to work with?",
-    answer: "",
+    answer: "I’m usually quick to raise my hand when something needs to get done. I like being someone my teammates can count on, whether that means helping them get unstuck or taking on something unfamiliar.\n\nI also ask a lot of questions. I want to understand what we’re trying to accomplish, why we do things a certain way, and how the pieces fit together before I start building. If something isn’t clear to me, I’d rather ask than make an assumption. That curiosity helps me learn from the people around me and feel more confident in what I’m contributing.",
   },
   {
     id: "faq-personal-pride",
@@ -38,31 +38,31 @@ export const FAQS: Faq[] = [
   {
     id: "faq-changed-opinion",
     question: "What’s an opinion you’ve changed your mind about?",
-    answer: "",
+    answer: "I used to think a lot of success came down to luck, whether that meant being naturally good at something or getting the right opportunity at the right time. I’ve come to believe that consistency and dedication matter much more than I gave them credit for.\n\nRunning helped me see that. I didn’t start out believing I could run a marathon, but showing up week after week helped me do something I hadn’t thought possible. I’ve noticed the same thing in my career. Tasks that once felt unfamiliar became things I could take ownership of because I kept asking questions, learning, and taking on new challenges.\n\nI still think luck plays a role. I’ve had opportunities and people who believed in me, and I’m grateful for that. But I’ve learned that what I do with those opportunities and the effort I put in between them matter more than I used to think.",
   },
   {
     id: "faq-presentation",
     question: "What could you give a 30-minute presentation on with no preparation?",
-    answer: "",
+    answer: "Why Topgolf has the best pizza in the world. I’ve tried hundreds of pizza places across Nashville, Chicago, and New York, and nothing hits quite like Topgolf pizza. I just can’t explain it.\n\nI’m not sure if it’s the atmosphere or what, but I feel like I could eat it for the rest of my life. And yes, I would pay the bay fee just to eat the pizza.",
   },
   {
     id: "faq-learning",
     question: "What are you learning right now just because you’re curious?",
-    answer: "",
+    answer: "Right now, I’m learning more about agentic AI and how I can use it in my everyday life. I’ve been exploring different models, experimenting with how I write prompts, and figuring out which tasks I can hand off to an agent and which ones need more guidance.\n\nI’m also curious about token usage and how to get useful results with less back-and-forth. How much context does a model actually need? When does more detail help, and when am I just adding noise? I enjoy trying different approaches and seeing what makes a difference.",
   },
   {
     id: "faq-reputation",
     question: "What do you want to become known for?",
-    answer: "",
+    answer: "I want to be known as someone who gives their best to whatever they take on. I’m competitive, and I want to be the best at what I do. But even when I fall short, I want people to see that I cared, put in the work, and gave it everything I had.\n\nThat also means being willing to learn from a failure and try again. I won’t always get the result I want, but I want to be someone people can count on to show up, take ownership, and keep getting better.",
   },
   {
     id: "faq-career-future",
     question: "What are you hoping to do more of in your career?",
-    answer: "",
+    answer: "I’m hoping to grow into a senior engineering role and eventually explore management. I still really enjoy writing code, and I want to keep building my technical skills while taking on more responsibility and helping other engineers grow.\n\nI’d also like to work more directly with stakeholders. I want to be part of the conversations that define a project’s scope, understand what people need, and help turn that into a clear plan. Being closer to those decisions would help me become a stronger engineer and prepare me to lead a team down the road.",
   },
   {
     id: "faq-life-priorities",
     question: "What are you trying to make more room for in your life?",
-    answer: "",
+    answer: "I’m trying to make more room for spontaneity and slowing down. That could mean taking a trip, saying yes to a last-minute plan, or having a day with nothing on the schedule. Not every day needs to be filled with something.\n\nBetween work, running, and personal goals, I’m used to having something to work toward. I enjoy that, but I also want to get better at relaxing without feeling like I should be doing more. Sometimes, I just want to enjoy where I am, who I’m with, and the moment I’m in.",
   },
 ];
