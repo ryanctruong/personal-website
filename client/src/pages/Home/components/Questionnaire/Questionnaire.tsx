@@ -1,4 +1,4 @@
-import { LayoutGroup, motion, useReducedMotion } from 'motion/react';
+import { LayoutGroup, motion, useMotionValue, useMotionValueEvent, useReducedMotion, useSpring } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { FAQS } from './faq';
@@ -9,6 +9,13 @@ const Questionnaire = () => {
     const reduceMotion = useReducedMotion();
     const answersRef = useRef<HTMLDivElement>(null);
     const questionPanelRef = useRef<HTMLDivElement>(null);
+    const panelScrollTarget = useMotionValue(0);
+    const panelScroll = useSpring(panelScrollTarget, { stiffness: 180, damping: 32, mass: 0.5 });
+
+    useMotionValueEvent(panelScroll, 'change', (position) => {
+        questionPanelRef.current?.scrollTo({ top: position, behavior: 'instant' });
+    });
+
     const [activeId, setActiveId] = useState(questionAnchor(FAQS[0].id));
 
     const [openId, setOpenId] = useState<string | null>(null);
@@ -38,6 +45,33 @@ const Questionnaire = () => {
             }
 
             setActiveId(current);
+
+            const panel = questionPanelRef.current;
+            if (!panel || panel.clientHeight === 0) return;
+            const links = Array.from(panel.querySelectorAll<HTMLAnchorElement>('nav a'));
+            const index = answers.findIndex((answer) => answer.id === current);
+            const answer = answers[index];
+            const link = links[index];
+            if (!answer || !link) return;
+
+            const nextAnswer = answers[index + 1];
+            const nextLink = links[index + 1] ?? link;
+            const answerTop = answer.getBoundingClientRect().top;
+            const distance = nextAnswer ? nextAnswer.getBoundingClientRect().top - answerTop : 0;
+            const progress = distance > 0
+                ? Math.max(0, Math.min(1, (readingLine - answerTop) / distance))
+                : 0;
+            // Interpolate in the panel's own coordinates, independent of its scroll position.
+            const panelTop = panel.getBoundingClientRect().top + panel.clientTop;
+            const linkCenter = link.getBoundingClientRect().top - panelTop + panel.scrollTop + link.offsetHeight / 2;
+            const nextCenter = nextLink.getBoundingClientRect().top - panelTop + panel.scrollTop + nextLink.offsetHeight / 2;
+            const target = Math.max(0, Math.min(
+                panel.scrollHeight - panel.clientHeight,
+                linkCenter + (nextCenter - linkCenter) * progress - panel.clientHeight / 2,
+            ));
+
+            panelScrollTarget.set(target);
+            if (reduceMotion) panelScroll.jump(target);
         };
 
         const scheduleUpdate = () => {
@@ -53,41 +87,12 @@ const Questionnaire = () => {
             window.removeEventListener('resize', scheduleUpdate);
             if (frame !== null) window.cancelAnimationFrame(frame);
         };
-    }, []);
-
-    useEffect(() => {
-        const keepActiveQuestionVisible = () => {
-            const panel = questionPanelRef.current;
-            const activeLink = panel?.querySelector<HTMLAnchorElement>('[aria-current="location"]');
-            if (!panel || !activeLink || panel.clientHeight === 0) return;
-
-            const panelBounds = panel.getBoundingClientRect();
-            const linkBounds = activeLink.getBoundingClientRect();
-            const visibleTop = panelBounds.top + panel.clientTop;
-            const visibleBottom = visibleTop + panel.clientHeight;
-            const offset = linkBounds.top < visibleTop
-                ? linkBounds.top - visibleTop
-                : linkBounds.bottom > visibleBottom
-                    ? linkBounds.bottom - visibleBottom
-                    : 0;
-
-            if (offset !== 0) {
-                panel.scrollTo({
-                    top: panel.scrollTop + offset,
-                    behavior: reduceMotion ? 'instant' : 'smooth',
-                });
-            }
-        };
-
-        keepActiveQuestionVisible();
-        window.addEventListener('resize', keepActiveQuestionVisible);
-        return () => window.removeEventListener('resize', keepActiveQuestionVisible);
-    }, [activeId, reduceMotion]);
+    }, [panelScrollTarget, panelScroll, reduceMotion]);
 
     return (
         <section id="questions" className="home-section home-grid items-start gap-y-6 py-8">
             <h2 className="text-2xl font-semibold text-stone-900 md:hidden">Questions</h2>
-            <div ref={questionPanelRef} className="hidden min-w-0 flex-col text-stone-900 md:col-span-4 md:flex md:sticky md:top-24 md:max-h-[calc(100dvh-7.5rem)] md:overflow-y-auto">
+            <motion.div layoutScroll ref={questionPanelRef} className="hidden min-w-0 flex-col text-stone-900 md:col-span-4 md:flex md:sticky md:top-24 md:max-h-[calc(100dvh-7.5rem)] md:overflow-y-auto">
                 <div className="flex items-center justify-between border-b border-[#CED8CF] pb-5">
                     <p id="question-list-heading" className="text-sm font-semibold uppercase tracking-[0.16em]">Questions</p>
                     <span className="text-xs tabular-nums text-stone-500">{String(FAQS.length).padStart(2, '0')}</span>
@@ -114,7 +119,7 @@ const Questionnaire = () => {
                     ))}
                 </nav>
                 </LayoutGroup>
-            </div>
+            </motion.div>
 
             <div ref={answersRef} className="grid min-w-0 gap-0 md:col-span-8 md:gap-8">
                 {FAQS.map(({ id, question, answer }) => (
