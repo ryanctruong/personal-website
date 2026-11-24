@@ -6,27 +6,63 @@ interface Faq {
 
 export const FAQS: Faq[] = [
   {
-    id: "faq-background",
-    question: "What did you study?",
-    answer:
-      "Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. ",
+    id: "faq-engaging-work",
+    question: "What kind of work makes you lose track of time?",
+    answer: "",
   },
   {
-    id: "faq-engineering",
-    question: "Where have you worked as a software engineer?",
-    answer:
-      "Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. ",
+    id: "faq-weekend",
+    question: "What does a really good weekend look like for you?",
+    answer: "",
   },
   {
-    id: "faq-analytics",
-    question: "What experience do you have in data analytics?",
-    answer:
-      "Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. ",
+    id: "faq-economics",
+    question: "How has studying economics changed the way you build software?",
+    answer: "",
   },
   {
-    id: "faq-tools",
-    question: "What tools have you used for software development?",
-    answer:
-      "Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. ",
+    id: "faq-childhood",
+    question: "What were you like as a kid, and what hasn’t changed?",
+    answer: "",
+  },
+  {
+    id: "faq-collaboration",
+    question: "What are you like to work with?",
+    answer: "",
+  },
+  {
+    id: "faq-personal-pride",
+    question: "What’s something you’re proud of that has nothing to do with your career?",
+    answer: "",
+  },
+  {
+    id: "faq-changed-opinion",
+    question: "What’s an opinion you’ve changed your mind about?",
+    answer: "",
+  },
+  {
+    id: "faq-presentation",
+    question: "What could you give a 30-minute presentation on with no preparation?",
+    answer: "",
+  },
+  {
+    id: "faq-learning",
+    question: "What are you learning right now just because you’re curious?",
+    answer: "",
+  },
+  {
+    id: "faq-reputation",
+    question: "What do you want to become known for?",
+    answer: "",
+  },
+  {
+    id: "faq-career-future",
+    question: "What are you hoping to do more of in your career?",
+    answer: "",
+  },
+  {
+    id: "faq-life-priorities",
+    question: "What are you trying to make more room for in your life?",
+    answer: "",
   },
 ];
