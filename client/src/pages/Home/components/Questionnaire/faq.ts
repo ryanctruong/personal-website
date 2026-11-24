@@ -18,7 +18,7 @@ export const FAQS: Faq[] = [
   {
     id: "faq-economics",
     question: "How has studying economics changed the way you build software?",
-    answer: "",
+    answer: "Studying economics made me more curious about the decisions behind the software. Who would use it? What problem would it solve? Would the benefit justify the time and effort to build and maintain it? I started thinking more about the business impact and why one solution might be worth pursuing over another.\n\nIt also taught me to question my assumptions and look for evidence. An idea can sound promising, but I want to understand the existing process, where people are struggling, and whether what we’re proposing would make a meaningful difference. That helps me make better decisions before I start writing code.",
   },
   {
     id: "faq-childhood",
