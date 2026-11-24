@@ -113,7 +113,11 @@ const Questionnaire = () => {
                             className="faq-answer grid">
                             <div className="min-h-0 overflow-hidden">
                             <div className="px-2 pb-3 md:p-0">
-                            <p className="max-w-[65ch] leading-relaxed text-stone-600">{answer}</p>
+                            <div className="max-w-[65ch] space-y-4 leading-relaxed text-stone-600">
+                                {answer.split(/\n\s*\n/).filter((paragraph) => paragraph.trim()).map((paragraph, index) => (
+                                    <p key={index}>{paragraph}</p>
+                                ))}
+                            </div>
                             </div>
                             </div>
                         </motion.div>
