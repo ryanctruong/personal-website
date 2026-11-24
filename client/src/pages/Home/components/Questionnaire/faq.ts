@@ -8,12 +8,12 @@ export const FAQS: Faq[] = [
   {
     id: "faq-engaging-work",
     question: "What kind of work makes you lose track of time?",
-    answer: "",
+    answer: "Work that I know will have an impact. That could be supporting a teammate on a new engineering task or building an application for thousands of users. Either way, knowing that what I’m doing matters to someone makes it easy to get invested.\n\nI get especially absorbed when there’s a problem we haven’t figured out how to solve yet. I enjoy breaking it down, trying different approaches, and following an idea to see where it leads. Each small breakthrough makes me want to keep going, especially when I know what solving it would mean for the people dealing with it.",
   },
   {
     id: "faq-weekend",
     question: "What does a really good weekend look like for you?",
-    answer: "",
+    answer: "A really good weekend starts with an early morning run, usually around an hour, depending on whether I’m training for a race or just staying active. I like going alone, it gives me time to myself to reflect on the week. After that, I’m heading somewhere for a good breakfast or brunch. I run so I can eat more, haha.\n\nThe rest of the day is pretty relaxed: spending time with friends and family, watching football, shopping, or getting some cleaning done at home. At night, I’d meet up with friends for dinner, hang out, and see where the evening takes us. I like having a few things to look forward to without planning every hour.",
   },
   {
     id: "faq-economics",
