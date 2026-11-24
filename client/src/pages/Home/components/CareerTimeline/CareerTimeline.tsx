@@ -70,7 +70,11 @@ const CareerMilestone = ({ milestone, isLast }: {
                             ))}
                         </ul>
                     )}
-                    <p className="mt-2 max-w-[65ch] text-sm leading-relaxed text-stone-600">{description}</p>
+                    <div className="mt-2 max-w-[65ch] space-y-4 text-sm leading-relaxed text-stone-600">
+                        {description.split(/\n\s*\n/).map((paragraph, index) => (
+                            <p key={index}>{paragraph}</p>
+                        ))}
+                    </div>
                 </div>
             </article>
         </li>
