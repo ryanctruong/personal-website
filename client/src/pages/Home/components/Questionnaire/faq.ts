@@ -8,17 +8,17 @@ export const FAQS: Faq[] = [
   {
     id: "faq-engaging-work",
     question: "What kind of work makes you lose track of time?",
-    answer: "Work that I know will have an impact. That could be supporting a teammate on a new engineering task or building an application for thousands of users. Either way, knowing that what I’m doing matters to someone makes it easy to get invested.\n\nI get especially absorbed when there’s a problem we haven’t figured out how to solve yet. I enjoy breaking it down, trying different approaches, and following an idea to see where it leads. Each small breakthrough makes me want to keep going, especially when I know what solving it would mean for the people dealing with it.",
+    answer: "Work that I know will have an impact. That could be supporting a teammate on a new engineering task or building an application for thousands of users. Either way, knowing that what I’m doing matters to someone makes it easy to get invested.\n\nI get especially absorbed when there’s a problem we haven’t figured out how to solve yet. I enjoy breaking it down, trying different approaches, and following an idea to see where it leads. Each small breakthrough makes me want to keep going. It’s easy to lose track of time when I feel like I’m getting closer to a solution.",
   },
   {
     id: "faq-weekend",
     question: "What does a really good weekend look like for you?",
-    answer: "A really good weekend starts with an early morning run, usually around an hour, depending on whether I’m training for a race or just staying active. I like going alone, it gives me time to myself to reflect on the week. After that, I’m heading somewhere for a good breakfast or brunch. I run so I can eat more, haha.\n\nThe rest of the day is pretty relaxed: spending time with friends and family, watching football, shopping, or getting some cleaning done at home. At night, I’d meet up with friends for dinner, hang out, and see where the evening takes us. I like having a few things to look forward to without planning every hour.",
+    answer: "A really good weekend starts with an early morning run, usually around an hour, depending on whether I’m training for a race or just staying active. I like going alone because it gives me time to reflect on the week. After that, I’m heading somewhere for a good breakfast or brunch. I run so I can eat more, haha.\n\nThe rest of the day is pretty relaxed: spending time with friends and family, watching football, shopping, or getting some cleaning done at home. At night, I’ll meet up with friends for dinner, hang out, and see where the evening takes us. I like having a few things to look forward to without planning every hour.",
   },
   {
     id: "faq-economics",
     question: "How has studying economics changed the way you build software?",
-    answer: "Studying economics made me more curious about the decisions behind the software. Who would use it? What problem would it solve? Would the benefit justify the time and effort to build and maintain it? I started thinking more about the business impact and why one solution might be worth pursuing over another.\n\nIt also taught me to question my assumptions and look for evidence. An idea can sound promising, but I want to understand the existing process, where people are struggling, and whether what we’re proposing would make a meaningful difference. That helps me make better decisions before I start writing code.",
+    answer: "Studying economics made me more curious about the decisions behind the software. Who would use it? What problem would it solve? Would the benefit justify the time and effort to build and maintain it? I started thinking more about the business impact and why one solution might be worth pursuing over another.\n\nIt also taught me to question my assumptions and look for evidence. An idea can sound promising, but that doesn’t automatically make it a good investment. I want to understand the tradeoffs and how we’ll know whether the solution is working.",
   },
   {
     id: "faq-childhood",
@@ -38,7 +38,7 @@ export const FAQS: Faq[] = [
   {
     id: "faq-changed-opinion",
     question: "What’s an opinion you’ve changed your mind about?",
-    answer: "I used to think a lot of success came down to luck, whether that meant being naturally good at something or getting the right opportunity at the right time. I’ve come to believe that consistency and dedication matter much more than I gave them credit for.\n\nRunning helped me see that. I didn’t start out believing I could run a marathon, but showing up week after week helped me do something I hadn’t thought possible. I’ve noticed the same thing in my career. Tasks that once felt unfamiliar became things I could take ownership of because I kept asking questions, learning, and taking on new challenges.\n\nI still think luck plays a role. I’ve had opportunities and people who believed in me, and I’m grateful for that. But I’ve learned that what I do with those opportunities and the effort I put in between them matter more than I used to think.",
+    answer: "I used to think a lot of success came down to luck, whether that meant being naturally good at something or getting the right opportunity at the right time. I’ve come to believe that consistency and dedication matter much more than I gave them credit for.\n\nRunning gave me a clear example of how small efforts add up over time, and I’ve noticed the same thing in my career. Tasks that once felt unfamiliar became things I could take ownership of because I kept asking questions, learning, and taking on new challenges.\n\nI still think luck plays a role. I’ve had opportunities and people who believed in me, and I’m grateful for that. But I’ve learned that what I do with those opportunities and the effort I put in between them matter more than I used to think.",
   },
   {
     id: "faq-presentation",
@@ -48,12 +48,12 @@ export const FAQS: Faq[] = [
   {
     id: "faq-learning",
     question: "What are you learning right now just because you’re curious?",
-    answer: "Right now, I’m learning more about agentic AI and how I can use it in my everyday life. I’ve been exploring different models, experimenting with how I write prompts, and figuring out which tasks I can hand off to an agent and which ones need more guidance.\n\nI’m also curious about token usage and how to get useful results with less back-and-forth. How much context does a model actually need? When does more detail help, and when am I just adding noise? I enjoy trying different approaches and seeing what makes a difference.",
+    answer: "Right now, I’m learning more about agentic AI and how I can use it in my everyday life. I’ve been exploring different models, experimenting with how I write prompts, and figuring out which tasks I can hand off to an agent and which ones need more guidance.\n\nI’m also curious about token usage and how to get useful results with less back-and-forth. How much context does a model actually need? When does more detail help, and when am I just adding noise? I like comparing the results and figuring out what actually improved the response.",
   },
   {
     id: "faq-reputation",
     question: "What do you want to become known for?",
-    answer: "I want to be known as someone who gives their best to whatever they take on. I’m competitive, and I want to be the best at what I do. But even when I fall short, I want people to see that I cared, put in the work, and gave it everything I had.\n\nThat also means being willing to learn from a failure and try again. I won’t always get the result I want, but I want to be someone people can count on to show up, take ownership, and keep getting better.",
+    answer: "I want to be known as someone who gives their best to whatever they take on. I’m competitive, and I want to be the best at what I do. But even when I fall short, I want people to see that I cared, put in the work, and gave it everything I had.\n\nThat also means being honest when something goes wrong and willing to learn from it. I won’t always get the result I want, but I want to be able to look back and know I took the responsibility seriously and gave myself every chance to succeed.",
   },
   {
     id: "faq-career-future",
