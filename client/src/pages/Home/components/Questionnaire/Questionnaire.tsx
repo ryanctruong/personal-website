@@ -8,6 +8,7 @@ const questionAnchor = (id: string) => `questions/${id}`;
 const Questionnaire = () => {
     const reduceMotion = useReducedMotion();
     const answersRef = useRef<HTMLDivElement>(null);
+    const questionPanelRef = useRef<HTMLDivElement>(null);
     const [activeId, setActiveId] = useState(questionAnchor(FAQS[0].id));
 
     const [openId, setOpenId] = useState<string | null>(null);
@@ -54,10 +55,39 @@ const Questionnaire = () => {
         };
     }, []);
 
+    useEffect(() => {
+        const keepActiveQuestionVisible = () => {
+            const panel = questionPanelRef.current;
+            const activeLink = panel?.querySelector<HTMLAnchorElement>('[aria-current="location"]');
+            if (!panel || !activeLink || panel.clientHeight === 0) return;
+
+            const panelBounds = panel.getBoundingClientRect();
+            const linkBounds = activeLink.getBoundingClientRect();
+            const visibleTop = panelBounds.top + panel.clientTop;
+            const visibleBottom = visibleTop + panel.clientHeight;
+            const offset = linkBounds.top < visibleTop
+                ? linkBounds.top - visibleTop
+                : linkBounds.bottom > visibleBottom
+                    ? linkBounds.bottom - visibleBottom
+                    : 0;
+
+            if (offset !== 0) {
+                panel.scrollTo({
+                    top: panel.scrollTop + offset,
+                    behavior: reduceMotion ? 'instant' : 'smooth',
+                });
+            }
+        };
+
+        keepActiveQuestionVisible();
+        window.addEventListener('resize', keepActiveQuestionVisible);
+        return () => window.removeEventListener('resize', keepActiveQuestionVisible);
+    }, [activeId, reduceMotion]);
+
     return (
         <section id="questions" className="home-section home-grid items-start gap-y-6 py-8">
             <h2 className="text-2xl font-semibold text-stone-900 md:hidden">Questions</h2>
-            <div className="hidden min-w-0 flex-col text-stone-900 md:col-span-4 md:flex md:sticky md:top-24 md:max-h-[calc(100dvh-7.5rem)] md:overflow-y-auto">
+            <div ref={questionPanelRef} className="hidden min-w-0 flex-col text-stone-900 md:col-span-4 md:flex md:sticky md:top-24 md:max-h-[calc(100dvh-7.5rem)] md:overflow-y-auto">
                 <div className="flex items-center justify-between border-b border-[#CED8CF] pb-5">
                     <p id="question-list-heading" className="text-sm font-semibold uppercase tracking-[0.16em]">Questions</p>
                     <span className="text-xs tabular-nums text-stone-500">{String(FAQS.length).padStart(2, '0')}</span>
@@ -105,7 +135,7 @@ const Questionnaire = () => {
                                 </span>
                             </button>
                         </h3>
-                        <p className="hidden text-2xl font-semibold md:block">{question}</p>
+                        <p className="hidden text-xl font-semibold md:block">{question}</p>
                         <motion.div id={`question-answer-${id}`} initial={false}
                             data-open={openId === id}
                             animate={{ gridTemplateRows: openId === id ? '1fr' : '0fr' }}
