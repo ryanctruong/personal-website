@@ -25,7 +25,7 @@ const About = () => {
                             <span>Willing to relocate</span>
                         </p>
                     </motion.div>
-                    <motion.p {...entrance(0.08)} className="max-w-prose text-base sm:text-lg">Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making. Analyzed and interpreted data to provide insights and support decision-making.</motion.p>
+                    <motion.p {...entrance(0.08)} className="max-w-prose text-base sm:text-lg">I’m a Software Engineer at HCA Healthcare, where I’ve spent over three years bringing innovation and AI to HR processes. My background in Computer Science and Economics from Belmont University makes me curious about how something works and why it’s worth building. I like asking questions, working through unfamiliar problems, and building things that make someone’s day a little easier. What keeps me invested is seeing something I helped build become part of someone’s everyday routine. Outside of work, you’ll usually find me running in the wild, or on Google Maps trying to figure out where I am at!</motion.p>
                     <motion.div {...entrance(0.14)}>
                         <RedButton href="#questions">
                             Learn More <ArrowDown size={16} aria-hidden="true" />
