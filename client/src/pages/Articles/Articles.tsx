@@ -1,11 +1,11 @@
 import { ArrowLeft } from 'lucide-react'
 import { motion, useReducedMotion } from 'motion/react'
 import { Link, useLocation } from 'react-router'
-import Markdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import rehypeHighlight from 'rehype-highlight'
-import { articles } from './articleContent'
-import CodeBlock from './components/CodeBlock'
+import { parseMarkdownEntries } from '../../util/markdownContent'
+import MarkdownContent from '../../components/MarkdownContent/MarkdownContent'
+
+const files = import.meta.glob('./content/*.md', { query: '?raw', import: 'default', eager: true }) as Record<string, string>
+const articles = parseMarkdownEntries(files)
 
 const linkStyle = 'inline-flex min-h-11 items-center gap-2 rounded-sm text-sm font-medium text-stone-600 hover:text-[#E8412C] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#E8412C]'
 
@@ -32,12 +32,7 @@ const Articles = () => {
                                     <h1 className="text-3xl font-semibold sm:text-4xl">{article.title}</h1>
                                     {article.description && <p className="text-lg leading-relaxed text-stone-600">{article.description}</p>}
                                 </header>
-                                <div className="article-prose mt-8">
-                                    <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]} components={{
-                                        pre: ({ children }) => <CodeBlock>{children}</CodeBlock>,
-                                        table: ({ children }) => <div className="article-table" tabIndex={0} role="region" aria-label="Scrollable table"><table>{children}</table></div>,
-                                    }}>{article.body}</Markdown>
-                                </div>
+                                <MarkdownContent className="mt-8">{article.body}</MarkdownContent>
                                 <nav aria-label="Article navigation" className="mt-12 border-t border-[#9DBEB7] pt-4">
                                     <Link to="/#articles" className={linkStyle}><ArrowLeft size={16} aria-hidden="true" />All articles</Link>
                                 </nav>
